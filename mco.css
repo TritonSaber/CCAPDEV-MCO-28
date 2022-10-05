@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+/*Navbar */
+.conatiner-nav{
+    max-width: 100%;
+}
+
+
+.container-nav a{
+    font-size: 15px;
+}
+
+.navbar-button{
+    padding: 10px;
+}
+
+
+.navbar-brand img{
+
+    width: 50px;
+    height: 50px;
+    margin-top: -15px;
+
+}
+/* popup */
+.modal-header{
+    margin: auto;
+}
+
+
+/* main body */
+
+/*Carousel */
+
+.carousel-container{
+    height: 350px;
+    width: 350px;
+    margin-left: 2%;
+    float: left;
+}
+
+.restaurant-menu{
+    display: block;
+    margin-left: 50%;
+    margin-right: 50%;
+ 
+
+}
+
+.logo-container img{
+    height: 10%;
+    width: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+
