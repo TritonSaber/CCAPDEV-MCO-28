@@ -4,10 +4,11 @@ html, body {
 
 
 
+/*Footer*/
+.footer {
+   background-color: #262626;
 
-
-
-
+ }
 
 /*Navbar */
 .conatiner-nav{
@@ -46,13 +47,18 @@ html, body {
     width: 350px;
     margin-left: 2%;
     float: left;
+
+
+.carousel-container1{
+    padding-top: 56.25%;
+}
+
 }
 
 .restaurant-menu{
     display: block;
     margin-left: 50%;
     margin-right: 50%;
- 
 
 }
 
@@ -64,6 +70,9 @@ html, body {
     margin-right: auto;
 
 }
+
+
+
 
 
 
