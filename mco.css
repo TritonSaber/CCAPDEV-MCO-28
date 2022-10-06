@@ -2,11 +2,18 @@ html, body {
     height: 100%;
 }
 
+img {
+    height: 250px;
+     object-fit: contain;
+   }
 
+.main-header{
+    background-color: #800000;
+}
 
 /*Footer*/
 .footer {
-   background-color: #262626;
+   background-color: #800000;
 
  }
 
@@ -48,7 +55,7 @@ html, body {
     margin-left: 2%;
     float: left;
 
-
+    /* not sure what's this for, error on my end*/
     .carousel-container1{
         padding-top: 56.25%;
     }
