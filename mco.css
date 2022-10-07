@@ -63,26 +63,29 @@ img {
 .logo{
     height: 20%;
     width: 20%;
-    display: block;
     margin-right: auto;
-    display: inline-block;
-    vertical-align: top;
+    float: left;
+    border-radius: 100%;
+    border: solid crimson 2px;
 
 }
 
 .detail-container {
 	padding: 20px;
 	background-color: rgb(116, 32, 32);
+
 }
 
-.detail-container p{
-    display: inline-block;
+.details{
+    margin-left: 200px;
     color: white;
+
 }
 
 
 .menu-container {
     width: 900px;
+    height: 400px;
 	background-color:  #b71c1c;
     margin: 10px auto;
     border: 1px solid rgb(214, 214, 214);
@@ -91,11 +94,14 @@ img {
 
 .carousel-container{
     height: 350px;
-    width: 350px;
+    width: 100%;
     margin-left: 2%;
     text-align: center;
     margin: auto;
+
 }
+
+
 
 
 
