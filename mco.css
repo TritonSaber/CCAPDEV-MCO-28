@@ -101,6 +101,17 @@ img {
 
 }
 
+.card-option-field img{
+    height: 70%;
+    width: 70%;
+
+}
+
+.card-option-field button{
+    width: 30%;
+    height: 30%;
+}
+
 
 
 
