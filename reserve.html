@@ -51,29 +51,28 @@
                 <div class="modal-header">
                   <h4 class="modal-title">RESERVATION FORM</h4>
                 </div>
-                <hr>
                 <!-- Personal Information -->
                 <div class="modal-body">
                   <form action="#">
                     <div class="input-field">
-                      Name:  <input type="text" placeholder="Enter your name here"></input>
+                      Name:  <input type="text" placeholder="Enter your name here" required></input>
                     </div>
                     </br>
                     <div class="input-field">
-                      Email: <input type="text" placeholder="Type your email here">
+                      Email: <input type="text" placeholder="Type your email here" required>
                     </div>
                     </br>
                     <div class="input-field">
-                      Date:  <input type="date">
+                      Date:  <input type="date" required>
                     </div>
                     </br>
                     <div class="input-field">
-                      Time:  <input type="time">
+                      Time:  <input type="time" required>
                     </div>
                     </br>
                     <div class="input-field">
                       Number of people: 
-                    <select name = "option">
+                    <select name = "option" required>
                       <option value = "1">1 person</option>
                       <option value = "2"> 2 person </option>
                       <option value = "3"> 3 person </option>
@@ -95,50 +94,47 @@
             <!-- Reservation Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Choose a payment method</h4>
+                  <h4 class="modal-title">Payment</h4>
                 </div>
-                <hr>
                 <!-- Card Details -->
                 <div class="modal-body">
                   <form action="#">
-                    <div class="input-field">
-                      Name:  <input type="text" placeholder="Enter your name here"></input>
+                    <div class="card-option-field">
+                     Choose a payment method:
+                     <br>
+                    <button class = "btn" ><img src="images/paypal.png"></button>
+                    <button class = "btn" ><img src="images/mastercard.png"></button>
+                    <button class = "btn" ><img src="images/visa.jpg"></button>
                     </div>
                     </br>
                     <div class="input-field">
-                      Email: <input type="text" placeholder="Type your email here">
+                    Card Number:<input type="text" placeholder="Card Number">
                     </div>
                     </br>
                     <div class="input-field">
-                      Date:  <input type="date">
+                    Expiration Date:<input type="month">
                     </div>
-                    </br>
-                    <div class="input-field">
-                      Time:  <input type="time">
-                    </div>
-                    </br>
-                    <div class="input-field">
-                      Number of people: 
-                    <select name = "option">
-                      <option value = "1">1 person</option>
-                      <option value = "2"> 2 person </option>
-                      <option value = "3"> 3 person </option>
-                      <option value = "4"> 4 person </option>
-                    </select>  
-                    </div>
+                   
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                  <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Next</a>
+                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                  <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Confirm Payment</a>
                 </div>
               </div>             
           </div>
         </div>
+
+        <div class="text-end"><!-- copied the login from homepage.html-->
+          <button type="button" class="btn btn-outline-light me-2">Login</button>
+          <button type="button" class="btn btn-warning">Sign-up</button>
+      </div>
+
       </nav>
 
     <div class = "restaurant-container">
       <!-- Restaurant Phone no., Location(r), ratings(r), Open hours-->
+        <!-- I will try to split the container into two and probably palce there the open hours and social media platforms of the restaurant-->
       <div class = "detail-container">
         <!-- Name of restaurant (we might need to apply script to change the name) -->
         <img class = "logo" src="images/kuya j logo.jpg">
@@ -148,7 +144,6 @@
         <h4> Location: Manila, Taft Ave. </h4>
         <h4> Rating: 4.8/5 </h4>
         <br>
-        <!-- Try to Split into two columns for Open hours -->
         <p> Opening Hours </p>
         <br>
         <p> Sun - Sat</p>
@@ -172,15 +167,15 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
-              <img src="images/kuyaj1.jpg" style="width:100%;">
+              <img src="images/kuyaj1.jpg">
             </div>
       
             <div class="item">
-              <img src="images/kuyaj2.jpg" style="width:100%;">
+              <img src="images/kuyaj2.jpg">
             </div>
           
             <div class="item">
-              <img src="images/kuyaj3.jpg" style="width:100%;">
+              <img src="images/kuyaj3.jpg">
             </div>
           </div>
       
@@ -195,7 +190,18 @@
           </a>
         </div>
       </div>
-
+      <div class = "lunch">
+        <h1>lunch</h1>
+        <div class="col-sm-4"><!-- Dinagdag ko muna ung collapse. I will apply collapse for breakfast, lunch, and dinner menus-->
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#kuyaj">Click to Know More.</button>
+          <div id="kuyaj" class="collapse">
+            More contents or Menu link included here.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+      </div>
+        </div>
+ 
     </div>
 
 </body>
