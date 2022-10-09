@@ -125,6 +125,34 @@ img {
     height: 30%;
 }
 
+menu-list{
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+.table-menu table{
+    width: 100%;
+}
+
+.table-menu th{
+    padding: 10px;
+    
+}
+
+.table-menu td{
+    padding: 5px;
+}
+
+.table-menu tr {
+    border-bottom: 1px solid rgb(134, 128, 128);
+    text-align: left; 
+    padding: 5px;
+  }
+
+  tr:hover {
+    background-color: rgba(255, 80, 103, 0.877);
+}
 
 
 
