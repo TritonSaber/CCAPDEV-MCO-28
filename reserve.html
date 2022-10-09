@@ -12,125 +12,134 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
+<!-- Header from homepage.html -->
 <body>
-    <!--Container Nav-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <header class="p-3 text-bg-dark">
+    <div class="container main-header"> <!--not sure on how to change color of the entire header-->
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+              <img src="images/dlsu.jpg" class="d-inline-block align-top header-logo"><span class = "app-name"><h3>Book n Eat</h3></span> 
+            </a>
 
-      <!-- Left Side nav -->
-      <a class="navbar-brand" href="#">
-        <img src="images/dlsu.jpg" class="d-inline-block align-top"><span class = "app-name">   Dine & Eat</span> 
-      </a>
+            <!-- Navigation Links -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="homepage.html" class="nav-link px-2 text-white">Home</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <!-- <li><a href="#" class="nav-link px-2 text-white">Features</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li> -->
+                <li><a href="#" class="nav-link px-2 text-white">Book now!</a></li>
+            </ul>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-          </ul>
-        </div>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            </form>
 
       <!-- Reserve Button -->
-      <div class="navbar-button">
-          <button type="button"  class="btn btn-outline-success" data-toggle="modal" data-target="#reservation-popup">Reserve Now</button>
+            <div class="navbar-button">
+              <button type="button"  class="btn btn-outline-success" data-toggle="modal" data-target="#reservation-popup">Reserve Now</button>
+          </div>  
       </div>  
-        <!-- Pop-up form when pressing reserve button -->
-          
-        <div class="modal fade" id="reservation-popup" role="dialog">
-          <div class="modal-dialog">
-            <!-- Reservation Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">RESERVATION FORM</h4>
-                </div>
-                <!-- Personal Information -->
-                <div class="modal-body">
-                  <form action="#">
-                    <div class="input-field">
-                      Name:  <input type="text" placeholder="Enter your name here" required></input>
+          </div>  
+            <!-- Pop-up form when pressing reserve button -->
+              
+            <div class="modal fade reserve-font-color" id="reservation-popup" role="dialog">
+              <div class="modal-dialog">
+                <!-- Reservation Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">RESERVATION FORM</h4>
                     </div>
-                    </br>
-                    <div class="input-field">
-                      Email: <input type="text" placeholder="Type your email here" required>
-                    </div>
-                    </br>
-                    <div class="input-field">
-                      Date:  <input type="date" required>
-                    </div>
-                    </br>
-                    <div class="input-field">
-                      Time:  <input type="time" required>
-                    </div>
-                    </br>
-                    <div class="input-field">
+                    <!-- Personal Information -->
+                    <div class="modal-body">
+                      <form action="#">
+                        <div class="input-field">
+                          Name:  <input type="text" placeholder="Enter your name here" required></input>
+                        </div>
+                        </br>
+                        <div class="input-field">
+                          Email: <input type="text" placeholder="Type your email here" required>
+                        </div>
+                        </br>
+                        <div class="input-field">
+                          Date:  <input type="date" required>
+                        </div>
+                        </br>
+                        <div class="input-field">
+                          Time:  <input type="time" required>
+                        </div>
+                        </br>
+                        <div class="input-field">
+                          Number of people: 
                       Number of people: 
-                    <select name = "option" required>
-                      <option value = "1">1 person</option>
-                      <option value = "2"> 2 person </option>
-                      <option value = "3"> 3 person </option>
-                      <option value = "4"> 4 person </option>
+                          Number of people: 
+                        <select name = "option" required>
+                          <option value = "1">1 person</option>
+                          <option value = "2"> 2 person </option>
+                          <option value = "3"> 3 person </option>
+                          <option value = "4"> 4 person </option>
+                        </select>  
                     </select>  
+                        </select>  
+                        </div>
+                      </form>
                     </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                  <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Next</a>
-                </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                      <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Next</a>
+                    </div>
+                  </div>             
               </div>             
-          </div>
-        </div>
-
-        <div class="modal fade" id="payment-popup" role="dialog">
-          <div class="modal-dialog">
-            <!-- Reservation Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Payment</h4>
-                </div>
-                <!-- Card Details -->
-                <div class="modal-body">
-                  <form action="#">
-                    <div class="card-option-field">
-                     Choose a payment method:
-                     <br>
-                    <button class = "btn" ><img src="images/paypal.png"></button>
-                    <button class = "btn" ><img src="images/mastercard.png"></button>
-                    <button class = "btn" ><img src="images/visa.jpg"></button>
+                  </div>             
+              </div>
+            </div>
+    
+            <div class="modal fade reserve-font-color" id="payment-popup" role="dialog">
+              <div class="modal-dialog">
+                <!-- Reservation Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Payment</h4>
                     </div>
-                    </br>
-                    <div class="input-field">
-                    Card Number:<input type="text" placeholder="Card Number">
+                    <!-- Card Details -->
+                    <div class="modal-body">
+                      <form action="#">
+                        <div class="card-option-field">
+                         Choose a payment method:
+                         <br>
+                        <button class = "btn" ><img src="images/paypal.png"></button>
+                        <button class = "btn" ><img src="images/mastercard.png"></button>
+                        <button class = "btn" ><img src="images/visa.jpg"></button>
+                        </div>
+                        </br>
+                        <div class="input-field">
+                        Card Number:<input type="text" placeholder="Card Number">
+                        </div>
+                        </br>
+                        <div class="input-field">
+                        Expiration Date:<input type="month">
+                        </div>
+                       
+                      </form>
                     </div>
-                    </br>
-                    <div class="input-field">
-                    Expiration Date:<input type="month">
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                      <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Confirm Payment</a>
                     </div>
-                   
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                  <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Confirm Payment</a>
-                </div>
+                  </div>             
               </div>             
-          </div>
+                  </div>             
+              </div>
+            </div>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
         </div>
-
-        <div class="text-end"><!-- copied the login from homepage.html-->
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
-      </div>
-
-      </nav>
+    </div>
+  </header>
 
     <div class = "restaurant-container">
       <!-- Restaurant Phone no., Location(r), ratings(r), Open hours-->

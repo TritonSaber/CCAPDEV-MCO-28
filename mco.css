@@ -12,6 +12,15 @@ img {
     background-color: #800000;
 }
 
+.header-logo{
+    height: 15%;
+    width: 15%;
+    margin-right: 10px;
+    float: left;
+    border-radius: 100%;
+    border: solid crimson 2px;
+}
+
 /*Footer*/
 .footer {
    background-color: #800000;
@@ -37,6 +46,10 @@ img {
 
 .navbar-button{
     padding: 10px;
+}
+
+.reserve-font-color{
+    color:black;
 }
 
 .input-field input, select {
