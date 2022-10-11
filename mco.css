@@ -217,6 +217,58 @@ input[type="submit"], button{
 }
 
 
+/*  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  */
+/*              booking.html             */
+
+.form-body input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+.form-body{
+    margin: 10px;
+}
+.form-container{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgb(214, 214, 214);
+}
+
+.form-title{
+    text-align: center;
+}
+
+.card-option-field{
+    margin: 10px;
+}
+
+
+.card-option-field img{
+    height: 70%;
+    width: 70%;
+
+}
+
+.card-option-field label{
+    width: 30%;
+    height: 30%;
+}
+
+
+.modal-body{
+    text-align: center;
+}
+
+.check{
+    border-radius: 100%;
+    height: 40%;
+    width: 40%;
+}
+
 
 
 
