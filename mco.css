@@ -3,6 +3,14 @@ html, body {
     line-height: 20px;	
 }
 
+body {
+    background-image: url('images/setbg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+
+}
+
 img {
     height: 250px;
      object-fit: contain;
@@ -197,6 +205,7 @@ img {
     border: 2px solid rgb(151, 151, 151);
     padding: 15px 10px;
     text-align: center;
+    background-color: white;
 }
 
 .comment-btn{
@@ -214,6 +223,36 @@ input[type="submit"], button{
     border: none;
     outline: none;
     border-radius: 5px;
+}
+
+.sample-comment{
+    margin: 1rem auto;
+    width: 90%;
+    text-align: left;
+    border-radius: 5px;
+    background: rgb(223, 223, 223);
+    display: inline-block;
+
+}
+
+.user, .comment-text{
+    margin: 5px;
+}
+.user{
+    font-weight: bold;
+
+}
+
+.comment-text p{
+    margin-left: 8%;
+}
+
+.prof-pic img{
+    width: 7%;
+    float: left;
+    border-radius: 100%;
+    margin: 5px;
+    display: block;
 }
 
 
