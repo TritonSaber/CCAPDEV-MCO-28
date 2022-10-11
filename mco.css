@@ -27,41 +27,6 @@ img {
 
  }
 
-/*Navbar */
-.navbar {
-	position: sticky;
-	border: 1px solid rgb(214,214,214);
-	top: 0px;
-	background:white;
-
-}
-
-.navbar-brand img{
-
-    width: 50px;
-    height: 50px;
-    margin-top: -15px;
-
-}
-
-.navbar-button{
-    padding: 10px;
-}
-
-.reserve-font-color{
-    color:black;
-}
-
-.input-field input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-
-
 
 
 /* Restaurant Container*/
@@ -86,50 +51,120 @@ img {
 .detail-container {
 	padding: 20px;
 	background-color: rgb(116, 32, 32);
+    display: flex;
+    color: rgb(255, 197, 7);
 
 }
 
-.details{
-    margin-left: 200px;
+.details-left{
+    margin-left: 3%;
+    flex:60%;
+}
+
+.details-right{
+    margin-left: 250px;
+    text-align: center;
+    flex:40%;
+}
+  /* FOR SOCIAL PLATFORM LOGOS */
+  .fa {
+    padding: 20px;
+    width: 50px;
+    border-radius: 100%;
+  }
+
+  .fa:hover {
+    opacity: 0.7;
+  }
+  .fa-facebook {
+    background: #3B5998;
     color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }  
+
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+
+.like-button{
+    margin-top: 50%;
+    margin-right: 10px;
+}
+
+.like-content{
+    border: 2px solid grey;
+    padding: 13px 16px;
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+}
+
+.like-content.like-active{
+    border-color: rgb(165, 127, 2);
+    background:  rgb(255, 197, 7);    
+}
+
+.like{
+    margin-left: 30px;
+    font-size: 21px;
+    color: grey;
+
+}
+
+.like.like-active{
+    color:rgb(116, 32, 32);
+
+
+}
+.counter:before{
+    content: '1';
+    font-size: 21px;
+    margin-left: 7px;
+    color: grey;
+
+}
+
+.counter.like-active:before{
+    content: '2';
+
+    color:rgb(116, 32, 32);
 
 }
 
 
 .menu-container {
     width: 900px;
-    height: 400px;
-	background-color:  #b71c1c;
+    height: auto;
+	background-color:  #811212;
     margin: 10px auto;
     border: 1px solid rgb(214, 214, 214);
+}
 
+.item img{
+    width: 35%;
+    margin:auto;
 }
 
 .carousel-container{
     height: 350px;
-    width: 100%;
     margin-left: 2%;
     text-align: center;
     margin: auto;
+    color: rgb(255, 197, 7);    
 
 }
 
-.card-option-field img{
-    height: 70%;
-    width: 70%;
 
-}
-
-.card-option-field button{
-    width: 30%;
-    height: 30%;
-}
-
-menu-list{
-    margin-top: 50px;
-    text-align: center;
-
-}
+    .menu-list{
+        margin-top: 50px;
+        text-align: center;
+    
+    }
 
 .table-menu table{
     width: 100%;
@@ -155,6 +190,31 @@ menu-list{
 }
 
 
+/* Comment Section */
+.comment-container{
+    margin: 10px auto;
+    width: 900px;
+    border: 2px solid rgb(151, 151, 151);
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.comment-btn{
+    text-align: left;
+}
+
+.comment-container textarea{
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    background-color: transparent;
+}
+
+input[type="submit"], button{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
 
 
 
