@@ -8,6 +8,7 @@
     <link rel = "stylesheet" href="mco.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -29,139 +30,48 @@
                 <!-- <li><a href="#" class="nav-link px-2 text-white">Features</a></li> -->
                 <!-- <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li> -->
                 <!-- <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li> -->
-                <li><a href="#" class="nav-link px-2 text-white">Book now!</a></li>
+                <li><a href="book.html" class="nav-link px-2 text-white">Book now!</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
             </form>
 
-      <!-- Reserve Button -->
-            <div class="navbar-button">
-              <button type="button"  class="btn btn-outline-success" data-toggle="modal" data-target="#reservation-popup">Reserve Now</button>
-          </div>  
+      <!-- Reserve Button --> 
           <div class="text-end">
             <button type="button" class="btn btn-outline-light me-2">Login</button>
             <button type="button" class="btn btn-warning">Sign-up</button>
         </div>
-      </div>
-      
-          </div>  
-            <!-- Pop-up form when pressing reserve button -->
-              
-            <div class="modal fade reserve-font-color" id="reservation-popup" role="dialog">
-              <div class="modal-dialog">
-                <!-- Reservation Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">RESERVATION FORM</h4>
-                    </div>
-                    <!-- Personal Information -->
-                    <div class="modal-body">
-                      <form action="#">
-                        <div class="input-field">
-                          Name:  <input type="text" placeholder="Enter your name here" required></input>
-                        </div>
-                        </br>
-                        <div class="input-field">
-                          Email: <input type="text" placeholder="Type your email here" required>
-                        </div>
-                        </br>
-                        <div class="input-field">
-                          Date:  <input type="date" required>
-                        </div>
-                        </br>
-                        <div class="input-field">
-                          Time:  <input type="time" required>
-                        </div>
-                        </br>
-                        <div class="input-field">
-                          Number of people: 
-                      Number of people: 
-                          Number of people: 
-                        <select name = "option" required>
-                          <option value = "1">1 person</option>
-                          <option value = "2"> 2 person </option>
-                          <option value = "3"> 3 person </option>
-                          <option value = "4"> 4 person </option>
-                        </select>  
-                    </select>  
-                        </select>  
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                      <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Next</a>
-                    </div>
-                  </div>             
-              </div>             
-                  </div>             
-              </div>
-            </div>
-    
-            <div class="modal fade reserve-font-color" id="payment-popup" role="dialog">
-              <div class="modal-dialog">
-                <!-- Reservation Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Payment</h4>
-                    </div>
-                    <!-- Card Details -->
-                    <div class="modal-body">
-                      <form action="#">
-                        <div class="card-option-field">
-                         Choose a payment method:
-                         <br>
-                        <button class = "btn" ><img src="images/paypal.png"></button>
-                        <button class = "btn" ><img src="images/mastercard.png"></button>
-                        <button class = "btn" ><img src="images/visa.jpg"></button>
-                        </div>
-                        </br>
-                        <div class="input-field">
-                        Card Number:<input type="text" placeholder="Card Number">
-                        </div>
-                        </br>
-                        <div class="input-field">
-                        Expiration Date:<input type="month">
-                        </div>
-                       
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                      <a data-toggle="modal" href="#payment-popup" class="btn btn-outline-success">Confirm Payment</a>
-                    </div>
-                  </div>             
-              </div>             
-                  </div>             
-              </div>
-            </div>
-
-            
-        </div>
-    </div>
   </header>
 
     <div class = "restaurant-container">
-      <!-- Restaurant Phone no., Location(r), ratings(r), Open hours-->
-        <!-- I will try to split the container into two and probably palce there the open hours and social media platforms of the restaurant-->
+      <!-- Restaurant Phone no., Location(r), ratings(r) -->
       <div class = "detail-container">
         <!-- Name of restaurant (we might need to apply script to change the name) -->
         <img class = "logo" src="images/kuya j logo.jpg">
-        <div class ="details">
-        <h2> Kuya J Restaurant</h2>
-        <h4> Contact us: 0912*******</h4>
-        <h4> Location: Manila, Taft Ave. </h4>
-        <h4> Rating: 4.8/5 </h4>
-        <br>
-        <p> Opening Hours </p>
-        <br>
-        <p> Sun - Sat</p>
-        <br>
-        <p> 7:00 am - 11:00pm
+        <div class ="details-left">
+          <h2> Kuya J Restaurant</h2>
+          <h4> Contact us: 0912*******</h4>
+          <h4> Location: Manila, Taft Ave. </h4>
+          <h4> Rating: 4.8/5 </h4>
+          <br>
+          </div>
+          <div class ="details-right">
+            <!-- SocMed Platforms-->
+            <div class="social-media">
+              <a href="https://www.facebook.com/KuyaJResto/" class="fa fa-facebook"></a>
+              <a href="https://twitter.com/kuyajresto" class="fa fa-twitter"></a>
+              <a href="https://www.instagram.com/kuyajresto/" class="fa fa-instagram"></a>
+            </div>
+            <!-- hearrt Button -->
+            <div class= "like-button">
+              <div class="like-content">
+                <span class = "like">Like</span>
+                <span class="counter"></span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
     </div>
     </div>
@@ -601,6 +511,19 @@
       </div>
  
     </div>
-    
 
+    <script src="like.js"></script>
+    
+    <!--- Comment Section  -->
+    <div class="comment-container">
+      <h2> Leave a Comment </h2>
+      <form>
+        <textarea placeholder="Add your comment here"></textarea>
+        <div class="comment-btn">
+          <input class="btn btn-danger" type="submit" value="comment">
+          <button class="btn btn-secondary">cancel</button>
+        </div>
+      </form>
+    </div>
+  
 </body>
