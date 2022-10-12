@@ -336,11 +336,37 @@ body {
 
 
    
+/* Profile*/
+.prof-container {
+    width: 900px;
+	background-color:  #b71c1c;
+    margin: 10px auto;
+    border: 1px solid rgb(214, 214, 214);
 
-  
+}
 
+.prof-logo{
+    height: 20%;
+    width: 20%;
+    margin-right: auto;
+    float: left;
+    border-radius: 100%;
+    border: solid crimson 2px;
 
+}
 
+.info-container {
+	padding: 20px;
+	background-color: rgb(116, 32, 32);
+    display: flex;
+    color: rgb(255, 197, 7);
+
+}
+
+.details-left{
+    margin-left: 3%;
+    flex:60%;
+}
 
 
 
