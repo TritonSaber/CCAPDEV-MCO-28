@@ -49,42 +49,44 @@
     
 </div>
 <!-- Personal Information -->
-<div class="form-container bg-light">
+
+<div class="form-container">
     <h4 class="form-title">RESERVATION FORM</h4>
   <div class="form-body">
-  <form action="#">
+  <form autocomplete="off" id="reserve-form">
     <div class="input-field">
       Restaurant:  
-      <select placeholder="Enter your name here" required>
-        <option>Kuya J</option>
-        <option>Gery's Grill</option>
-        <option>Max's restaurant</option>
+      <select name ="restaurant" id="restaurant">
+        <option value="Kuya J">Kuya J</option>
+        <option value="Gerry's Grill">Gery's Grill</option>
+        <option value ="Max's Restaurant">Max's restaurant</option>
       </select>
     </div>
     </br>
+    <div>
+      <label>Full Name*</label>
+      <input type="text" name="fullName" id="fullName" placeholder= "Type your full name here">
+  </div>
+    </br>
     <div class="input-field">
-      Name:  <input type="text" placeholder="Enter your name here" required></input>
+      Email: <input type="text" name="email" id="email" placeholder="Type your email here">
     </div>
     </br>
     <div class="input-field">
-      Email: <input type="text" placeholder="Type your email here" required>
-    </div>
-    </br>
-    <div class="input-field">
-      Phone Number:  <input type="tel" placeholder="Enter your number here" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"required></input>
+      Phone Number:  <input type="tel" name="phone" id="phone" placeholder="Type your number here"></input>
     </div>
   </br>
     <div class="input-field">
-      Reservation Date:  <input type="date" required>
+      Reservation Date:  <input type="date" name="datein" id="datein">
     </div>
     </br>
     <div class="input-field">
-      Check-in Time:  <input type="time" required>
+      Check-in Time:  <input type="time" name="timein" id="timein">
     </div>
     </br>
     <div class="input-field">
       Number of people: 
-    <select name = "option" required>
+    <select name = "option" name ="numpeople" id="numpeople">
       <option value = "1">1 person</option>
       <option value = "2"> 2 person </option>
       <option value = "3"> 3 person </option>
@@ -95,34 +97,34 @@
     <div class="card-option-field">
         Choose a payment method:
         <br>
-          <input type="radio" id= "paypal" name="card" >
-          <label for = "paypal" class ="btn" type="button"><img src="images/paypal.png"></label>
-
-          <input type="radio" id= "mastercard" name="card">
-          <label for = "mastercard" class ="btn" type="button"><img src="images/mastercard.png"></label>
-          <input type="radio" id= "visa" name="card">
-          <label for = "visa" class ="btn" type="button"><img src="images/visa.jpg"></label>
+        <select name = "option" name ="card" id="card">
+          <option value = "paypal">Paypal</option>
+          <option value = "mastercard"> Mastercard </option>
+          <option value = "visa"> Visa </option>
+        </select>  
            
     </div>
     <div class="form-body">
        </br>
        <div class="input-field">
-       Card Number:<input type="text" class="card-number" placeholder="Enter Card Number">
+       Card Number:<input type="text" class="card-number" name="cardnum" id="cardnum" placeholder="Enter Card Number">
        </div>
        </br>
        <div class="input-field">
-        CVV:<input type="text" class="card-number" placeholder="Enter CVV">
+        CVV:<input type="text" class="card-number" name="cvv" id="cvv" placeholder="Enter CVV">
         </div>
         </br>
        <div class="input-field">
-       Expiration Date:<input type="month">
+       Expiration Date:<input type="month" name="monthexp" id="monthexp">
        </div>
        <div class="form-footer">
-        <a class="btn btn-outline-secondary" href="book.html">Cancel</button>
-        <a data-toggle="modal" href="#success-popup" class="btn btn-outline-success">Confirm Payment</a>
+        <a class="btn btn-outline-secondary" href="book.html">Cancel</a>
+          <button data-toggle="modal"id ="reserve-submit" type="button"  href="#success-popup" class="btn btn-outline-success">Confirm Payment</button>
       </div>
-
-      <div class="modal fade" id="success-popup" role="dialog">
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="success-popup" role="dialog">
         <div class="modal-dialog">
         
             <div class="modal-content">
@@ -138,13 +140,36 @@
               </div>
             </div>             
         </div>
-      </div>
+</div>
 
+<div class="reservation-status">
+  <h2> Check Your Reservations </h2>
+    <table class="reservation-details" id="reservation-details">
+      <thead>
+        <tr>
+            <th>Restaurant</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date</th>
+            <th>Check-in</th>
+            <th>Number of People</th>
+            <th>Card</th>
+            <th>Card Number</th>
+            <th>CVV</th>
+            <th>Expiration Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+          <!--!!!!! Do not remove tthe tbody !!!!!-->
+    </tbody>
+    </table>
+</div>
+  
 
     
-  </form>
-</div>
-</div>
+ 
 
 <!-- footer-->
 <div class="footer">
@@ -231,5 +256,8 @@
       </div>
       <!-- Copyright -->
   </footer>
+    
+    
+    <script src="crude.js"></script>
 </body>
 </html>
