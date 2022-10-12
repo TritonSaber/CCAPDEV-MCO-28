@@ -267,6 +267,7 @@ input[type="submit"], button{
 /*  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  */
 /*              booking.html             */
 
+
 .form-body input, select {
     width: 100%;
     padding: 8px;
@@ -283,6 +284,7 @@ input[type="submit"], button{
     margin-left: auto;
     margin-right: auto;
     border: 1px solid rgb(214, 214, 214);
+    background: white;
 }
 
 .form-title{
@@ -294,17 +296,6 @@ input[type="submit"], button{
 }
 
 
-.card-option-field img{
-    height: 70%;
-    width: 70%;
-
-}
-
-.card-option-field label{
-    width: 30%;
-    height: 30%;
-}
-
 
 .modal-body{
     text-align: center;
@@ -315,6 +306,34 @@ input[type="submit"], button{
     height: 40%;
     width: 40%;
 }
+
+
+.reservation-status{
+    
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgb(214, 214, 214);
+    background: white;
+    text-align: center;
+}
+
+.reservation-status table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.reservation-status th{
+    text-align: center;
+    background-color: #444;
+    font-size:medium;
+    color: white;
+}
+
+.reservation-status th, tr{
+    margin: 1px;
+}
+
 
 
 /*              login.html             */
