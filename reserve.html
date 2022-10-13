@@ -21,7 +21,7 @@
     <div class="container main-header"> <!--not sure on how to change color of the entire header-->
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             
-            <a href="homepage.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
               <img src="images/book-n-eat-logo.jpg" class="d-inline-block align-top header-logo"><span class = "app-name"><h3>Book n Eat</h3></span> 
             </a>
 
@@ -524,15 +524,15 @@
 
     
    <!-- Comment Section  -->
-    <div class="comment-container">
-      <h2> Leave a Comment </h2>
-      <form>
-        <textarea placeholder="Add your comment here"></textarea>
-        <div class="comment-btn">
-          <input class="btn btn-danger" type="submit" value="comment">
-          <button class="btn btn-secondary">cancel</button>
-        </div>
-      </form>
+   <div class="comment-container" id="comment-container">
+    <h2> Leave a Comment </h2>    
+    <form>
+      <textarea placeholder="Add your comment here" id="comment-text"></textarea>
+      <div class="comment-btn">
+        <input class="btn btn-danger" type="button" id="submit-comment" value="comment">
+        <button class="btn btn-secondary">cancel</button>
+      </div>
+    </form>
 
       <div class="sample-comment">
         <div class="user">
@@ -556,7 +556,8 @@
           <div class="prof-name">Leo Jones</div>
         </div>
         <div class="comment-text">
-          <p> I would rate this restaurant a 5/5. The customer service is really good. 
+          <p>The overall ambiance of the restaurant was excellent.
+            I was also glad that I don't need to wait in line to dine.
           </p>
         </div>
       </div>
@@ -639,10 +640,10 @@
                               <a href="#!" class="text-white">Booking Information</a>
                           </li>
                           <li>
-                              <a href="refunds.html" class="text-white">Refunds and Exchanges</a>
+                              <a href="#!" class="text-white">Refunds and Exchanges</a>
                           </li>
                           <li>
-                              <a href="paymentmethods.html" class="text-white">Payment Methods</a>
+                              <a href="#!" class="text-white">Payment Methods</a>
                           </li>
                       </ul>
                   </div>
@@ -654,10 +655,10 @@
   
                       <ul class="list-unstyled">
                           <li>
-                              <a href="joinus.html" class="text-white">Restaurants</a>
+                              <a href="#!" class="text-white">Restaurants</a>
                           </li>
                           <li>
-                              <a href="join.html" class="text-white">Book n Eat "Eaters"</a>
+                              <a href="#!" class="text-white">Book n Eat "Eaters"</a>
                           </li>
   
                       </ul>
@@ -688,5 +689,9 @@
           </div>
           <!-- Copyright -->
       </footer>
-</body>
+      
+      <script src="comment.js"></script>
+    </body>
+
+
 </html>
