@@ -19,7 +19,37 @@
     <style></style>
 </head>
 <body>
-<script src="header.js"></script>
+<header class="p-3 text-bg-dark">
+    <div class="container main-header"> <!--not sure on how to change color of the entire header-->
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            
+            <a href="homepage.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="images/book-n-eat-logo.jpg" class="d-inline-block align-top header-logo"><span class = "app-name"><h3>Book n Eat</h3></span> 
+              </a>
+
+            <!-- depends on what we will put -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="about.html" class="nav-link px-2 text-white">About</a></li>
+                <!-- <li><a href="#" class="nav-link px-2 text-white">Features</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li> -->
+                <li><a href="booking.html" class="nav-link px-2 text-white">Book now!</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <!-- Login and Sign-up options -->
+            <div class="text-end">
+                <a href="login.html" role="button" class="btn btn-outline-light me-2">Login</a>
+                <a href="signup.html" role="button" class="btn btn-warning">Sign-up</a>
+            </div>
+        </div>
+    </div>
+</header>
 
 
 <!-- homepage -->
@@ -71,7 +101,7 @@
     <h1>RESTAURANTS</h1>
     <div class="col-sm-4">
         <h3>Kuya J</h3>
-        <p>description for restaurant</p>
+        <p>A casual dining restaurant that offers great Filipino gastronomic delights.</p>
         <img src="images/kuyaj.jpg" class="rounded" alt="Performance" width="304" height="236">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#kuyaj">Click to Know More.</button>
         <div id="kuyaj" class="collapse">
@@ -80,7 +110,7 @@
     </div>
     <div class="col-sm-4">
         <h3>Gerry's Grill</h3>
-        <p>description for restaurant</p>
+        <p>The perfect place with the perfect menu for every occasion.</p>
         <img src="images/gerry.jpg" class="rounded" alt="Performance" width="304" height="236">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#gerry">Click to Know More.</button>
         <div id="gerry" class="collapse">
@@ -89,7 +119,7 @@
     </div>
     <div class="col-sm-4">
         <h3>Max's Restaurant</h3>
-        <p>description for restaurant</p>
+        <p>Well known as "the house that fried chicken built"</p>
         <img src="images/max.jpg" class="rounded" alt="Performance" width="304" height="236">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#max">Click to Know More.</button>
         <div id="max" class="collapse">
@@ -139,10 +169,10 @@
                             <a href="#!" class="text-white">Booking Information</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Refunds and Exchanges</a>
+                            <a href="refunds.html" class="text-white">Refunds and Exchanges</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Payment Methods</a>
+                            <a href="paymentmethods.html" class="text-white">Payment Methods</a>
                         </li>
                     </ul>
                 </div>
@@ -154,10 +184,10 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="text-white">Restaurants</a>
+                            <a href="joinus.html" class="text-white">Restaurants</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Book n Eat "Eaters"</a>
+                            <a href="join.html" class="text-white">Book n Eat "Eaters"</a>
                         </li>
 
                     </ul>
@@ -191,6 +221,19 @@
 
 </div>
 <!-- End of .container -->
+<!-- Scripts -->
+<script>
+    let popup = document.getElementById("popup");
+
+    function openPopup(){
+        popup.classList.add("open-popup");
+    }
+
+    function closePopup(){
+        popup.classList.remove("open-popup");
+    }
+</script>
+
 
 </body>
 </html>

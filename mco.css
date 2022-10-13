@@ -4,7 +4,8 @@ html, body {
 }
 
 body {
-    background-image: url('images/setbg.jpg');
+    background-color: #800000;
+    /* background-image: url('images/setbg.jpg'); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
