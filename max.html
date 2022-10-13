@@ -575,28 +575,18 @@
     <script src="like.js"></script>
     
     <!--- Comment Section  -->
-    <div class="comment-container">
-      <h2> Leave a Comment </h2>
+    <div class="comment-container" id="comment-container">
+      <h2> Leave a Comment </h2>    
       <form>
-        <textarea placeholder="Add your comment here"></textarea>
+        <textarea placeholder="Add your comment here" id="comment-text"></textarea>
         <div class="comment-btn">
-          <input class="btn btn-danger" type="submit" value="comment">
+          <input class="btn btn-danger" type="button" id="submit-comment" value="comment">
           <button class="btn btn-secondary">cancel</button>
         </div>
       </form>
 
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="#">
-            <img src="images/sample2.jpg">
-          </a>
-          <div class="prof-name">Leo Jones</div>
-        </div>
-        <div class="comment-text">
-          <p> I hope that the food would be served faster. But overall a good expirience.</p>
-          <a href="max.html"> Max Restuarant </a>
-        </div>
-      </div>
+
+   
 
     </div>
 
@@ -685,4 +675,8 @@
       </div>
       <!-- Copyright -->
   </footer>
+          <script src="comment.js"></script>
+
 </body>
+    </html>
+    
