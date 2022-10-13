@@ -589,12 +589,12 @@
     <script src="like.js"></script>
     
     <!--- Comment Section  -->
-    <div class="comment-container">
-      <h2> Leave a Comment </h2>
+     <div class="comment-container" id="comment-container">
+      <h2> Leave a Comment </h2>    
       <form>
-        <textarea placeholder="Add your comment here"></textarea>
+        <textarea placeholder="Add your comment here" id="comment-text"></textarea>
         <div class="comment-btn">
-          <input class="btn btn-danger" type="submit" value="comment">
+          <input class="btn btn-danger" type="button" id="submit-comment" value="comment">
           <button class="btn btn-secondary">cancel</button>
         </div>
       </form>
@@ -710,5 +710,7 @@
           </div>
           <!-- Copyright -->
       </footer>
+        
+      <script src="comment.js"></script>
 </body>
 </html>
