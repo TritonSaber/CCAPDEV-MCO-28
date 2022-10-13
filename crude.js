@@ -1,7 +1,3 @@
-
-
-
-
 $("#reserve-submit").click(function(){
     //get inputs 1 by 1
     var restaurant = document.querySelector("#restaurant").value;
@@ -35,8 +31,8 @@ $("#reserve-submit").click(function(){
         <td>${cardnum}</td>
         <td>${cvv}</td>
         <td>${monthexp}</td>
-        <td><a onClick="onDelete(this)" class="btn btn-danger btn-sm delete">Delete</a>
-        <a onClick="onEdit(this)" class="btn btn-warning btn-sm warning">Edit</a>
+        <td><a onClick="removeRow(this)" class="btn btn-danger btn-sm delete">Delete</a>
+        <a onClick="editRow(this)" class="btn btn-warning btn-sm warning">Edit</a>
         `
     //append the row to the table
         tbl.appendChild(row);
@@ -63,7 +59,7 @@ function clearinput(){
 
 }
 
-function onEdit(editButton) {
+function editRow(editButton) {
     var row = editButton.parentElement.parentElement;//get the row element: first parent=cell second parent=row
     //Obtain all data in that row and place it in the input area
     document.querySelector("#restaurant").value = row.cells[0].innerHTML;
@@ -79,11 +75,11 @@ function onEdit(editButton) {
     document.querySelector("#monthexp").value = row.cells[10].innerHTML;
 
     //delete its first record then will be replace once confirmed with new inputs
-    updateRecord(editButton);
+    updateRow(editButton);
 }
 
 //Used for update data
-function updateRecord(editButton) {
+function updateRow(editButton) {
     if(confirm('Additional charges will be added. Are you sure you want to change your reservation?')){
         deleteRow = editButton.parentElement.parentElement;
         document.querySelector("#reservation-details").deleteRow(deleteRow.rowIndex);
@@ -92,7 +88,7 @@ function updateRecord(editButton) {
 }
 
 //used for actual delete data
-function onDelete(deleteButton) {
+function removeRow(deleteButton) {
     if (confirm('Are you sure you want to cancel reservation?')) {
         deleteRow = deleteButton.parentElement.parentElement;
         document.querySelector("#reservation-details").deleteRow(deleteRow.rowIndex);
@@ -102,5 +98,4 @@ function onDelete(deleteButton) {
 
     }
 }
-
 
