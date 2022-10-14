@@ -3,7 +3,6 @@ $("#submit-comment").click(function(){
     var container = document.querySelector("#comment-container");    
         var sample = document.createElement("div");
     
-    //place all the inputs to new row
         sample.innerHTML = 
         ` 
         <div class = "sample-comment">
@@ -18,7 +17,6 @@ $("#submit-comment").click(function(){
           </p>
         </div>
       </div>`
-     //append the row to the table
         container.appendChild(sample);
     
 });
