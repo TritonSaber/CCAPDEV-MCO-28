@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Your Reservations</title>
+    
+    <!--  Style Links  -->
+    <link rel = "stylesheet" href="css/mco.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--Container Nav-->
+    <%- include('loginheader') -%>
+
+
+
+<!-- 5 sample posts -->
+<div class="reservation-status">
+    <h2> Your Reservations </h2>
+      <table class="reservation-details" id="reservation-details">
+        <thead>
+          <tr>
+              <th>Restaurant</th>
+              <th>Date</th>
+              <th>Check-in</th>
+              <th>Number of People</th>
+          </tr>
+      </thead>
+
+      <tbody>
+        <% reservations.forEach(function(reservations){ %>
+            <tr>
+                <td><%= reservations.restaurant%></td>
+                <td><%= reservations.datein%></td>
+                <td><%= reservations.timein%></td>
+                <td><%= reservations.numpeople%></td>
+                <!-- Might need to remove card details-->
+
+            </tr>
+        
+            <!--!!!!! Do not remove tthe tbody !!!!!-->
+            <!--
+            <tr>
+              <td>Kuya J</td>
+              <td>2022-12-29</td>
+              <td>12:50</td>
+              <td>4</td>
+              <td>paypal</td>
+              <td>95935</td>
+              <td>482</td>
+              <td>2022-07</td>
+              <td><a onClick="removeRow(this)" class="btn btn-danger btn-sm delete">Delete</a>
+                <a onClick="editRow(this)" class="btn btn-warning btn-sm warning">Edit</a>
+              </tr>
+              <tr>
+                <td>Gerry's Grill</td>
+                <td>2022-11-29</td>
+                <td>12:00</td>
+                <td>1</td>
+                <td>mastercard</td>
+                <td>67890</td>
+                <td>456</td>
+                <td>2022-05</td>
+
+              <tr>
+                <td>Max's Restaurant</td>
+                <td>11:52</td>
+                <td>2</td>
+                <td>visa</td>
+                <td>83636</td>
+                <td>368</td>
+                <td>2023-09</td>
+                <td><a onClick="removeRow(this)" class="btn btn-danger btn-sm delete">Delete</a>
+                  <a onClick="editRow(this)" class="btn btn-warning btn-sm warning">Edit</a>
+              </tr>
+              <tr>
+                <td>Kuya J</td>
+                <td>2022-12-24</td>
+                <td>11:59</td>
+                <td>2</td>
+                <td>paypal</td>
+                <td>83957</td>
+                <td>424</td>
+                <td>2023-11</td>
+                <td><a onClick="removeRow(this)" class="btn btn-danger btn-sm delete">Delete</a>
+                  <a onClick="editRow(this)" class="btn btn-warning btn-sm warning">Edit</a>
+              </tr>
+              <tr>
+                 <td>Kuya J</td>
+                <td>2022-11-19</td>
+                <td>10:52</td>
+                <td>4</td>
+                <td>mastercard</td>
+                <td>85930</td>
+                <td>284</td>
+                <td>2022-11</td>
+
+                </tr>
+-->
+            <% }); %>
+            </tbody>
+          </table>
+
+
+          <a href="/add" class="btn btn-sm btn-primary">Reserve Now!!</a> <br/><br/>
+
+          
+    </div>
+
+
+
+<div class="footer">
+    <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="text-white">Book n Eat</h4>
+  
+                    <ul class="list-unstyled mb-4">
+                        <li>
+                            <a href="about.html" class="text-white">About us</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Restaurants</a>
+                        </li>
+  
+                    </ul>
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="text-white">Assistance</h4>
+  
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="about.html#contact" class="text-white">Contact us</a>
+                        </li>
+  
+                        <li>
+                            <a href="#!" class="text-white">Booking Information</a>
+                        </li>
+                        <li>
+                            <a href="refunds.html" class="text-white">Refunds and Exchanges</a>
+                        </li>
+                        <li>
+                            <a href="paymentmethods.html" class="text-white">Payment Methods</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="text-white">Join Us</h4>
+  
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="joinus.html" class="text-white">Restaurants</a>
+                        </li>
+                        <li>
+                            <a href="join.html" class="text-white">Book n Eat "Eaters"</a>
+                        </li>
+  
+                    </ul>
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="text-white">Sign up to our newsletter</h4>
+  
+                    <div class="form-outline form-white mb-4">
+                        <input type="email" id="form5Example2" class="form-control" />
+                        <label class="text-white form-label" for="form5Example2">Email address</label>
+                    </div>
+  
+                    <button type="submit" class="text- white btn-outline-white btn-block">Subscribe</button>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+  
+        <!-- Copyright -->
+        <div class="text-center text-white p-3 border-top border-white">
+            © 2022 Copyright:
+            <a class="text-white" href="https://bookneat.com/">BooknEat.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+  </div>
