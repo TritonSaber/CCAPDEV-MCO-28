@@ -4,7 +4,7 @@ const bodyParser =require("body-parser");
 const mongoose = require("mongoose"); 
 const DateOnly = require("mongoose-dateonly")(mongoose);
 const bcrypt = require("bcrypt");
-//const route =  require('./routes/routes.js')
+const route =  require('./routes/routes.js')
 
 
 var activeUser;
@@ -12,7 +12,6 @@ var activeUser;
 
 
 var app = express();
-//app.use('/', route);
 
 mongoose.connect("mongodb://localhost:27017/ccapdev");
 
@@ -21,8 +20,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, '/public/views'));
 
+app.use('/', route);
 
-
+/*
 var reservation = new mongoose.Schema({
     restaurant: {
         type: String,
@@ -261,7 +261,7 @@ return activeUser;
 
 })
 
-
+*/
 
 
 
