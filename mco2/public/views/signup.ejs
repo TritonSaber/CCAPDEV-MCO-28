@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+
+    <title><%= title%></title>
+    
+    <!--  Style Links  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel ="stylesheet" href="css/mco.css">
+</head>
+ 
+    <body>
+        <div class="text">
+                <h2>Are you ready to be a Book n Eat "Eaters!"</h2>
+        </div>
+
+
+<div class="text">
+    <div class="sign-container">
+        <h3> Sign-Up</h3>
+        <h4> Register Now and Become an EATER</h4>
+        <img src="images/book-n-eat-logo.jpg" class="about-logo" alt="Performance" width="100" height="50">
+        <br>
+    </br>
+</div>
+</div>
+        <div class="form-container">
+          <div class="form-body">
+          <form action="/saveaccount" method="post">
+
+        <div class="input-field">
+            Name:  <input type="text" placeholder="Enter your name here" id = "name" name ="name"></input>
+          </div>
+          </br>
+          <div class="input-field">
+            Username: <input type="text" placeholder="Enter your username here" id = "username" name = "username" >
+          </div>
+          </br>
+          <div class="input-field">
+            Password: <input type="password" placeholder="Enter your password here" id = "password" name ="password">
+          </div>
+          </br>
+          <div class="input-field">
+            Birthdate: <input type="date" placeholder="Enter your bithdate here" id = "bdate" name = "bdate">
+          </div>
+          </br>
+          <div class="input-field">
+            Phone Number:  <input type="tel" placeholder="Enter your number here"  id = "phone" name = "phone"></input>
+          </div>
+        </br>
+        <div class="input-field">
+          E-mail:  <input type="email" placeholder="Enter your E-mail here" id = "email" name = "email"></input>
+        </div>
+      </br>
+
+
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Submit
+          </button>
+        </form>
+
+
+
+
+
+
+
+          <!-- Modal for success registration-->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="title" style="text-align:center;">Success!!! </h5>
+                </div>
+                <div class="modal-body">
+                  <img class="check" src="images/check.png">
+                  <p> Thank you for registering.</p>
+                  <p> You have succesfully become a Book n Eat "Eater"</p>
+                  <p> Enjoy booking without the need of waiting longlines.</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/" class="btn btn-default">Close</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+</body>
+
