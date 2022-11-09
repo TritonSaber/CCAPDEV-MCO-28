@@ -23,6 +23,8 @@ route.post('/saveaccount', controller.postSave)
 
 route.get('/login', controller.getLogin);
 
+route.get('/logout', controller.getLogout);
+
 route.post('/postlogin', controller.postLogin);
 
 module.exports =  route;
