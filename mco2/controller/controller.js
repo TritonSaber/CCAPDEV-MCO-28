@@ -149,5 +149,8 @@ var activeUser;
     
     })
 
+    const postComment = ((req, res) => {
+        
+    });
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout};
