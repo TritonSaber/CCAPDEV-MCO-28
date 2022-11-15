@@ -32,62 +32,58 @@
           <form action="/saveaccount" method="post">
 
         <div class="input-field">
-            Name:  <input type="text" placeholder="Enter your name here" id = "name" name ="name"></input>
+            Name:  <input type="text" placeholder="Enter your name here" id = "name" name ="name" requried></input>
           </div>
           </br>
           <div class="input-field">
-            Username: <input type="text" placeholder="Enter your username here" id = "username" name = "username" >
+            Username: <input type="text" placeholder="Enter your username here" id = "username" name = "username" required></input>
           </div>
           </br>
           <div class="input-field">
-            Password: <input type="password" placeholder="Enter your password here" id = "password" name ="password">
+            Password: <input type="password" placeholder="Enter your password here" id = "password" name ="password" required></input>
           </div>
           </br>
           <div class="input-field">
-            Birthdate: <input type="date" placeholder="Enter your bithdate here" id = "bdate" name = "bdate">
+            Birthdate: <input type="date" placeholder="Enter your bithdate here" id = "bdate" name = "bdate" required></input>
           </div>
           </br>
           <div class="input-field">
-            Phone Number:  <input type="tel" placeholder="Enter your number here"  id = "phone" name = "phone"></input>
+            Phone Number:  <input type="tel" placeholder="Enter your number here"  id = "phone" name = "phone" required></input>
           </div>
         </br>
         <div class="input-field">
-          E-mail:  <input type="email" placeholder="Enter your E-mail here" id = "email" name = "email"></input>
+          E-mail:  <input type="email" placeholder="Enter your E-mail here" id = "email" name = "email" required></input>
         </div>
       </br>
 
 
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Submit
+      <button data-toggle="modal" id ="signup-submit" type="button"  class="btn btn-outline-success">
+          Submit
           </button>
-        </form>
-
-
-
-
-
-
-
-          <!-- Modal for success registration-->
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="title" style="text-align:center;">Success!!! </h5>
-                </div>
-                <div class="modal-body">
-                  <img class="check" src="images/check.png">
-                  <p> Thank you for registering.</p>
-                  <p> You have succesfully become a Book n Eat "Eater"</p>
-                  <p> Enjoy booking without the need of waiting longlines.</p>
-                </div>
-                <div class="modal-footer">
-                  <a href="/" class="btn btn-default">Close</a>
-                </div>
-              </div>
+        
+    
+          <div class="modal fade" id="signup-popup" role="dialog">
+            <div class="modal-dialog">
+            
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="title" style="text-align:center;">You Account has been created successfully!! </h5>
+                  </div>
+                  <div class="modal-body">
+                    <img class="check" src="images/check.png">
+                    <p> Thank you for registering.</p>
+                    <p> You have succesfully become a Book n Eat "Eater"</p>
+                    <p> Enjoy booking without the need of waiting longlines.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type = "submit" class="btn btn-default">Proceed</a>
+                  </div>
+                </div>             
             </div>
-          </div>
+    </div>
+</form>
+<script type="text/javascript" src="js/index.js"></script>
 
-         
+       
 </body>
 
