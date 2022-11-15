@@ -1,12 +1,17 @@
+//Prevents Showing the modal when the form is incomplete
 $(function(){
-    var name = document.forms["registration"]["name"].value;
+    $("#signup-submit").click(function(){
+        var name = $("#name").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var bdate = $("#bdate").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
 
-    $("#loginsubmit").click(function(){
-        if (name != "" || name != null) {        
-            alert("Name must be filled out");
-            $(this).prop("data-toggle", "modal");
-            $(this).prop("data-target", "#exampleModalCenter");
-            //I need to make the modal appear here
+
+        if (name.length != 0 && username.length != 0 && password.length != 0 && bdate.length != 0 && phone.length != 0 && email.length != 0) {        
+            $(this).attr("href", "#signup-popup");
+
         }
     })
 
@@ -25,6 +30,6 @@ $(function(){
         day = '0' + day.toString();
     
     var today = year + '-' + month + '-' + day;
-    $('#datein').attr('min', today);
+    $('#datein').attr('min', today);s
 });
 
