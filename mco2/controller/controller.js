@@ -42,7 +42,7 @@ var restaurantName;
     
     
     const postReserve = ((req,res) =>{
-        var reserves = new reserve({
+        var reserves = new reservation({
             restaurant: req.body.restaurant,
             name: activeUser.name,
             email: activeUser.email,
@@ -82,22 +82,31 @@ var restaurantName;
     const postSave = ( (req,res) =>{
         var salt = bcrypt.genSaltSync(10)
         var hash = bcrypt.hashSync(req.body.password, salt);
-    
-        var accounts = new account({
-            name: req.body.name,
-            username: req.body.username,
-            password: hash,
-            bdate: req.body.bdate,
-            phone: req.body.phone,
-            email: req.body.email,
-        })
-    
-        accounts.save(function(err){
-            if(err){
+        var uName = req.body.username; 
+        account.findOne({username: uName}, function(err, accounts){
+            if(err)
                 console.log(err);
+
+            if(accounts){
+                res.render('signup', {
+                    title: 'Username has been already taken! Try Again!'
+                });
             }else{
-                res.redirect('/');
-    
+                var accounts = new account({
+                    name: req.body.name,
+                    username: uName,
+                    password: hash,
+                    bdate: req.body.bdate,
+                    phone: req.body.phone,
+                    email: req.body.email,
+                })
+                accounts.save(function(err){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.redirect('/login')
+                    }
+                })
             }
         })
     })
@@ -124,9 +133,7 @@ var restaurantName;
     const postLogin =  ((req,res) =>{
         let pass= req.body.password;   
         let uName = req.body.username;
-    
-        //cant get the password
-        //how to make this into global
+
         account.findOne({username: uName}, function(err, accounts){
             activeUser = accounts
             if(accounts){
