@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser =require("body-parser");
 
@@ -10,11 +9,14 @@ var activeUser;
 var restaurantName;
 
     const getIndex = ((req,res) => {
-        console.log(activeUser)
-        console.log();
-        res.render('homepage', {
-            title: false
+        if(activeUser){
+            res.render('homepage', {
+            title: true
         });
+        }else
+            res.render('homepage', {
+            title: false
+            });
     })
      
     
@@ -94,9 +96,7 @@ var restaurantName;
             if(err){
                 console.log(err);
             }else{
-                res.render('homepage',{
-                    title: true,
-                });
+                res.redirect('/');
     
             }
         })
@@ -113,7 +113,12 @@ var restaurantName;
     })
     
     const getLogout =  ((req,res)=>{
+        console.log(activeUser)
+        activeUser = null;
+        console.log(activeUser)
+
         res.redirect('/');
+
     })
     
     const postLogin =  ((req,res) =>{
@@ -128,9 +133,7 @@ var restaurantName;
                 let isValidPass = bcrypt.compareSync(pass, accounts.password );
                 if(isValidPass){       
                     activeUser = accounts;         
-                    res.render('homepage',{
-                    title: true,
-                });
+                    res.redirect('/');
     
                 } else {
                     res.render('login',{
@@ -158,10 +161,17 @@ var restaurantName;
             if(err){
                 console.log(err);
             }else{
-                res.render('reserve', {
-                    comments: rows,
-                    title: "Kuya J",
+                if(activeUser){
+                    res.render('reserve', {
+                        comments: rows,
+                        title: true,
                 })
+                }else
+                    res.render('reserve', {
+                        comments: rows,
+                        title: false,
+                    })
+                
             }
         })
     })
@@ -174,10 +184,16 @@ var restaurantName;
             if(err){
                 console.log(err);
             }else{
-                res.render('max', {
-                    comments: rows,
-                    title: "Max's Restaurant",
+                if(activeUser){
+                    res.render('reserve', {
+                        comments: rows,
+                        title: true,
                 })
+                }else
+                    res.render('reserve', {
+                        comments: rows,
+                        title: false,
+                    })
             }
         })
     })
@@ -190,68 +206,75 @@ var restaurantName;
             if(err){
                 console.log(err);
             }else{
-                res.render('gerry', {
-                    comments: rows,
-                    title: "Gerry's Grill",
+                if(activeUser){
+                    res.render('reserve', {
+                        comments: rows,
+                        title: true,
                 })
+                }else
+                    res.render('reserve', {
+                        comments: rows,
+                        title: false,
+                    })
             }
         })
     })
 
     const postComment = ((req, res) => {
-        // var variableJSON = JSON.parse($('#variableJSON').text());
-        // $('#variableJSON').remove();
-        console.log(restaurantName);
-        var comments = new comment({
-            restaurant: restaurantName,
-            name: activeUser.name,
-            comment_text: req.body.comment_text,
-        })
-        comments.save(function(err){
-            if(err){
-                console.log(err);
-            }
-            else{
-                if(restaurantName === "Kuya J"){
-                    res.redirect("/getkuya");
+        if(activeUser){
+            var comments = new comment({
+                restaurant: restaurantName,
+                name: activeUser.name,
+                comment_text: req.body.comment_text,
+            })
+            comments.save(function(err){
+                if(err){
+                    console.log(err);
                 }
-                else if(restaurantName === "Gerry's Grill"){
-                    res.redirect("/getgerry");
+                else{
+                    if(restaurantName === "Kuya J"){
+                        res.redirect("/getkuya");
+                    }
+                    else if(restaurantName === "Gerry's Grill"){
+                        res.redirect("/getgerry");
+                    }
+                    else if(restaurantName === "Max's Restaurant"){
+                        res.redirect("/getmax");
+                    }
                 }
-                else if(restaurantName === "Max's Restaurant"){
-                    res.redirect("/getmax");
-                }
-            }
-        })
+            })
+        }else{
+            res.redirect('/login')
+        }
     })
 
-    // const getComment = ((req, res) => {
-    //     console.log(restaurantName);
-    //     comment.find({restaurant: restaurantName}, function(err, rows){
-    //         if(err){
-    //             console.log(err);
-    //         }else{
-    //             if(restaurantName === "Kuya J"){
-    //                 res.render('reserve', {
-    //                     comments: rows,
-    //                     title: "Kuya J",
-    //                 })
-    //             }
-    //             else if(restaurantName === "Gerry's Grill"){
-    //                 res.render('max', {
-    //                     comments: rows,
-    //                     title: "Gerry's Grill",
-    //                 })
-    //             }
-    //             else if(restaurantName === "Max's Restaurant"){
-    //                 res.render('gerry', {
-    //                     comments: rows,
-    //                     title: "Max's Restaurant",
-    //                 })
-    //             }
-    //         }
-    //     })
-    // })
+    const getComment = ((req, res) => {
+         console.log(restaurantName);
+         comment.find({restaurant: restaurantName}, function(err, rows){
+             if(err){
+                 console.log(err);
+             }else{
+                 if(restaurantName === "Kuya J"){
+                     res.render('reserve', {
+                         comments: rows,
+                         title: "Kuya J",
+                     })
+                 }
+                 else if(restaurantName === "Gerry's Grill"){
+                     res.render('max', {
+                        comments: rows,
+                        title: "Gerry's Grill",
+                     })
+                 }
+                 else if(restaurantName === "Max's Restaurant"){
+                     res.render('gerry', {
+                         comments: rows,
+                         title: "Max's Restaurant",
+                     })
+                 }
+             }
+         })
+     })
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
     getLogout, postComment, getKuya, getMax, getGerry};
