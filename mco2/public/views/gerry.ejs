@@ -16,32 +16,12 @@
 
 <!-- Header from homepage.html -->
 <body>
-  <header class="p-3 text-bg-dark">
-    <div class="container main-header">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            
-            <a href="homepage.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-              <img src="images/book-n-eat-logo.jpg
-              " class="d-inline-block align-top header-logo"><span class = "app-name"><h3>Book n Eat</h3></span> 
-            </a>
+    <%  if(title == true){%>
+    <%- include('loginheader') -%>
+<% }else{%>
+    <%- include('header') -%>
+<%   } %>
 
-            <!-- Navigation Links -->
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="homepage.html" class="nav-link px-2 text-white">Home</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">About</a></li>
-                <li><a href="booking.html" class="nav-link px-2 text-white">Book now!</a></li>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
-      <!-- Login and Sign-up Button --> 
-        <div class="text-end">
-            <a href="login.html" role="button" class="btn btn-outline-light me-2">Login</a>
-            <a href="signup.html" role="button" class="btn btn-warning">Sign-up</a>
-        </div>
-  </header>
 
     <div class = "restaurant-container">
       <!-- Restaurant Phone no., Location(r), ratings(r) -->
