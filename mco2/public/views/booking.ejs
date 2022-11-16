@@ -25,7 +25,7 @@
 <div class="form-container">
     <h4 class="form-title">RESERVATION FORM</h4>
   <div class="form-body">
-  <form autocomplete="off" name = "reserve-form" id="reserve-form" action="/savereserve" method="post" required>
+  <form autocomplete="off" name = "reserve-form" id="reserve-form" action="/savereserve" method="post">
     <div class="input-field">
       Restaurant:  
       <select name ="restaurant" id="restaurant" required>
@@ -71,7 +71,7 @@
       <option value = "8 People"> 8 people </option>
     </select>  
     </div>
-  </div>
+  
     <div class="card-option-field">
         Choose a payment method:
         <br>
@@ -97,12 +97,12 @@
        </div>
        <div class="form-footer">
         <a class="btn btn-outline-secondary" href="/">Cancel</a>
-          <button data-toggle="modal"id ="reserve-submit" type="submit"  href="#success-popup" class="btn btn-outline-success">Confirm Payment</button>
+          <button data-toggle="modal" id ="reserve-submit" type="button" class="btn btn-outline-success">Confirm Payment</button>
       </div>
-    </form>
+  
   </div>
-</div>
-<!--
+
+
 <div class="modal fade" id="success-popup" role="dialog">
         <div class="modal-dialog">
         
@@ -115,15 +115,16 @@
                 <h4>Thank you for your reservation!</h4>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-              </div>
+                <button type = "submit" class="btn btn-default">Proceed</a>
+                </div>
             </div>             
         </div>
+      
 </div>
--->
 
- 
-
+</form>
+</div>
+</div>
 <!-- footer-->
 <div class="footer">
   <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
