@@ -9,7 +9,7 @@ var userComment = new mongoose.Schema({
         type: String,
         required: true
     },
-    comment: {
+    comment_text: {
         type: String,
         required: true
     }

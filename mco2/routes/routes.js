@@ -27,4 +27,14 @@ route.get('/logout', controller.getLogout);
 
 route.post('/postlogin', controller.postLogin);
 
+route.post('/postcomment', controller.postComment);
+
+// route.get('/getcomment', controller.getComment);
+
+route.get('/getkuya', controller.getKuya);
+
+route.get('/getgerry', controller.getGerry);
+
+route.get('/getmax', controller.getMax);
+
 module.exports =  route;

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Book n Eat - Gerry's Restaurant & Bar</title>
+    <!-- Make the title into name of restaurant-->
+    
+    <!--  Style Links  -->
+    <link rel = "stylesheet" href="css/mco.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Header from homepage.html -->
+<body>
+  <header class="p-3 text-bg-dark">
+    <div class="container main-header">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            
+            <a href="homepage.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+              <img src="images/book-n-eat-logo.jpg
+              " class="d-inline-block align-top header-logo"><span class = "app-name"><h3>Book n Eat</h3></span> 
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="homepage.html" class="nav-link px-2 text-white">Home</a></li>
+                <li><a href="about.html" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="booking.html" class="nav-link px-2 text-white">Book now!</a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+      <!-- Login and Sign-up Button --> 
+        <div class="text-end">
+            <a href="login.html" role="button" class="btn btn-outline-light me-2">Login</a>
+            <a href="signup.html" role="button" class="btn btn-warning">Sign-up</a>
+        </div>
+  </header>
+
+    <div class = "restaurant-container">
+      <!-- Restaurant Phone no., Location(r), ratings(r) -->
+      <div class = "detail-container">
+        <!-- Name of restaurant (we might need to apply script to change the name) -->
+        <img class = "logo" src="images/gerryslogo.jpg">
+        <div class ="details-left">
+          <h2> Gerry's Restaurant & Bar</h2>
+          <h4> Contact us: (02) 8893 2891</h4>
+          <h4> Location: Alabang–Zapote Rd, Las Piñas, 1747 Metro Manila</h4>
+          <h4> Rating: 4.1/5 </h4>
+          <br>
+          </div>
+          <div class ="details-right">
+            <!-- SocMed Platforms-->
+            <div class="social-media">
+              <a href="https://www.facebook.com/gerrysgrill.com.ph/" class="fa fa-facebook"></a>
+              <a href="https://twitter.com/gerrysph" class="fa fa-twitter"></a>
+              <a href="https://www.instagram.com/gerrysrestaurant/" class="fa fa-instagram"></a>
+            </div>
+            <!-- hearrt Button -->
+            <div class= "like-button">
+              <div class="like-content">
+                <span class = "like">Like</span>
+                <span class="counter"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+    <div class = "menu-container">
+
+      <div class="carousel-container">
+        <h1>SPECIAL OFFERS</h1>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+      
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/gerry1.jpg">
+            </div>
+      
+            <div class="item">
+              <img src="images/gerry2.jpg">
+            </div>
+          
+            <div class="item">
+              <img src="images/gerry3.jpg">
+            </div>
+          </div>
+      
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <!-- The entire Menu List-->
+      <div class="menu-list">
+        <!-- Food categories-->
+        <div id="accordion">
+
+
+          <div class="card">
+
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-danger" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Salad, Noodles, & Rice
+                </button>
+              </h5>
+            </div>
+            <!-- Salad, Noodles, Rice -->
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <div class="table-menu">
+                  <table>
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                    </tr>
+                    <tr><th>Salad</th></tr>
+                      <tr>
+                        <td>Chopsuey</td>
+                        <td>₱295.00</td>
+                      </tr>
+                      <tr>
+                        <td>Sizzling Kangkong ala Pobre</td>
+                        <td>₱205.00</td>
+                      </tr>
+                      <tr>
+                        <td>Ampalaya Guisado</td>
+                        <td>₱235.00</td>
+                      </tr>
+                      <tr>
+                        <td>Kilawin Puso ng Saging</td>
+                        <td>₱235.00</td>
+                      </tr>
+                      <tr>
+                        <td>Gerry's Stuffed Laing (Tinomok)</td>
+                        <td>₱285.00</td>
+                      </tr>
+                    <tr><th>Noodles</th></tr>
+                    <tr>
+                      <td>Pancit Palabok</td>
+                      <td>₱255.00</td>
+                    </tr>
+                    <tr>
+                      <td>Pancit Canton</td>
+                      <td>₱255.00</td>
+                    </tr>
+                    <tr>
+                      <td>Special Pancit Bihon</td>
+                      <td>₱255.00</td>
+                    </tr>
+                    <tr><th>Rice</th></tr>
+                    <tr>
+                      <td>Plain Rice</td>
+                      <td>₱47.00</td>
+                    </tr>
+                    <tr>
+                      <td>Garlic Rice</td>
+                      <td>₱50.00</td>
+                    </tr>
+                    <tr>
+                      <td>Crab Rice</td>
+                      <td>₱265.00</td>
+                    </tr>
+                    <tr>
+                      <td>Gerry's Special Binagoong Rice</td>
+                      <td>₱285.00</td>
+                    </tr>
+                    <tr>
+                      <td>Seafood Rice</td>
+                      <td>₱275.00</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-danger" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Appetizers, Soups, and Desserts
+                </button>
+              </h5>
+            </div>
+              <!-- Appetizers, Soups, Desserts -->
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <div class="table-menu">
+                <table>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                  </tr>
+                  <tr><th>Appetizer</th></tr>
+                  <tr>
+                    <td>Chili Cheese Sticks</td>
+                    <td>₱205.00</td>
+                  </tr>
+                  <tr>
+                    <td>Crunchy Squid Heads</td>
+                    <td>₱195.00</td>
+                  </tr>
+                  <tr>
+                    <td>Peanuts</td>
+                    <td>₱95.00</td>
+                  </tr>
+                  <tr>
+                    <td>Chichabits</td>
+                    <td>₱155.00</td>
+                  </tr>
+                  <tr>
+                    <td>Lumpiang Shanghai</td>
+                    <td>₱235.00</td>
+                  </tr>
+                  <tr>
+                    <td>Tokwa't Lechon Kawali</td>
+                    <td>₱315.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sizzling Tokwa con Karne</td>
+                    <td>₱245.00</td>
+                  </tr>
+                  <tr>
+                    <td>Dinakdakan</td>
+                    <td>₱385.00</td>
+                  </tr>
+                  <tr>
+                    <td>Calamares</td>
+                    <td>₱325.00</td>
+                  </tr>
+                  <tr>
+                    <td>Spicy Sashimi</td>
+                    <td>₱395.00</td>
+                  </tr>
+                  <tr>
+                    <td>Oriental Tuna Sashimi</td>
+                    <td>₱385.00</td>
+                  </tr>
+                  <tr>
+                    <td>Crispy Kangkong</td>
+                    <td>₱125.00</td>
+                  </tr>
+                  <tr><th>Soup</th></tr>
+                  <tr>
+                    <td>Sinigang Na Boneless Bangus</td>
+                    <td>₱395.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sinigang Na Hipon</td>
+                    <td>₱405.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sinigang Na Baboy</td>
+                    <td>₱405.00</td>
+                  </tr>
+                  <tr>
+                    <td>Nilagang Bulalo</td>
+                    <td>₱475.00</td>
+                  </tr>
+                  <tr><th>Dessert</th></tr>
+                  <tr>
+                    <td>Halo-Halo</td>
+                    <td>₱145.00</td>
+                  </tr>
+                  <tr>
+                    <td>Mais con Hielo</td>
+                    <td>₱125.00</td>
+                  </tr>
+                  <tr>
+                    <td>Leche Flan</td>
+                    <td>₱125.00</td>
+                  </tr>
+                  <tr>
+                    <td>Buko Pandan</td>
+                    <td>₱125.00</td>
+                  </tr>
+                  <tr>
+                    <td>Banana Split</td>
+                    <td>₱175.00</td>
+                  </tr>
+                </table>  
+              </div>            
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-danger" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Pork & Beef
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <div class="table-menu">
+                  <table>
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                    </tr>
+                    <tr><th>Pork</th></tr>
+                    <tr>
+                      <td>Sizzling Sisig</td>
+                      <td>₱305.00</td>
+                    </tr>
+                    <tr>
+                      <td>Sisig Kilaw</td>
+                      <td>₱305.00</td>
+                    </tr>
+                    <tr>
+                      <td>Pork BBQ</td>
+                      <td>₱305.00</td>
+                    </tr>
+                    <tr>
+                      <td>Crispy Pata (Regular)</td>
+                      <td>₱675.00</td>
+                    </tr>
+                    <tr>
+                      <td>Crispy Pata (Family)</td>
+                      <td>₱845.00</td>
+                    </tr>
+                    <tr>
+                      <td>Lechon Kawali</td>
+                      <td>₱485.00</td>
+                    </tr>
+                    <tr>
+                      <td>Inihaw Na Liempo</td>
+                      <td>₱375.00</td>
+                    </tr>
+                    <tr>
+                        <td>Gerry's Stuffed Laing(Tinomok)</td>
+                        <td>₱285.00</td>
+                      </tr>
+                    <tr><th>Beef</th></tr>
+                    <tr>
+                      <td>Beef Kare-kare</td>
+                      <td>₱550.00</td>
+                    </tr>
+                    <tr>
+                      <td>Prime Beef Kaldereta</td>
+                      <td>₱475.00</td>
+                    </tr>
+                    </table>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-danger" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                  Chicken & Seafoods
+                </button>
+              </h5>
+            </div>
+            <!-- Chicken & Seafood -->
+            <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <div class="table-menu">
+                  <table>
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                    </tr>
+                    <tr><th>Chicken</th></tr>
+                    <tr>
+                      <td>Gerry's Fried Chicken</td>
+                      <td>₱395.00</td>
+                    </tr>
+                    <tr>
+                      <td>Chicken Kebab</td>
+                      <td>₱285.00</td>
+                    </tr>
+                    <tr>
+                      <td>Sizzling Garlic Chicken</td>
+                      <td>₱395.00</td>
+                    </tr>
+                    <tr>
+                      <td>Spicy Garlic Fried Chicken</td>
+                      <td>₱395.00</td>
+                    </tr>
+                    <tr>
+                      <td>Inihaw Na Manok</td>
+                      <td>₱190.00</td>
+                    </tr>
+                    <tr><th>Seafood</th></tr>
+                    <tr>
+                      <td>Inihaw Na Pusit</td>
+                      <td>₱515.00</td>
+                    </tr>
+                    <tr>
+                      <td>Inihaw Na Tuna Belly</td>
+                      <td>₱395.00</td>
+                    </tr>
+                    <tr>
+                      <td>Inihaw Na Baby Pusit</td>
+                      <td>₱465.00</td>
+                    </tr>
+                    <tr>
+                      <td>Sizzling Gambas</td>
+                      <td>₱365.00</td>
+                    </tr>
+                    <tr>
+                      <td>Bangus Ala Pobre</td>
+                      <td>₱385.00</td>
+                    </tr>
+                    <tr>
+                      <td>Blue Marlin Steak</td>
+                      <td>₱485.00</td>
+                    </tr>
+                    <tr>
+                      <td>Blue Marlin Belly</td>
+                      <td>₱495.00</td>
+                    </tr>
+                    <tr>
+                      <td>Blue Marlin Ribs</td>
+                      <td>₱385.00</td>
+                    </tr>
+                    <tr>
+                      <td>Tuna Kilaw</td>
+                      <td>₱385.00</td>
+                    </tr>
+                    <tr>
+                      <td>Sugba Kilaw</td>
+                      <td>₱435.00</td>
+                    </tr>
+                  </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-danger" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                  Drinks
+                </button>
+              </h5>
+              <!-- Drinks -->
+            </div>
+            <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <div class="table-menu">
+                <table>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                  </tr>
+                  <tr>
+                    <td>Pepsi</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Pepsi Max</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Pepsi Light</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Mirinda</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>7-Up</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Mountain Dew</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Mug Rootbeer</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Bottled Water</td>
+                    <td>₱55.00</td>
+                  </tr>
+                  <tr>
+                    <td>Orange Juice</td>
+                    <td>₱85.00</td>
+                  </tr>
+                  <tr>
+                    <td>Gerry's Special Iced Tea(Glass)</td>
+                    <td>₱79.00</td>
+                  </tr>
+                  <tr>
+                    <td>Gerry's Special Iced Tea(Pitcher)</td>
+                    <td>₱315.00</td>
+                  </tr>
+                  <tr>
+                    <td>Nestea Houseblend Ice Tea(Bottomless)</td>
+                    <td>₱90.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sago't Gulaman</td>
+                    <td>₱70.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sago't Gulaman(Pitcher)</td>
+                    <td>₱260.00</td>
+                  </tr>
+                  <tr>
+                    <td>Green Mango Shake</td>
+                    <td>₱110.00</td>
+                  </tr>
+                  <tr>
+                    <td>Ripe Mango Shake</td>
+                    <td>₱110.00</td>
+                  </tr>
+                  <tr>
+                    <td>Banana Shake</td>
+                    <td>₱110.00</td>
+                  </tr>
+                  <tr>
+                    <td>Four Seasons</td>
+                    <td>₱110.00</td>
+                  </tr>
+                  <tr>
+                    <td>SMB Pale Pilsen</td>
+                    <td>₱89.00</td>
+                  </tr>
+                  <tr>
+                    <td>San Mig Light</td>
+                    <td>₱89.00</td>
+                  </tr>
+                  <tr>
+                    <td>Heineken</td>
+                    <td>₱99.00</td>
+                  </tr>
+                  <tr>
+                    <td>Super Dry</td>
+                    <td>₱99.00</td>
+                  </tr>
+                  <tr>
+                    <td>Red Horse</td>
+                    <td>₱79.00</td>
+                  </tr>
+                  <tr>
+                    <td>San Mig Apple</td>
+                    <td>₱79.00</td>
+                  </tr>
+                  <tr>
+                    <td>San Mig Lemon</td>
+                    <td>₱79.00</td>
+                  </tr>
+                </table>
+              </div>	
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+
+    <script src="like.js"></script>
+    
+    <!--- Comment Section  -->
+     <div class="comment-container" id="comment-container">
+      <h2> Leave a Comment </h2>    
+      <form action="/postcomment" method="post">
+        <textarea placeholder="Add your comment here" id="comment-text" name="comment_text"></textarea>
+        <div class="comment-btn">
+		  <button type="submit" class="btn btn-danger" id="submit-comment" value="comment" >comment</button>
+          <button class="btn btn-secondary">cancel</button>
+        </div>
+      </form>
+
+      <div class="sample-comment">
+        <div class="user">
+          <a class="prof-pic" href="profile.html">
+            <img src="images/sample2.jpg">
+          </a>
+          <div class="prof-name">Leo Jones</div>
+        </div>
+        <div class="comment-text">
+          <p> First time booking with this website. Overall comment: "WOW" Just wow.</p>
+          <a href="gerry.html"> Gerry's Grill </a>
+        </div>
+      </div>
+
+      <div class="sample-comment">
+        <div class="user">
+          <a class="prof-pic" href="profile.html">
+            <img src="images/sample2.jpg">
+          </a>
+          <div class="prof-name">Leo Jones</div>
+        </div>
+        <div class="comment-text">
+          <p> This restaurant never dissapoints me.</p>
+          <a href="gerry.html"> Gerry's Grill </a>
+        </div>
+      </div>
+
+	  <% comments.forEach(function(comments){ %>
+        <div class="sample-comment">
+          <div class="user">
+            <a class="prof-pic" href="#">
+              <img src="">
+            </a>
+            <div class="prof-name"><%= comments.name%></div>
+			</div>
+            <div class="comment-text">
+              <p> <%= comments.comment_text%>
+              </p>
+            </div>
+        </div>
+      <%});%>
+
+    </div>
+    <div class="footer">
+      <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
+          <!-- Grid container -->
+          <div class="container p-4">
+              <!--Grid row-->
+              <div class="row">
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                      <h4 class="text-white">Book n Eat</h4>
+  
+                      <ul class="list-unstyled mb-4">
+                          <li>
+                              <a href="about.html" class="text-white">About us</a>
+                          </li>
+                          <li>
+                              <a href="#!" class="text-white">Restaurants</a>
+                          </li>
+  
+                      </ul>
+                  </div>
+                  <!--Grid column-->
+  
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                      <h4 class="text-white">Assistance</h4>
+  
+                      <ul class="list-unstyled">
+                          <li>
+                              <a href="about.html#contact" class="text-white">Contact us</a>
+                          </li>
+  
+                          <li>
+                              <a href="#!" class="text-white">Booking Information</a>
+                          </li>
+                          <li>
+                              <a href="refunds.html" class="text-white">Refunds and Exchanges</a>
+                          </li>
+                          <li>
+                              <a href="paymentmethods.html" class="text-white">Payment Methods</a>
+                          </li>
+                      </ul>
+                  </div>
+                  <!--Grid column-->
+  
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                      <h4 class="text-white">Join Us</h4>
+  
+                      <ul class="list-unstyled">
+                          <li>
+                              <a href="joinus.html" class="text-white">Restaurants</a>
+                          </li>
+                          <li>
+                              <a href="join.html" class="text-white">Book n Eat "Eaters"</a>
+                          </li>
+  
+                      </ul>
+                  </div>
+                  <!--Grid column-->
+  
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                      <h4 class="text-white">Sign up to our newsletter</h4>
+  
+                      <div class="form-outline form-white mb-4">
+                          <input type="email" id="form5Example2" class="form-control" />
+                          <label class="text-white form-label" for="form5Example2">Email address</label>
+                      </div>
+  
+                      <button type="submit" class="text- white btn-outline-white btn-block">Subscribe</button>
+                  </div>
+                  <!--Grid column-->
+              </div>
+              <!--Grid row-->
+          </div>
+          <!-- Grid container -->
+  
+          <!-- Copyright -->
+          <div class="text-center text-white p-3 border-top border-white">
+              © 2022 Copyright:
+              <a class="text-white" href="https://bookneat.com/">BooknEat.com</a>
+          </div>
+          <!-- Copyright -->
+      </footer>
+        
+      <script src="comment.js"></script>
+</body>
+</html>

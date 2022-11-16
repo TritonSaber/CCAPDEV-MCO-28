@@ -4,9 +4,10 @@ const bodyParser =require("body-parser");
 
 const account = require("../models/accountModel");
 const reservation = require("../models/reservationModel");
+const comment = require("../models/commentModel");
 const bcrypt = require("bcrypt");
 var activeUser;
-
+var restaurantName;
 
     const getIndex = ((req,res) => {
         console.log(activeUser)
@@ -67,7 +68,7 @@ var activeUser;
     
     // User Registration - Working!   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //#Reminder: We used title to set true for login so we could change the header
-    //#Other type of property in rres.render other than title such as 'error' did not work
+    //#Other type of property in res.render other than title such as 'error' did not work
     //redirect towards the Signup page
     const getRegister =  ((req,res)=>{
         res.render('signup', {
@@ -149,8 +150,109 @@ var activeUser;
     
     })
 
-    const postComment = ((req, res) => {
-        
-    });
+    const getKuya = ((req, res) => {
+        restaurantName = "Kuya J";
+        console.log(restaurantName);
+        // res.redirect('/getcomment');
+        comment.find({restaurant: restaurantName}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                res.render('reserve', {
+                    comments: rows,
+                    title: "Kuya J",
+                })
+            }
+        })
+    })
 
-module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout};
+    const getMax = ((req, res) => {
+        restaurantName = "Max's Restaurant";
+        console.log(restaurantName);
+        // res.redirect('/getcomment');
+        comment.find({restaurant: restaurantName}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                res.render('max', {
+                    comments: rows,
+                    title: "Max's Restaurant",
+                })
+            }
+        })
+    })
+
+    const getGerry = ((req, res) => {
+        restaurantName = "Gerry's Grill";
+        console.log(restaurantName);
+        // res.redirect('/getcomment');
+        comment.find({restaurant: restaurantName}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                res.render('gerry', {
+                    comments: rows,
+                    title: "Gerry's Grill",
+                })
+            }
+        })
+    })
+
+    const postComment = ((req, res) => {
+        // var variableJSON = JSON.parse($('#variableJSON').text());
+        // $('#variableJSON').remove();
+        console.log(restaurantName);
+        var comments = new comment({
+            restaurant: restaurantName,
+            name: activeUser.name,
+            comment_text: req.body.comment_text,
+        })
+        comments.save(function(err){
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(restaurantName === "Kuya J"){
+                    res.redirect("/getkuya");
+                }
+                else if(restaurantName === "Gerry's Grill"){
+                    res.redirect("/getgerry");
+                }
+                else if(restaurantName === "Max's Restaurant"){
+                    res.redirect("/getmax");
+                }
+            }
+        })
+    })
+
+    // const getComment = ((req, res) => {
+    //     console.log(restaurantName);
+    //     comment.find({restaurant: restaurantName}, function(err, rows){
+    //         if(err){
+    //             console.log(err);
+    //         }else{
+    //             if(restaurantName === "Kuya J"){
+    //                 res.render('reserve', {
+    //                     comments: rows,
+    //                     title: "Kuya J",
+    //                 })
+    //             }
+    //             else if(restaurantName === "Gerry's Grill"){
+    //                 res.render('max', {
+    //                     comments: rows,
+    //                     title: "Gerry's Grill",
+    //                 })
+    //             }
+    //             else if(restaurantName === "Max's Restaurant"){
+    //                 res.render('gerry', {
+    //                     comments: rows,
+    //                     title: "Max's Restaurant",
+    //                 })
+    //             }
+    //         }
+    //     })
+    // })
+
+module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
+    getLogout, postComment, getKuya, getMax, getGerry};
+    // getComment
