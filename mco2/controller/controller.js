@@ -192,12 +192,12 @@ var restaurantName;
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('reserve', {
+                    res.render('max', {
                         comments: rows,
                         title: true,
                 })
                 }else
-                    res.render('reserve', {
+                    res.render('max', {
                         comments: rows,
                         title: false,
                     })
@@ -214,12 +214,12 @@ var restaurantName;
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('reserve', {
+                    res.render('gerry', {
                         comments: rows,
                         title: true,
                 })
                 }else
-                    res.render('reserve', {
+                    res.render('gerry', {
                         comments: rows,
                         title: false,
                     })
@@ -254,34 +254,6 @@ var restaurantName;
             res.redirect('/login')
         }
     })
-
-    const getComment = ((req, res) => {
-         console.log(restaurantName);
-         comment.find({restaurant: restaurantName}, function(err, rows){
-             if(err){
-                 console.log(err);
-             }else{
-                 if(restaurantName === "Kuya J"){
-                     res.render('reserve', {
-                         comments: rows,
-                         title: "Kuya J",
-                     })
-                 }
-                 else if(restaurantName === "Gerry's Grill"){
-                     res.render('max', {
-                        comments: rows,
-                        title: "Gerry's Grill",
-                     })
-                 }
-                 else if(restaurantName === "Max's Restaurant"){
-                     res.render('gerry', {
-                         comments: rows,
-                         title: "Max's Restaurant",
-                     })
-                 }
-             }
-         })
-     })
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
     getLogout, postComment, getKuya, getMax, getGerry};
