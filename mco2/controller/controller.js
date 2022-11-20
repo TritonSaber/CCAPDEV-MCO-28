@@ -32,17 +32,39 @@ var restaurantName;
         
     })
     //dashboard page for admin
-    const getIndexAdmin = ((req,res) => {            
-            //redirects Admins to the Admin dashboard
-             if(activeUser.role =="Admin"){
+    const getIndexAdmin =  ( (req,res) => {
+        account.find({role: ["User", "Manager"]}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
                 res.render('admin', {
-                    title: "Admin"
-                });
+                    title: 'Dashboard',
+                    accounts: rows
+                })
             }
-        
-        
-        
+        })
+})
+
+const postEdit = ((req,res) =>{
+    account.updateOne({username: req.body.username},{$set: {role: req.body.role} }, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/admin");
+        }
     })
+})
+
+const postDelete = ((req,res) =>{
+    account.deleteOne({username: req.body.username}, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/admin");
+        }
+    })
+})
+
 
     const getIndexMngr = ((req,res) => {
             //redirects Admins to the Managers to dashboard
@@ -367,4 +389,4 @@ var restaurantName;
 
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr};
+    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr, postEdit, postDelete};
