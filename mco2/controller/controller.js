@@ -7,16 +7,53 @@ const comment = require("../models/commentModel");
 const bcrypt = require("bcrypt");
 var activeUser;
 var restaurantName;
-
+    //index page for general users
     const getIndex = ((req,res) => {
         if(activeUser){
-            res.render('homepage', {
-            title: true
-        });
+            //redirects normal users to homepage
+            if(activeUser.role == "User"){
+                res.render('homepage', {
+                title: "User"
+                });
+            //redirects Admins to the Admin dashboard
+            }else if(activeUser.role =="Admin"){
+                res.render('homepage', {
+                    title: "Admin"
+                });
+            }else if(activeUser.role =="Manager"){
+                res.render('homepage', {
+                    title: "Manager"
+                });
+            }      
         }else
             res.render('homepage', {
             title: false
             });
+        
+    })
+    //dashboard page for admin
+    const getIndexAdmin = ((req,res) => {            
+            //redirects Admins to the Admin dashboard
+             if(activeUser.role =="Admin"){
+                res.render('admin', {
+                    title: "Admin"
+                });
+            }
+        
+        
+        
+    })
+
+    const getIndexMngr = ((req,res) => {
+            //redirects Admins to the Managers to dashboard
+             if(activeUser.role =="Manager"){
+                res.render('manager', {
+                    title: "Manager"
+                });
+            }
+    
+        
+        
     })
      
     
@@ -89,7 +126,7 @@ var restaurantName;
 
             if(accounts){
                 res.render('signup', {
-                    title: 'Username has been already taken! Try Again!'
+                    title: 'Username has been already taken! Try Again!',
                 });
             }else{
                 var accounts = new account({
@@ -169,10 +206,22 @@ var restaurantName;
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('reserve', {
-                        comments: rows,
-                        title: true,
-                })
+                    if(activeUser.role == "User"){
+                        res.render('reserve', {
+                            comments: rows,
+                            title: "User",
+                        })
+                    }else if(activeUser.role == "Admin"){
+                        res.render('reserve', {
+                            comments: rows,
+                            title: "Admin",
+                        })
+                    }else if(activeUser.role == "Manager"){
+                        res.render('reserve', {
+                            comments: rows,
+                            title: "Manager",
+                        })
+                    }
                 }else
                     res.render('reserve', {
                         comments: rows,
@@ -192,10 +241,22 @@ var restaurantName;
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('max', {
-                        comments: rows,
-                        title: true,
-                })
+                    if(activeUser.role == "User"){
+                        res.render('max', {
+                            comments: rows,
+                            title: "User",
+                        })
+                    }else if(activeUser.role == "Admin"){
+                        res.render('max', {
+                            comments: rows,
+                            title: "Admin",
+                        })
+                    }else if(activeUser.role == "Manager"){
+                        res.render('max', {
+                            comments: rows,
+                            title: "Manager",
+                        })
+                    }
                 }else
                     res.render('max', {
                         comments: rows,
@@ -214,10 +275,22 @@ var restaurantName;
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('gerry', {
-                        comments: rows,
-                        title: true,
-                })
+                    if(activeUser.role == "User"){
+                        res.render('gerry', {
+                            comments: rows,
+                            title: "User",
+                        })
+                    }else if(activeUser.role == "Admin"){
+                        res.render('gerry', {
+                            comments: rows,
+                            title: "Admin",
+                        })
+                    }else if(activeUser.role == "Manager"){
+                        res.render('gerry', {
+                            comments: rows,
+                            title: "Manager",
+                        })
+                    }
                 }else
                     res.render('gerry', {
                         comments: rows,
@@ -255,6 +328,43 @@ var restaurantName;
         }
     })
 
+
+     // Add Sample Data!!
+    const sampleData = ((req,res) =>{   
+        
+        
+        account.findOne({username: "admin"}, function(err, accounts){
+            if(!accounts){
+                //the password of sample accounts is 12345678
+                account.insertMany([{name: "admin", 
+                                    username: "admin",
+                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
+                                    bdate: 20021220,
+                                    phone: 96754123,
+                                    email: "admin_bookNeat@gmail.com",
+                                    role: "Admin"},
+                                    
+                                    {name: "Chibog", 
+                                    username: "Chibog",
+                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
+                                    bdate: 20011115,
+                                    phone: 09345962837,
+                                    email: "Chibog@gmail.com",
+                                    role: "User"},
+
+                                    {name: "Gutomz", 
+                                    username: "Gutomz",
+                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
+                                    bdate: 20000909,
+                                    phone: 09345962837,
+                                    email: "Gutomz@gmail.com",
+                                    role: "Manager"}])
+                console.log("Sample Accounts are added!!");
+            }
+        })
+    })
+    sampleData();
+
+
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry};
-    // getComment
+    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr};
