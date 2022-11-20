@@ -10,6 +10,10 @@ const controller = require("../controller/controller");
 //Index
 route.get('/', controller.getIndex);
 
+route.get('/admin', controller.getIndexAdmin);
+
+route.get('/manager', controller.getIndexMngr);
+
 //Get reservation of the user
 route.get('/getreserve', controller.getReserve);
 
