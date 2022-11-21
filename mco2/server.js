@@ -13,7 +13,7 @@ var activeUser;
 
 var app = express();
 
-mongoose.connect("mongodb://localhost:27017/ccapdev");
+mongoose.connect("mongodb://127.0.0.1:27017/ccapdev");
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
