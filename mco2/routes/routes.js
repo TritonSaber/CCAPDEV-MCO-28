@@ -49,6 +49,9 @@ route.get('/getgerry', controller.getGerry);
 
 route.get('/getmax', controller.getMax);
 
+route.get('/getprof', controller.getProf);
+
+
 // route.post('/postnewlike', controller.postNewLike);
 
 route.get('/getlike', controller.getClickLike);
