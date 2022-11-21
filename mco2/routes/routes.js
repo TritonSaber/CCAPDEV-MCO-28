@@ -49,7 +49,7 @@ route.get('/getgerry', controller.getGerry);
 
 route.get('/getmax', controller.getMax);
 
-route.get('getprof', auth.getLogin, controller.getProf);
+route.get('/getprof', controller.getProf);
 
 
 // route.post('/postnewlike', controller.postNewLike);
