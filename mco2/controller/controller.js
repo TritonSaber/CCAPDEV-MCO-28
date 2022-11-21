@@ -588,7 +588,13 @@ const postDelete = ((req,res) =>{
             }
         })
 
+    })
 
+    // for footers and about page
+    const getAbout =  ((req,res)=>{
+        res.render('about', {
+            title: 'About Book n Eat'
+        });
     })
 
     
@@ -632,5 +638,5 @@ const postDelete = ((req,res) =>{
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
     getLogout, postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, 
-    postEdit, postDelete, postManage, getClickLike};
+    postEdit, postDelete, postManage, getClickLike, getAbout};
     // getComment, postNewLike

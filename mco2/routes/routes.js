@@ -51,6 +51,7 @@ route.get('/getmax', controller.getMax);
 
 route.get('/getprof', controller.getProf);
 
+route.get('/getabout', controller.getAbout)
 
 // route.post('/postnewlike', controller.postNewLike);
 
