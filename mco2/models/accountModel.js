@@ -29,6 +29,11 @@ var userAccount = new mongoose.Schema({
         type: DateOnly,
         required: true
     },
+    
+    role: {
+        type: String,
+        default: "User",
+    },
 
 });
 
