@@ -10,7 +10,10 @@ const controller = require("../controller/controller");
 //Index
 route.get('/', controller.getIndex);
 
-route.get('/admin', controller.getIndexAdmin);
+route.get('/accountList', controller.getAccountList);
+
+route.get('/managerList', controller.getManagerList);
+
 
 route.get('/manager', controller.getIndexMngr);
 
@@ -18,10 +21,6 @@ route.get('/manager', controller.getIndexMngr);
 route.get('/getreserve', controller.getReserve);
 
 route.get('/add', controller.getBook);
-
-route.post('/edit', controller.postEdit);
-
-route.post('/delete', controller.postDelete);
 
 route.post('/savereserve', controller.postReserve);
 
@@ -34,6 +33,13 @@ route.get('/login', controller.getLogin);
 route.get('/logout', controller.getLogout);
 
 route.post('/postlogin', controller.postLogin);
+
+route.post('/edit', controller.postEdit);
+
+route.post('/delete', controller.postDelete);
+
+route.post('/manageChange', controller.postManage);
+
 
 route.post('/postcomment', controller.postComment);
 

@@ -35,26 +35,75 @@ var numLike;
         
     })
     //dashboard page for admin
-    const getIndexAdmin =  ( (req,res) => {
+    const getAccountList =  ( (req,res) => {
         account.find({role: ["User", "Manager"]}, function(err, rows){
             if(err){
                 console.log(err);
             }else{
-                res.render('admin', {
-                    title: 'Dashboard',
+                res.render('admin-AccountList', {
+                    title: 'Accounts List',
                     accounts: rows
                 })
             }
+
         })
 })
+    
+    const getManagerList=  ( (req,res) => {
+    manager.find({}, function(err, rows){
+        if(err){
+            console.log(err);
+        }else{
+            res.render('admin-ManagerList', {
+                title: 'Managers List',
+                managers: rows
+            })
+        }
+    })
+})
+    
 
 const postEdit = ((req,res) =>{
     account.updateOne({username: req.body.username},{$set: {role: req.body.role} }, function(err){
         if(err){
             console.log(err);
-        }else{
-            res.redirect("/admin");
+        }else{      
+            account.findOne({username: req.body.username}, function(err, accounts){
+                if(err){
+                    console.log(err);
+                }else{
+                    if(accounts.role == "Manager"){
+                        manager.findOne({username: accounts.username}, function(err, managers){
+                            if(err)
+                                console.log(err);
+
+                            if(!managers){
+                                var managers = new manager({
+                                    name: accounts.name,
+                                    username: accounts.username,
+                                    email: accounts.email,
+                                    phone: accounts.phone
+                            
+                                })
+                                managers.save()
+                            }
+                        })   
+                    }else{   
+                        manager.deleteOne({username: accounts.username}, function(err){
+                            if(err){
+                                console.log(err);
+                            }
+                        })
+                            
+                         
+                    }
+                }
+            })  
+            res.redirect("/accountList");
+
         }
+
+
     })
 })
 
@@ -63,7 +112,12 @@ const postDelete = ((req,res) =>{
         if(err){
             console.log(err);
         }else{
-            res.redirect("/admin");
+            manager.deleteOne({username: req.body.username}, function(err, accounts){
+                if(err){
+                    console.log(err);
+                }
+            })
+            res.redirect("/accountList");
         }
     })
 })
@@ -81,6 +135,18 @@ const postDelete = ((req,res) =>{
         
     })
      
+    
+    const postManage = ((req,res) =>{
+    manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant} }, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/managerList");
+
+
+        }
+    })
+})
     
     
     const getReserve =  ( (req,res) => {
@@ -541,5 +607,5 @@ const postDelete = ((req,res) =>{
 
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr, postEdit, postDelete, getClickLike};
+    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, postManage, getClickLike};
     // getComment, postNewLike
