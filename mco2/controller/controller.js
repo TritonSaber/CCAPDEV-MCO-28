@@ -4,9 +4,12 @@ const bodyParser =require("body-parser");
 const account = require("../models/accountModel");
 const reservation = require("../models/reservationModel");
 const comment = require("../models/commentModel");
+const like = require("../models/likeModel");
 const bcrypt = require("bcrypt");
 var activeUser;
 var restaurantName;
+var numLike;
+
     //index page for general users
     const getIndex = ((req,res) => {
         if(activeUser){
@@ -219,10 +222,91 @@ const postDelete = ((req,res) =>{
     
     })
 
+    // const postNewLike = ((req, res) => {
+        // console.log('postNewLike');
+        // var likes = new like({
+        //     restaurant: restaurantName,
+        // })
+        // likes.save(function(err){
+        //     if(err){
+        //         console.log(err);
+        //     }else{
+        //         numLike = likes.like;
+        //         console.log("Created new like");
+        //         if(restaurantName === "Kuya J"){
+        //             res.redirect("/getkuya");
+        //         }
+        //         else if(restaurantName === "Gerry's Grill"){
+        //             res.redirect("/getgerry");
+        //         }
+        //         else if(restaurantName === "Max's Restaurant"){
+        //             res.redirect("/getmax");
+        //         }
+        //     }
+        // })
+    // })
+
+    const getClickLike = ((req, res) => {
+        if(activeUser){
+            console.log("postLike");
+            numLike++;
+            like.updateOne({restaurant: restaurantName}, {like: numLike}, function(err, result){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    result[0] = numLike;
+                    if(restaurantName === "Kuya J"){
+                        res.redirect("/getkuya");
+                    }
+                    else if(restaurantName === "Gerry's Grill"){
+                        res.redirect("/getgerry");
+                    }
+                    else if(restaurantName === "Max's Restaurant"){
+                        res.redirect("/getmax");
+                    }
+                }
+            })
+
+        }
+        else{
+            res.redirect('/login');
+        }
+    })
+
     const getKuya = ((req, res) => {
         restaurantName = "Kuya J";
         console.log(restaurantName);
         // res.redirect('/getcomment');
+        like.find({restaurant: restaurantName}, function(err, result){
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(result[0] === undefined){
+                    console.log("NULL");
+                    // res.redirect('/postnewlike');
+
+                    // postnewlike
+                    var likes = new like({
+                        restaurant: restaurantName,
+                    })
+                    likes.save(function(err){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            numLike = likes.like;
+                            console.log(numLike);
+                        }
+                    })
+                    // postnewlike
+                }
+                else{
+                    numLike = result[0].like;
+                }
+            }
+        })
+
         comment.find({restaurant: restaurantName}, function(err, rows){
             if(err){
                 console.log(err);
@@ -230,26 +314,30 @@ const postDelete = ((req,res) =>{
                 if(activeUser){
                     if(activeUser.role == "User"){
                         res.render('reserve', {
+                            likes: numLike,
                             comments: rows,
                             title: "User",
                         })
                     }else if(activeUser.role == "Admin"){
                         res.render('reserve', {
+                            likes: numLike,
                             comments: rows,
                             title: "Admin",
                         })
                     }else if(activeUser.role == "Manager"){
                         res.render('reserve', {
+                            likes: numLike,
                             comments: rows,
                             title: "Manager",
                         })
                     }
-                }else
+                }else{
                     res.render('reserve', {
+                        likes: numLike,
                         comments: rows,
                         title: false,
                     })
-                
+                }
             }
         })
     })
@@ -258,6 +346,34 @@ const postDelete = ((req,res) =>{
         restaurantName = "Max's Restaurant";
         console.log(restaurantName);
         // res.redirect('/getcomment');
+        like.find({restaurant: restaurantName}, function(err, result){
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(result[0] === undefined){
+                    console.log("NULL");
+                    // res.redirect('/postnewlike');
+
+                    //postnewlike
+                    var likes = new like({
+                        restaurant: restaurantName,
+                    })
+                    likes.save(function(err){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            numLike = likes.like;
+                        }
+                    })
+                    //postnewlike
+                }
+                else{
+                    numLike = result[0].like;
+                }
+            }
+        })
+
         comment.find({restaurant: restaurantName}, function(err, rows){
             if(err){
                 console.log(err);
@@ -265,22 +381,26 @@ const postDelete = ((req,res) =>{
                 if(activeUser){
                     if(activeUser.role == "User"){
                         res.render('max', {
+                            likes: numLike,
                             comments: rows,
                             title: "User",
                         })
                     }else if(activeUser.role == "Admin"){
                         res.render('max', {
+                            likes: numLike,
                             comments: rows,
                             title: "Admin",
                         })
                     }else if(activeUser.role == "Manager"){
                         res.render('max', {
+                            likes: numLike,
                             comments: rows,
                             title: "Manager",
                         })
                     }
                 }else
                     res.render('max', {
+                        likes: numLike,
                         comments: rows,
                         title: false,
                     })
@@ -292,6 +412,34 @@ const postDelete = ((req,res) =>{
         restaurantName = "Gerry's Grill";
         console.log(restaurantName);
         // res.redirect('/getcomment');
+        like.find({restaurant: restaurantName}, function(err, result){
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(result[0] === undefined){
+                    console.log("NULL");
+                    // res.redirect('/postnewlike');
+
+                    //postnewlike
+                    var likes = new like({
+                        restaurant: restaurantName,
+                    })
+                    likes.save(function(err){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            numLike = likes.like;
+                        }
+                    })
+                    //postnewlike
+                }
+                else{
+                    numLike = result[0].like;
+                }
+            }
+        })
+
         comment.find({restaurant: restaurantName}, function(err, rows){
             if(err){
                 console.log(err);
@@ -299,22 +447,26 @@ const postDelete = ((req,res) =>{
                 if(activeUser){
                     if(activeUser.role == "User"){
                         res.render('gerry', {
+                            likes: numLike,
                             comments: rows,
                             title: "User",
                         })
                     }else if(activeUser.role == "Admin"){
                         res.render('gerry', {
+                            likes: numLike,
                             comments: rows,
                             title: "Admin",
                         })
                     }else if(activeUser.role == "Manager"){
                         res.render('gerry', {
+                            likes: numLike,
                             comments: rows,
                             title: "Manager",
                         })
                     }
                 }else
                     res.render('gerry', {
+                        likes: numLike,
                         comments: rows,
                         title: false,
                     })
@@ -389,4 +541,5 @@ const postDelete = ((req,res) =>{
 
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr, postEdit, postDelete};
+    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getIndexAdmin, getIndexMngr, postEdit, postDelete, getClickLike};
+    // getComment, postNewLike

@@ -139,7 +139,6 @@ body {
 
 }
 .counter:before{
-    content: '1';
     font-size: 21px;
     margin-left: 7px;
     color: grey;
@@ -147,7 +146,6 @@ body {
 }
 
 .counter.like-active:before{
-    content: '2';
 
     color:rgb(116, 32, 32);
 

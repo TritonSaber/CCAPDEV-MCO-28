@@ -37,12 +37,14 @@ route.post('/postlogin', controller.postLogin);
 
 route.post('/postcomment', controller.postComment);
 
-// route.get('/getcomment', controller.getComment);
-
 route.get('/getkuya', controller.getKuya);
 
 route.get('/getgerry', controller.getGerry);
 
 route.get('/getmax', controller.getMax);
+
+// route.post('/postnewlike', controller.postNewLike);
+
+route.get('/getlike', controller.getClickLike);
 
 module.exports =  route;
