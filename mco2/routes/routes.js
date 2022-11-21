@@ -19,6 +19,10 @@ route.get('/getreserve', controller.getReserve);
 
 route.get('/add', controller.getBook);
 
+route.post('/edit', controller.postEdit);
+
+route.post('/delete', controller.postDelete);
+
 route.post('/savereserve', controller.postReserve);
 
 route.get('/register', controller.getRegister);
