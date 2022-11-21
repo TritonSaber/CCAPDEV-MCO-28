@@ -18,10 +18,14 @@
     <style></style>
 </head>
 <body>
-    <%  if(title == true){%>
+     <%  if(title == "User"){%>
         <%- include('loginheader') -%>
+    <% }else if(title == "Admin"){%>
+        <%- include('adminHeader') -%>
+    <% }else if(title == "Manager"){%>
+        <%- include('managerHeader') -%>
     <% }else{%>
-        <%- include('header') -%>
+            <%- include('header') -%>
     <%   } %>
 
     
