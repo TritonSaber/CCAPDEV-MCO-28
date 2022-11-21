@@ -5,6 +5,7 @@ const account = require("../models/accountModel");
 const reservation = require("../models/reservationModel");
 const comment = require("../models/commentModel");
 const like = require("../models/likeModel");
+const manager = require("../models/managerModel")
 const bcrypt = require("bcrypt");
 var activeUser;
 var restaurantName;
