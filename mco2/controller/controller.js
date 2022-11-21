@@ -569,6 +569,29 @@ const postDelete = ((req,res) =>{
         }
     })
 
+    const getProf =  ((req,res)=>{
+
+        account.find({username: activeUser.username}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                if(activeUser){
+                    res.render('profile', {
+                        name: activeUser.name,
+                        phone: activeUser.phone,
+                        username: activeUser.username,
+                        email: activeUser.email,
+                        bdate: activeUser.bdate
+                    });
+                }
+               
+            }
+        })
+
+
+    })
+
+    
 
      // Add Sample Data!!
     const sampleData = ((req,res) =>{   
@@ -608,5 +631,6 @@ const postDelete = ((req,res) =>{
 
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, postManage, getClickLike};
+    getLogout, postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, 
+    postEdit, postDelete, postManage, getClickLike};
     // getComment, postNewLike
