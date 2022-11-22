@@ -18,6 +18,29 @@ $(function(){
     
 });
 
+
+$(function(){
+    $("#reserve-submit").click(function(){
+        var restaurant = $("#restaurant").val();
+        var date= $("#datein").val();
+        var time = $("#timein").val();
+        var num = $("#numpeople").val();
+        var card = $("#card").val();
+        var cardnum = $("#cardnum").val();
+        var cvv = $("#cvv").val();
+        var month = $("#monthexp").val();
+
+
+
+
+        if (restaurant.length != 0 && date.length != 0 && time.length != 0 && num.length != 0 && card.length != 0 && cardnum.length != 0 && cvv.length != 0 && month.length != 0) {        
+            $(this).attr("href", "#success-popup");
+
+        }
+    })
+
+    
+});
 //restrict the reservation dates to 1 day ahead - Done!!
 $(function(){
     var date = new Date();
