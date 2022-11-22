@@ -51,7 +51,15 @@ route.get('/getmax', controller.getMax);
 
 route.get('/getprof', controller.getProf);
 
-route.get('/getabout', controller.getAbout)
+route.get('/getabout', controller.getAbout);
+
+route.get('/getrefunds', controller.getRefunds);
+
+route.get('/getpaymentmethods', controller.getPaymentM);
+
+route.get('/getjoinus', controller.getJoinUs);
+
+route.get('/getjoin', controller.getJoin);
 
 // route.post('/postnewlike', controller.postNewLike);
 

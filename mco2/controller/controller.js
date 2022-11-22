@@ -597,6 +597,35 @@ const postDelete = ((req,res) =>{
         });
     })
 
+    const getRefunds = ((req,res)=>{
+        res.render('refunds',{
+            title: 'Refunds'
+        } )
+
+    })
+
+    const getPaymentM = ((req,res)=>{
+        res.render('paymentmethods',{
+            title: 'Refunds'
+        } )
+
+    })
+
+    const getJoinUs = ((req,res)=>{
+        res.render('joinus',{
+            title: 'Join Us'
+        } )
+
+    })
+
+
+    const getJoin = ((req,res)=>{
+        res.render('join',{
+            title: 'Join'
+        } )
+
+    })
+
     
 
      // Add Sample Data!!
@@ -638,5 +667,5 @@ const postDelete = ((req,res) =>{
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
     getLogout, postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, 
-    postEdit, postDelete, postManage, getClickLike, getAbout};
+    postEdit, postDelete, postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin};
     // getComment, postNewLike
