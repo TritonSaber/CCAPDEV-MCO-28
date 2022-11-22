@@ -6,10 +6,14 @@ const reservation = require("../models/reservationModel");
 const comment = require("../models/commentModel");
 const like = require("../models/likeModel");
 const manager = require("../models/managerModel")
+const counter = require("../models/counterModel");
+
 const bcrypt = require("bcrypt");
 var activeUser;
 var restaurantName;
 var numLike;
+var counts;
+
 
     //index page for general users
     const getIndex = ((req,res) => {
@@ -124,17 +128,69 @@ const postDelete = ((req,res) =>{
 })
 
 
-    const getIndexMngr = ((req,res) => {
-            //redirects Admins to the Managers to dashboard
+const getIndexMngr = ((req,res) => {
+            //redirects Managers to their dashboard
              if(activeUser.role =="Manager"){
-                res.render('manager', {
-                    title: "Manager"
-                });
+                manager.findOne({username: activeUser.username}, function(err, result){
+                    if(err){
+                        console.log(err)
+                    }else{
+                        if(result.restaurant == "Kuya J"){
+                            getRestaurantReservations(req, res, result.restaurant, "Kuya J");
+                        }else if(result.restaurant == "Gerry's Grill"){
+                            getRestaurantReservations(req, res, result.restaurant, "Gerry's Grill");
+                        }else if(result.restaurant == "Max's Restaurant"){
+                            getRestaurantReservations(req, res, result.restaurant, "Max's Restaurant");
+                        }
+                    }
+                        
+                    
+            
+                })
+            
             }
-    
-        
-        
     })
+
+const getRestaurantReservations = ((req, res, result, restaurantName) => {
+    if(result == restaurantName){
+        reservation.find({restaurant: restaurantName}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                res.render('manager', {
+                    title: restaurantName,
+                    reservations: rows
+                })
+            }
+        })
+    }
+})
+
+const updateStatus = ((req,res) =>{
+    reservation.updateOne({resID: req.body.resID}, {$set: {status: req.body.status}},function(err, result){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(result)
+            res.redirect("/manager");
+        }
+
+    })
+
+})
+
+const deleteRes = ((req,res) =>{
+    reservation.deleteOne({resID: req.body.resID},function(err, result){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(result)
+            res.redirect("/manager");
+        }
+
+    })
+})
+
      
     
     const postManage = ((req,res) =>{
@@ -170,29 +226,40 @@ const postDelete = ((req,res) =>{
     })
     
     
-    const postReserve = ((req,res) =>{
-        var reserves = new reservation({
-            restaurant: req.body.restaurant,
-            name: activeUser.name,
-            email: activeUser.email,
-            phone: activeUser.phone,
-            username: activeUser.username,
-            datein: req.body.datein,
-            timein: req.body.timein,
-            numpeople: req.body.numpeople,
-            card: req.body.card,
-            cardnum: req.body.cardnum,
-            cvv: req.body.cvv,
-            monthexp: req.body.monthexp,
-    
-        })
-    
-        reserves.save(function(err){
-            if(err){
-                console.log(err);
-            }else{
-                res.redirect("/getreserve");
-            }
+      const postReserve = ((req,res) =>{
+        counter.findOne({}, function(err, result){
+            counts = result.totalRes;
+            var reserves = new reservation({
+                restaurant: req.body.restaurant,
+                name: activeUser.name,
+                email: activeUser.email,
+                phone: activeUser.phone,
+                username: activeUser.username,
+                datein: req.body.datein,
+                timein: req.body.timein,
+                numpeople: req.body.numpeople,
+                card: req.body.card,
+                cardnum: req.body.cardnum,
+                cvv: req.body.cvv,
+                monthexp: req.body.monthexp,
+                resID: counts
+            })
+            reserves.save(function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.redirect("/getreserve");
+                }
+            })
+            counts++
+            counter.updateOne({reserveID: "resID"}, {totalRes: counts}, function(err){
+                if(err){
+                    console.log(err)
+                }else{
+                    console.log(counts)
+                }
+            })
+
         })
     })
     
@@ -634,6 +701,8 @@ const postDelete = ((req,res) =>{
         
         account.findOne({username: "admin"}, function(err, accounts){
             if(!accounts){
+                counter.insertMany({reserveID: "resID", totalRes: 1})
+
                 //the password of sample accounts is 12345678
                 account.insertMany([{name: "admin", 
                                     username: "admin",
@@ -667,5 +736,5 @@ const postDelete = ((req,res) =>{
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
     getLogout, postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, 
-    postEdit, postDelete, postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin};
+    postEdit, postDelete, postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes};
     // getComment, postNewLike
