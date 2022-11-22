@@ -38,6 +38,10 @@ route.post('/edit', controller.postEdit);
 
 route.post('/delete', controller.postDelete);
 
+route.post('/updatestatus', controller.updateStatus);
+
+route.post('/deleteres', controller.deleteRes)
+
 route.post('/manageChange', controller.postManage);
 
 
