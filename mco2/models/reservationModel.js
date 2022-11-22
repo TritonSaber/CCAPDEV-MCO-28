@@ -59,6 +59,10 @@ var reservation = new mongoose.Schema({
         type: String,
         required: true
     },
+    
+     resID:{
+        type: Number
+    }
 });
 
 var reserve = mongoose.model("reserves", reservation);
