@@ -19,49 +19,31 @@
     <%- include('loginheader') -%>
 
 
-
-<!-- 5 sample posts -->
-<div class = "prof-container">
-    <div class = "info-container">
-      <img class = "logo" src="images/sample2.jpg">
-      <div class ="details-left">
-      
-        
-            <h4><%= name%> </h4>
+    <div class = "prof-container">
+      <div class = "info-container">
+        <img class = "logo" src="images/sample2.jpg">
+        <div class ="details-left">
+          <h2> <%= name%> </h2>
+          <h4> Phone: <%= phone%> </h4>
+          <h4> Username: <%= username%> </h4>
+          <h4> Email: <%= email%> </h4>
+          <h4> Birthdate: <%= bdate%> </h4>
+          <br>
+          </div>
+          <div class ="details-right">
             
-            <h2>Phone Number</h2>
-            <h2><%= phone%> </h2>
-        
-            <h2>Username</h2>
-            <h2><%= username%> </h2>
-        
-            <h2>Email:</h2>
-            <h2><%= email%> </h2>
-        
-            <h2>Birthdate:</h2>
-            <h2><%= bdate%> </h2>
-            <br>
-            </div>
-              
-        <br>
-        </div>
-        <div class ="details-right">
-          
-          <!-- hearrt Button -->
-          <div class= "like-button">
-            <div class="like-content">
-              <span class = "like">Like</span>
-              <span class="counter"></span>
+            <!-- hearrt Button -->
+            <div class= "like-button">
+              <div class="like-content">
+                <span class = "like">Like</span>
+                <span class="counter"></span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
 
-
-          
     </div>
-
-
+    </div>
+    <script src="like.js"></script>
 
     <%- include('footer') -%>
