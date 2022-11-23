@@ -141,15 +141,16 @@ const getIndexMngr = ((req,res) => {
                             getRestaurantReservations(req, res, result.restaurant, "Gerry's Grill");
                         }else if(result.restaurant == "Max's Restaurant"){
                             getRestaurantReservations(req, res, result.restaurant, "Max's Restaurant");
+                        }else{
+                            res.render('manager', {
+                                title: false
+                            })
                         }
                     }
-                        
-                    
-            
-                })
-            
+                })        
             }
     })
+
 
 const getRestaurantReservations = ((req, res, result, restaurantName) => {
     if(result == restaurantName){
