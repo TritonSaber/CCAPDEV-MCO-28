@@ -60,7 +60,12 @@ var reservation = new mongoose.Schema({
         required: true
     },
     
-     resID:{
+    status:{
+        type: String,
+        default: "Pending"
+    },
+
+    resID:{
         type: Number
     }
 });
