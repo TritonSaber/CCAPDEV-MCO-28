@@ -659,38 +659,110 @@ const deleteRes = ((req,res) =>{
 
     // for footers and about page
     const getAbout =  ((req,res)=>{
-        res.render('about', {
-            title: 'About Book n Eat'
-        });
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('about', {
+                    title: "User",
+                })
+            }else if(activeUser.role == "Admin"){
+                res.render('about', {
+                    title: "Admin",
+                })
+            }else if(activeUser.role == "Manager"){
+                res.render('about', {
+                    title: "Manager",
+                })
+            }
+        }else
+            res.render('about', {
+                title: false,
+            });
     })
 
     const getRefunds = ((req,res)=>{
-        res.render('refunds',{
-            title: 'Refunds'
-        } )
-
+        
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('refunds', {
+                    title: "User",
+                })
+            }else if(activeUser.role == "Admin"){
+                res.render('refunds', {
+                    title: "Admin",
+                })
+            }else if(activeUser.role == "Manager"){
+                res.render('refunds', {
+                    title: "Manager",
+                })
+            }
+        }else
+            res.render('refunds', {
+                title: false,
+            })
     })
 
     const getPaymentM = ((req,res)=>{
-        res.render('paymentmethods',{
-            title: 'Refunds'
-        } )
-
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('paymentmethods', {
+                    title: "User",
+                })
+            }else if(activeUser.role == "Admin"){
+                res.render('paymentmethods', {
+                    title: "Admin",
+                })
+            }else if(activeUser.role == "Manager"){
+                res.render('paymentmethods', {
+                    title: "Manager",
+                })
+            }
+        }else
+            res.render('paymentmethods',{
+                title: false,
+            })
     })
 
     const getJoinUs = ((req,res)=>{
-        res.render('joinus',{
-            title: 'Join Us'
-        } )
-
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('joinus', {
+                    title: "User",
+                })
+            }else if(activeUser.role == "Admin"){
+                res.render('joinus', {
+                    title: "Admin",
+                })
+            }else if(activeUser.role == "Manager"){
+                res.render('joinus', {
+                    title: "Manager",
+                })
+            }
+        }else
+            res.render('joinus', {
+                title: false,
+            })
     })
 
 
     const getJoin = ((req,res)=>{
-        res.render('join',{
-            title: 'Join'
-        } )
-
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('join', {
+                    title: "User",
+                })
+            }else if(activeUser.role == "Admin"){
+                res.render('join', {
+                    title: "Admin",
+                })
+            }else if(activeUser.role == "Manager"){
+                res.render('join', {
+                    title: "Manager",
+                })
+            }
+        }else
+            res.render('join', {
+                title: false,
+            })
     })
 
     

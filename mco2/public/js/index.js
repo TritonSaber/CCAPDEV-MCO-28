@@ -55,13 +55,3 @@ $(function(){
     var today = year + '-' + month + '-' + day;
     $('#datein').attr('min', today);s
 });
-
-//like function
-// $(function(){
-//     $(".like-button").click(function(){
-//         $(".like-content").toggleClass("like-active")
-//         $(".like").toggleClass("like-active")
-//         $(".counter").toggleClass("like-active")
-        
-//     })
-// });
