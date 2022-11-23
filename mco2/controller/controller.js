@@ -831,6 +831,44 @@ const deleteRes = ((req,res) =>{
         })
     })
 
+
+    const getEdit =  ((req,res)=>{
+       
+        account.find({username: activeUser.username}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                if(activeUser){
+                    res.render('editprof', {
+                        name: activeUser.name,
+                        phone: activeUser.phone,
+                        username: activeUser.username,
+                        email: activeUser.email,
+                        bdate: activeUser.bdate
+                    });
+                }
+               
+            }
+        })
+    })
+
+    const postProfile = ((req, res) => {
+
+        account.find({username: activeUser.username}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                if(activeUser){
+                    account.updateMany({username: req.body.username}, {$set: {name: activeUser.name, phone: req.body.phone, username: req.body.username, email: req.body.email, 
+                        bdate: req.body.bdate} })
+                    
+                } 
+            }
+        })
+        res.redirect("/profile");
+
+    })
+
      // Add Sample Data!!
     const sampleData = ((req,res) =>{   
         
@@ -872,5 +910,6 @@ const deleteRes = ((req,res) =>{
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
     postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
-    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter};
+    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
+    ,getEdit, postProfile};
     // getComment, postNewLike
