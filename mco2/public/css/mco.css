@@ -32,8 +32,8 @@ body {
 
 /*Footer*/
 .footer {
-   background-color: #800000;
-
+    background-color: #800000;
+    bottom: 0;
  }
 
 

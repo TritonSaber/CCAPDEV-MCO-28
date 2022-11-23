@@ -69,4 +69,6 @@ route.get('/getjoin', controller.getJoin);
 
 route.get('/getlike', controller.getClickLike);
 
+route.post('/postnewsletter', controller.postNewsletter);
+
 module.exports =  route;

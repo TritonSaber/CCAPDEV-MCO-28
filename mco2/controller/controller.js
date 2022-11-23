@@ -7,6 +7,7 @@ const comment = require("../models/commentModel");
 const like = require("../models/likeModel");
 const manager = require("../models/managerModel")
 const counter = require("../models/counterModel");
+const newsletter = require("../models/newsletterModel");
 
 const bcrypt = require("bcrypt");
 var activeUser;
@@ -765,7 +766,70 @@ const deleteRes = ((req,res) =>{
             })
     })
 
-    
+    const postNewsletter = ((req, res)=>{
+        let userEmail = req.body.email;
+
+        newsletter.findOne({email: userEmail}, function(err, emailResult){
+            if(err){
+                console.log(err);
+            }else if(emailResult){
+                if(activeUser){
+                    if(activeUser.role == "User"){
+                        res.render('newsletter', {
+                            title: "User",
+                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
+                        })
+                    }else if(activeUser.role == "Admin"){
+                        res.render('newsletter', {
+                            title: "Admin",
+                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
+                        })
+                    }else if(activeUser.role == "Manager"){
+                        res.render('newsletter', {
+                            title: "Manager",
+                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
+                        })
+                    }
+                }else
+                    res.render('newsletter', {
+                        title: false,
+                        status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
+                    })
+            }else{
+                var news = new newsletter({
+                    email: req.body.email,
+                })
+                news.save(function(err){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        if(activeUser){
+                            if(activeUser.role == "User"){
+                                res.render('newsletter', {
+                                    title: "User",
+                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                })
+                            }else if(activeUser.role == "Admin"){
+                                res.render('newsletter', {
+                                    title: "Admin",
+                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                })
+                            }else if(activeUser.role == "Manager"){
+                                res.render('newsletter', {
+                                    title: "Manager",
+                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                })
+                            }
+                        }else
+                            res.render('newsletter', {
+                                title: false,
+                                status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                            })
+                    }
+                })
+            }
+        })
+    })
 
      // Add Sample Data!!
     const sampleData = ((req,res) =>{   
@@ -806,7 +870,7 @@ const deleteRes = ((req,res) =>{
     sampleData();
 
 
-module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, 
-    getLogout, postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, 
-    postEdit, postDelete, postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes};
+module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
+    postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
+    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter};
     // getComment, postNewLike

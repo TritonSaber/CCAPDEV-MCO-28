@@ -62,13 +62,13 @@
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <h4 class="text-white">Sign up to our newsletter</h4>
-
-                    <div class="form-outline form-white mb-4">
-                        <input type="email" id="form5Example2" class="form-control" />
-                        <label class="text-white form-label" for="form5Example2">Email address</label>
-                    </div>
-
-                    <button type="submit" class="text- white btn-outline-white btn-block">Subscribe</button>
+                    <form action="/postnewsletter" method="post">
+                        <div class="form-outline form-white mb-4">
+                            <input type="email" id="form5Example2" class="form-control" name="email" required>
+                            <label class="text-white form-label" for="form5Example2">Email address</label>
+                        </div>
+                        <button type="submit" type="button" class="text- white btn-outline-white btn-block">Subscribe</button>
+                    </form>
                 </div>
                 <!--Grid column-->
             </div>
