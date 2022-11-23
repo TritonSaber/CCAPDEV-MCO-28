@@ -25,10 +25,14 @@
     <div class="row">
         <div class="page text-center bg-light">
                     <h1>DASHBOARD</h1>
+                    <%  if(title == false){%>   
+                      <h1> No Restaurant Assigned!!!</h1>
+                      <% }else{%>
         </div>
         <div class="reservation-status">
         <div class="page text-center bg-light">
                 <h2> Reservations List </h2>
+                <h1> </h1>
                   <table class="account" id="account">
                     <thead>
                       <tr>
@@ -72,31 +76,17 @@
                             <form action="/deleteres" method="post">
                                 <input type="hidden" name = "resID" id = "resID" value = <%= reservations.resID%> >
                                 <td><button type ="submit" class ="btn btn-danger btn-sm remove">Delete</button></td>
-                              </form>
-
-                        
-                        
+                              </form> 
                     </tr>
                       <% }); %>
-                      
-    
                     </tbody>
                   </table>
-    
-                  </div>
-              
+                  </div>     
         </div>
-        
-          
+        <%   } %>        
     </div>
-
-
-
-
 <!-- footer-->
-
 <!-- End of .container -->
 <!-- Scripts -->
-
 </body>
 </html>
