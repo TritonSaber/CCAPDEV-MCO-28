@@ -331,7 +331,6 @@ const deleteRes = ((req,res) =>{
         let uName = req.body.username;
 
         account.findOne({username: uName}, function(err, accounts){
-            activeUser = accounts
             if(accounts){
                 let isValidPass = bcrypt.compareSync(pass, accounts.password );
                 if(isValidPass){       
