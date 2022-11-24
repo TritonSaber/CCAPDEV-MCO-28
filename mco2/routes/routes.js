@@ -1,11 +1,27 @@
 const express = require("express");
 
+const path = require('path');
+const multer  = require('multer')
 
 
 const route = express.Router();
 
 
 const controller = require("../controller/controller");
+
+// image reader
+
+const storage = multer.diskStorage({
+    destination:function(req,file,cb){
+       cb(null,path.join(__dirname, '../public/userImages'));
+    },
+    
+    filename:function(req,file,cb){
+       const name = Date.now()+'-'+file.originalname;
+       cb(null,name);
+    }
+});
+const upload = multer({storage:storage});
 
 //Index
 route.get('/', controller.getIndex);
@@ -26,7 +42,7 @@ route.post('/savereserve', controller.postReserve);
 
 route.get('/register', controller.getRegister);
 
-route.post('/saveaccount', controller.postSave)
+route.post('/saveaccount', upload.single('image'), controller.postSave);
 
 route.get('/login', controller.getLogin);
 
@@ -70,5 +86,7 @@ route.get('/getjoin', controller.getJoin);
 route.get('/getlike', controller.getClickLike);
 
 route.post('/postnewsletter', controller.postNewsletter);
+
+
 
 module.exports =  route;
