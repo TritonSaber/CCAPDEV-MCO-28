@@ -284,7 +284,6 @@ const deleteRes = ((req,res) =>{
                     bdate: req.body.bdate,
                     phone: req.body.phone,
                     email: req.body.email,
-                    image: req.file.filename,
                 })
                 accounts.save(function(err){
                     if(err){
