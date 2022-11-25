@@ -335,6 +335,30 @@ const deleteRes = ((req,res) =>{
         })   
     })
 
+    // const postNewLike = ((req, res) => {
+        // console.log('postNewLike');
+        // var likes = new like({
+        //     restaurant: restaurantName,
+        // })
+        // likes.save(function(err){
+        //     if(err){
+        //         console.log(err);
+        //     }else{
+        //         numLike = likes.like;
+        //         console.log("Created new like");
+        //         if(restaurantName === "Kuya J"){
+        //             res.redirect("/getkuya");
+        //         }
+        //         else if(restaurantName === "Gerry's Grill"){
+        //             res.redirect("/getgerry");
+        //         }
+        //         else if(restaurantName === "Max's Restaurant"){
+        //             res.redirect("/getmax");
+        //         }
+        //     }
+        // })
+    // })
+
     const getClickLike = ((req, res) => {
         if(activeUser){
             console.log("postLike");
@@ -376,7 +400,7 @@ const deleteRes = ((req,res) =>{
                     console.log("NULL");
                     // res.redirect('/postnewlike');
 
-                    // create new like
+                    // postnewlike
                     var likes = new like({
                         restaurant: restaurantName,
                     })
@@ -388,7 +412,7 @@ const deleteRes = ((req,res) =>{
                             console.log(numLike);
                         }
                     })
-                    // create new like
+                    // postnewlike
                 }
                 else{
                     numLike = result[0].like;
@@ -429,7 +453,7 @@ const deleteRes = ((req,res) =>{
                     console.log("NULL");
                     // res.redirect('/postnewlike');
 
-                    //create new like
+                    //postnewlike
                     var likes = new like({
                         restaurant: restaurantName,
                     })
@@ -440,7 +464,7 @@ const deleteRes = ((req,res) =>{
                             numLike = likes.like;
                         }
                     })
-                    //create new like
+                    //postnewlike
                 }
                 else{
                     numLike = result[0].like;
@@ -479,7 +503,7 @@ const deleteRes = ((req,res) =>{
                     console.log("NULL");
                     // res.redirect('/postnewlike');
 
-                    //create new like
+                    //postnewlike
                     var likes = new like({
                         restaurant: restaurantName,
                     })
@@ -490,7 +514,7 @@ const deleteRes = ((req,res) =>{
                             numLike = likes.like;
                         }
                     })
-                    //create new like
+                    //postnewlike
                 }
                 else{
                     numLike = result[0].like;
@@ -522,6 +546,7 @@ const deleteRes = ((req,res) =>{
                 restaurant: restaurantName,
                 name: activeUser.name,
                 comment_text: req.body.comment_text,
+                image: activeUser.image
             })
             comments.save(function(err){
                 if(err){
