@@ -856,18 +856,16 @@ const deleteRes = ((req,res) =>{
 
     const postProfile = ((req, res) => {
 
-        activeUser.name = req.body.name;
-        activeUser.phone = req.body.phone;
-        activeUser.email = req.body.email;
-        activeUser.bdate = req.body.bdate;
-
         account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
             bdate: req.body.bdate}}, function(err){
                 if(err){
                     console.log(err);
                 }
                 else{
-                    console.log(activeUser.username);
+                    activeUser.name = req.body.name;
+                    activeUser.phone = req.body.phone;
+                    activeUser.email = req.body.email;
+                    activeUser.bdate = req.body.bdate;
                     res.redirect("/getprof");
                 }
             })
