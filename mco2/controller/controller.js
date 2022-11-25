@@ -9,6 +9,7 @@ const manager = require("../models/managerModel")
 const counter = require("../models/counterModel");
 const newsletter = require("../models/newsletterModel");
 const multer = require("multer");
+const addSamples = require("../controller/sampleAdd");
 
 const bcrypt = require("bcrypt");
 var activeUser;
@@ -20,26 +21,18 @@ var counts;
     //index page for general users
     const getIndex = ((req,res) => {
         if(activeUser){
+            let aUser;
             //redirects normal users to homepage
             if(activeUser.role == "User"){
-                res.render('homepage', {
-                title: "User"
-                });
+                res.render('homepage',{aUser: "User", title: "Homepage"});
             //redirects Admins to the Admin dashboard
             }else if(activeUser.role =="Admin"){
-                res.render('homepage', {
-                    title: "Admin"
-                });
+                res.render('homepage', {aUser: "Admin",title: "Homepage"});
             }else if(activeUser.role =="Manager"){
-                res.render('homepage', {
-                    title: "Manager"
-                });
+                res.render('homepage', {aUser: "Manager",title: "Homepage"});
             }      
         }else
-            res.render('homepage', {
-            title: false
-            });
-        
+            res.render('homepage', {aUser: false,title: "Homepage"});  
     })
     //dashboard page for admin
     const getAccountList =  ( (req,res) => {
@@ -47,10 +40,7 @@ var counts;
             if(err){
                 console.log(err);
             }else{
-                res.render('admin-AccountList', {
-                    title: 'Accounts List',
-                    accounts: rows
-                })
+                res.render('admin-AccountList', {title: 'Dashboard - Accounts List', accounts: rows})
             }
 
         })
@@ -62,7 +52,7 @@ var counts;
             console.log(err);
         }else{
             res.render('admin-ManagerList', {
-                title: 'Managers List',
+                title: 'Dashboard - Managers List',
                 managers: rows
             })
         }
@@ -145,14 +135,13 @@ const getIndexMngr = ((req,res) => {
                             getRestaurantReservations(req, res, result.restaurant, "Max's Restaurant");
                         }else{
                             res.render('manager', {
-                                title: false
+                                title: "No Restaurant Assigned"
                             })
                         }
                     }
                 })        
             }
     })
-
 
 const getRestaurantReservations = ((req, res, result, restaurantName) => {
     if(result == restaurantName){
@@ -243,8 +232,8 @@ const deleteRes = ((req,res) =>{
                 numpeople: req.body.numpeople,
                 card: req.body.card,
                 cardnum: req.body.cardnum,
-                cvv: req.body.cvv,
-                monthexp: req.body.monthexp,
+                // cvv: req.body.cvv,
+                // monthexp: req.body.monthexp,
                 resID: counts
             })
             reserves.save(function(err){
@@ -268,13 +257,9 @@ const deleteRes = ((req,res) =>{
     
     
     // User Registration - Working!   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //#Reminder: We used title to set true for login so we could change the header
-    //#Other type of property in res.render other than title such as 'error' did not work
-    //redirect towards the Signup page
+
     const getRegister =  ((req,res)=>{
-        res.render('signup', {
-            title: 'Sign Up Now!!'
-        });
+        res.render('signup', {title: 'Sign Up Now!!',error: ''});
     })
     
     //Save the data into the database
@@ -288,7 +273,8 @@ const deleteRes = ((req,res) =>{
 
             if(accounts){
                 res.render('signup', {
-                    title: 'Username has been already taken! Try Again!',
+                    title: 'Oh no, Sign up error',
+                    error: 'Username has been already taken! Try Again!'
                 });
             }else{
                 var accounts = new account({
@@ -297,7 +283,8 @@ const deleteRes = ((req,res) =>{
                     password: hash,
                     bdate: req.body.bdate,
                     phone: req.body.phone,
-                    email: req.body.email
+                    email: req.body.email,
+                    image: req.file.filename,
                 })
                 accounts.save(function(err){
                     if(err){
@@ -316,14 +303,14 @@ const deleteRes = ((req,res) =>{
     //Redirect towards the login page
     const getLogin = ((req,res)=>{
         res.render('login', {
-            title: ''
+            title: 'Login page',
+            error: '',
         });
     })
-    
     const getLogout =  ((req,res)=>{
-        console.log(activeUser)
+        //console.log(activeUser)
         activeUser = null;
-        console.log(activeUser)
+        //console.log(activeUser)
 
         res.redirect('/');
 
@@ -332,7 +319,6 @@ const deleteRes = ((req,res) =>{
     const postLogin =  ((req,res) =>{
         let pass= req.body.password;   
         let uName = req.body.username;
-
         account.findOne({username: uName}, function(err, accounts){
             if(accounts){
                 let isValidPass = bcrypt.compareSync(pass, accounts.password );
@@ -341,21 +327,13 @@ const deleteRes = ((req,res) =>{
                     res.redirect('/');
     
                 } else {
-                    res.render('login',{
-                    title: 'Login Failed. Wrong Password!!',
-                });
+                    res.render('login',{title: 'Error - Login', error: 'Login Failed. Wrong Password!!'});
             }
-        
-    
-        } else{
-            res.render('login',{
-                title: 'Login Failed. Account Does Not Exist!!',
-            });
-        }
-    return activeUser;
-    })   
-    
-    
+            } else{
+                res.render('login',{title: 'Error - Login', error: 'Login Failed. Account Does Not Exist!!'});
+            }
+        return activeUser;
+        })   
     })
 
     // const postNewLike = ((req, res) => {
@@ -449,29 +427,14 @@ const deleteRes = ((req,res) =>{
             }else{
                 if(activeUser){
                     if(activeUser.role == "User"){
-                        res.render('reserve', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "User",
-                        })
+                        res.render('reserve', {likes: numLike,comments: rows,aUser: "User",title: "Book n Eat - Kuya J",})
                     }else if(activeUser.role == "Admin"){
-                        res.render('reserve', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Admin",
-                        })
+                        res.render('reserve', {likes: numLike,comments: rows,aUser: "Admin",title: "Book n Eat - Kuya J",})
                     }else if(activeUser.role == "Manager"){
-                        res.render('reserve', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Manager",
-                        })
+                        res.render('reserve', {likes: numLike,comments: rows,aUser: "Manager",title: "Book n Eat - Kuya J",})
                     }
                 }else{
-                    res.render('reserve', {
-                        likes: numLike,
-                        comments: rows,
-                        title: false,
+                    res.render('reserve', {likes: numLike,comments: rows,aUser: false,title: "Book n Eat - Kuya J",
                     })
                 }
             }
@@ -516,30 +479,14 @@ const deleteRes = ((req,res) =>{
             }else{
                 if(activeUser){
                     if(activeUser.role == "User"){
-                        res.render('max', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "User",
-                        })
-                    }else if(activeUser.role == "Admin"){
-                        res.render('max', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Admin",
-                        })
+                        res.render('max', {likes: numLike,comments: rows, aUser: "User",title: "Book n Eat - Max's Restaurant",})
+                    }else if(activeUser.role == "Admin"){ 
+                        res.render('max', {likes: numLike,comments: rows, aUser: "Admin", title: "Book n Eat - Max's Restaurant",})
                     }else if(activeUser.role == "Manager"){
-                        res.render('max', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Manager",
-                        })
+                        res.render('max', {likes: numLike,comments: rows, aUser: "Manager", title: "Book n Eat - Max's Restaurant",})
                     }
                 }else
-                    res.render('max', {
-                        likes: numLike,
-                        comments: rows,
-                        title: false,
-                    })
+                    res.render('max', {likes: numLike,comments: rows, aUser: false, title: "Book n Eat - Max's Restaurant",})
             }
         })
     })
@@ -582,30 +529,14 @@ const deleteRes = ((req,res) =>{
             }else{
                 if(activeUser){
                     if(activeUser.role == "User"){
-                        res.render('gerry', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "User",
-                        })
+                        res.render('gerry', {likes: numLike,comments: rows,aUser: "User", title: "Book n Eat - Gerry's Grill",})
                     }else if(activeUser.role == "Admin"){
-                        res.render('gerry', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Admin",
-                        })
+                        res.render('gerry', {likes: numLike,comments: rows,aUser: "Admin", title: "Book n Eat - Gerry's Grill",})
                     }else if(activeUser.role == "Manager"){
-                        res.render('gerry', {
-                            likes: numLike,
-                            comments: rows,
-                            title: "Manager",
-                        })
+                        res.render('gerry', {likes: numLike,comments: rows,aUser: "Manager", title: "Book n Eat - Gerry's Grill",})
                     }
                 }else
-                    res.render('gerry', {
-                        likes: numLike,
-                        comments: rows,
-                        title: false,
-                    })
+                res.render('gerry', {likes: numLike,comments: rows,aUser: false, title: "Book n Eat - Gerry's Grill ",})
             }
         })
     })
@@ -616,7 +547,6 @@ const deleteRes = ((req,res) =>{
                 restaurant: restaurantName,
                 name: activeUser.name,
                 comment_text: req.body.comment_text,
-                image: activeUser.image,
             })
             comments.save(function(err){
                 if(err){
@@ -651,8 +581,7 @@ const deleteRes = ((req,res) =>{
                         phone: activeUser.phone,
                         username: activeUser.username,
                         email: activeUser.email,
-                        bdate: activeUser.bdate,
-                        image: activeUser.image,
+                        bdate: activeUser.bdate
                     });
                 }
                
@@ -665,108 +594,69 @@ const deleteRes = ((req,res) =>{
     const getAbout =  ((req,res)=>{
         if(activeUser){
             if(activeUser.role == "User"){
-                res.render('about', {
-                    title: "User",
-                })
+                res.render('about', {aUser: "User",title: "About Us"})
             }else if(activeUser.role == "Admin"){
-                res.render('about', {
-                    title: "Admin",
-                })
+                res.render('about', {aUser: "Admin",title: "About Us"})
             }else if(activeUser.role == "Manager"){
-                res.render('about', {
-                    title: "Manager",
-                })
+                res.render('about', {aUser: "Manager",title: "About Us"})
             }
         }else
-            res.render('about', {
-                title: false,
-            });
+        res.render('about', {aUser: false, title: "About Us"})
+
     })
 
     const getRefunds = ((req,res)=>{
         
         if(activeUser){
             if(activeUser.role == "User"){
-                res.render('refunds', {
-                    title: "User",
-                })
+                res.render('refunds', {aUser: "User",title: "Refunds"})
             }else if(activeUser.role == "Admin"){
-                res.render('refunds', {
-                    title: "Admin",
-                })
+                res.render('refunds', {aUser: "Admin",title: "Refunds"})
             }else if(activeUser.role == "Manager"){
-                res.render('refunds', {
-                    title: "Manager",
-                })
+                res.render('refunds', {aUser: "Manager",title: "Refunds"})
             }
         }else
-            res.render('refunds', {
-                title: false,
-            })
+        res.render('refunds', {aUser: false, title: "Refunds"})
     })
 
     const getPaymentM = ((req,res)=>{
         if(activeUser){
             if(activeUser.role == "User"){
-                res.render('paymentmethods', {
-                    title: "User",
-                })
+                res.render('paymentmethods', {aUser: "User",title: "Payment Methods"})
             }else if(activeUser.role == "Admin"){
-                res.render('paymentmethods', {
-                    title: "Admin",
-                })
+                res.render('paymentmethods', {aUser: "Admin",title: "Payment Methods"})
             }else if(activeUser.role == "Manager"){
-                res.render('paymentmethods', {
-                    title: "Manager",
-                })
+                res.render('paymentmethods', {aUser: "Manager",title: "Payment Methods"})
             }
         }else
-            res.render('paymentmethods',{
-                title: false,
-            })
+        res.render('paymentmethods', {aUser: false, title: "Payment Methods"})
     })
 
     const getJoinUs = ((req,res)=>{
         if(activeUser){
             if(activeUser.role == "User"){
-                res.render('joinus', {
-                    title: "User",
-                })
+                res.render('joinus', {aUser: "User",title: "Join us! Come be a part of our network!"})
             }else if(activeUser.role == "Admin"){
-                res.render('joinus', {
-                    title: "Admin",
-                })
+                res.render('joinus', {aUser: "Admin",title: "Join us! Come be a part of our network!"})
             }else if(activeUser.role == "Manager"){
-                res.render('joinus', {
-                    title: "Manager",
-                })
+                res.render('joinus', {aUser: "Manager",title: "Join us! Come be a part of our network!"})
             }
         }else
-            res.render('joinus', {
-                title: false,
-            })
+        res.render('joinus', {aUser: false, title: "Join us! Come be a part of our network!"})
     })
 
 
     const getJoin = ((req,res)=>{
         if(activeUser){
             if(activeUser.role == "User"){
-                res.render('join', {
-                    title: "User",
-                })
+                res.render('join', {aUser: "User",title: "Join us! Be a Book n Eat Eater!"})
             }else if(activeUser.role == "Admin"){
-                res.render('join', {
-                    title: "Admin",
-                })
+                res.render('join', {aUser: "Admin",title: "Join us! Be a Book n Eat Eater!"})
             }else if(activeUser.role == "Manager"){
-                res.render('join', {
-                    title: "Manager",
-                })
+                res.render('join', {aUser: "Manager",title: "Join us! Be a Book n Eat Eater!"})
             }
         }else
-            res.render('join', {
-                title: false,
-            })
+        res.render('join', {aUser: false, title: "Join us! Be a Book n Eat Eater!"})
     })
 
     const postNewsletter = ((req, res)=>{
@@ -778,26 +668,14 @@ const deleteRes = ((req,res) =>{
             }else if(emailResult){
                 if(activeUser){
                     if(activeUser.role == "User"){
-                        res.render('newsletter', {
-                            title: "User",
-                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
-                        })
+                        res.render('newsletter', {aUser:"User", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
                     }else if(activeUser.role == "Admin"){
-                        res.render('newsletter', {
-                            title: "Admin",
-                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
-                        })
+                        res.render('newsletter', {aUser:"Admin", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
                     }else if(activeUser.role == "Manager"){
-                        res.render('newsletter', {
-                            title: "Manager",
-                            status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
-                        })
+                        res.render('newsletter', {aUser: "Manager", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
                     }
                 }else
-                    res.render('newsletter', {
-                        title: false,
-                        status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",
-                    })
+                    res.render('newsletter', {aUser:false, title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
             }else{
                 var news = new newsletter({
                     email: req.body.email,
@@ -808,25 +686,17 @@ const deleteRes = ((req,res) =>{
                     }else{
                         if(activeUser){
                             if(activeUser.role == "User"){
-                                res.render('newsletter', {
-                                    title: "User",
-                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                res.render('newsletter', {aUser: "User", title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
                             }else if(activeUser.role == "Admin"){
-                                res.render('newsletter', {
-                                    title: "Admin",
-                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                res.render('newsletter', {aUser: "Admin", title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
                             }else if(activeUser.role == "Manager"){
-                                res.render('newsletter', {
-                                    title: "Manager",
-                                    status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                                res.render('newsletter', {aUser: "Manager",title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
                             }
                         }else
-                            res.render('newsletter', {
-                                title: false,
-                                status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
+                            res.render('newsletter', {aUser: false, title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                             })
                     }
                 })
@@ -856,63 +726,31 @@ const deleteRes = ((req,res) =>{
     })
 
     const postProfile = ((req, res) => {
+
+        activeUser.name = req.body.name;
+        activeUser.phone = req.body.phone;
+        activeUser.email = req.body.email;
+        activeUser.bdate = req.body.bdate;
+
         account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
-            bdate: req.body.bdate, image: req.file.filename}}, function(err){
+            bdate: req.body.bdate}}, function(err){
                 if(err){
                     console.log(err);
                 }
                 else{
-                    activeUser.name = req.body.name;
-                    activeUser.phone = req.body.phone;
-                    activeUser.email = req.body.email;
-                    activeUser.bdate = req.body.bdate;
-                    activeUser.image = req.file.filename;
+                    console.log(activeUser.username);
                     res.redirect("/getprof");
                 }
             })
     })
 
      // Add Sample Data!!
-    const sampleData = ((req,res) =>{   
-        
-        
-        account.findOne({username: "admin"}, function(err, accounts){
-            if(!accounts){
-                counter.insertMany({reserveID: "resID", totalRes: 1})
-
-                //the password of sample accounts is 12345678
-                account.insertMany([{name: "admin", 
-                                    username: "admin",
-                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
-                                    bdate: 20021220,
-                                    phone: 96754123,
-                                    email: "admin_bookNeat@gmail.com",
-                                    role: "Admin"},
-                                    
-                                    {name: "Chibog", 
-                                    username: "Chibog",
-                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
-                                    bdate: 20011115,
-                                    phone: 09345962837,
-                                    email: "Chibog@gmail.com",
-                                    role: "User"},
-
-                                    {name: "Gutomz", 
-                                    username: "Gutomz",
-                                    password: "$2b$10$qF9cyybIkHoXYdkLS1FpK.bdaS5DrcgrvicOpRC2KNhyQEZKHH302",
-                                    bdate: 20000909,
-                                    phone: 09345962837,
-                                    email: "Gutomz@gmail.com",
-                                    role: "Manager"}])
-                console.log("Sample Accounts are added!!");
-            }
-        })
-    })
-    sampleData();
+ 
+    addSamples.sampleData();
 
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
-    postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
+    postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
     postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
     ,getEdit, postProfile};
     // getComment, postNewLike
