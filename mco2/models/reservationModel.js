@@ -50,15 +50,15 @@ var reservation = new mongoose.Schema({
         required: true
     },
 
-    cvv:{
-        type: Number,
-        required: true
-    },
+    // cvv:{
+    //     type: Number,
+    //     required: true
+    // },
 
-    monthexp:{
-        type: String,
-        required: true
-    },
+    // monthexp:{
+    //     type: String,
+    //     required: true
+    // },
     
     status:{
         type: String,
