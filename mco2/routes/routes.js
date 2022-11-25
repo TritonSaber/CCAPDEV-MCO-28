@@ -87,6 +87,9 @@ route.get('/getlike', controller.getClickLike);
 
 route.post('/postnewsletter', controller.postNewsletter);
 
+route.get('/geteditprof', controller.getEdit);
+
+route.post('/updateProfile', controller.postProfile);
 
 
 module.exports =  route;

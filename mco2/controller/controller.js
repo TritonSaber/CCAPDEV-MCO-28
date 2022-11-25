@@ -833,6 +833,46 @@ const deleteRes = ((req,res) =>{
         })
     })
 
+
+    const getEdit =  ((req,res)=>{
+       
+        account.find({username: activeUser.username}, function(err, rows){
+            if(err){
+                console.log(err);
+            }else{
+                if(activeUser){
+                    res.render('editprof', {
+                        name: activeUser.name,
+                        phone: activeUser.phone,
+                        username: activeUser.username,
+                        email: activeUser.email,
+                        bdate: activeUser.bdate
+                    });
+                }
+               
+            }
+        })
+    })
+
+    const postProfile = ((req, res) => {
+
+        activeUser.name = req.body.name;
+        activeUser.phone = req.body.phone;
+        activeUser.email = req.body.email;
+        activeUser.bdate = req.body.bdate;
+
+        account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
+            bdate: req.body.bdate}}, function(err){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log(activeUser.username);
+                    res.redirect("/getprof");
+                }
+            })
+    })
+
      // Add Sample Data!!
     const sampleData = ((req,res) =>{   
         
@@ -874,5 +914,6 @@ const deleteRes = ((req,res) =>{
 
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
     postComment, getKuya, getMax, getGerry, getProf,  sampleData, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
-    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter};
+    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
+    ,getEdit, postProfile};
     // getComment, postNewLike
