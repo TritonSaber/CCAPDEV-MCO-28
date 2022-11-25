@@ -14,7 +14,7 @@ const controller = require("../controller/controller");
 // use of multer for image
 const storage = multer.diskStorage({
    destination:function(req,file,cb){
-      cb(null,path.join(__dirname, '../public/usersProfPics'));
+      cb(null,path.join(__dirname, '../public/userProfPics'));
    },
 
    filename:function(req,file,cb){
