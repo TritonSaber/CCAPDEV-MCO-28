@@ -27,13 +27,8 @@ $(function(){
         var num = $("#numpeople").val();
         var card = $("#card").val();
         var cardnum = $("#cardnum").val();
-        var cvv = $("#cvv").val();
-        var month = $("#monthexp").val();
 
-
-
-
-        if (restaurant.length != 0 && date.length != 0 && time.length != 0 && num.length != 0 && card.length != 0 && cardnum.length != 0 && cvv.length != 0 && month.length != 0) {        
+        if (restaurant.length != 0 && date.length != 0 && time.length != 0 && num.length != 0 && card.length != 0 && cardnum.length != 0) {        
             $(this).attr("href", "#success-popup");
 
         }
@@ -41,7 +36,7 @@ $(function(){
 
     
 });
-//restrict the reservation dates to 1 day ahead - Done!!
+//restrict the reservation dates to 1 day ahead
 $(function(){
     var date = new Date();
     var month = date.getMonth() + 1;
@@ -50,8 +45,7 @@ $(function(){
     if(month < 10)
         month = '0' + month.toString();
     if(day < 10)
-        day = '0' + day.toString();
-    
+        day = '0' + day.toString();  
     var today = year + '-' + month + '-' + day;
-    $('#datein').attr('min', today);s
+    $('#datein').attr('min', today);
 });
