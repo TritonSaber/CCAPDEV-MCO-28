@@ -10,7 +10,7 @@ var counterModel = new mongoose.Schema({
     
     totalRes: {
         type: Number,
-        default:0
+        default:6
     }
 
 });
