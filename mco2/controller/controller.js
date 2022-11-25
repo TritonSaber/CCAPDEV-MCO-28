@@ -617,6 +617,7 @@ const deleteRes = ((req,res) =>{
                 restaurant: restaurantName,
                 name: activeUser.name,
                 comment_text: req.body.comment_text,
+                image: activeUser.image,
             })
             comments.save(function(err){
                 if(err){
@@ -651,7 +652,8 @@ const deleteRes = ((req,res) =>{
                         phone: activeUser.phone,
                         username: activeUser.username,
                         email: activeUser.email,
-                        bdate: activeUser.bdate
+                        bdate: activeUser.bdate,
+                        image: activeUser.image,
                     });
                 }
                
@@ -860,9 +862,10 @@ const deleteRes = ((req,res) =>{
         activeUser.phone = req.body.phone;
         activeUser.email = req.body.email;
         activeUser.bdate = req.body.bdate;
+        activeUser.image = req.file.filename;
 
         account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
-            bdate: req.body.bdate}}, function(err){
+            bdate: req.body.bdate, image: req.file.filename}}, function(err){
                 if(err){
                     console.log(err);
                 }
