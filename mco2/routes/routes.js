@@ -93,13 +93,15 @@ route.get('/getjoinus', controller.getJoinUs);
 
 route.get('/getjoin', controller.getJoin);
 
+// route.post('/postnewlike', controller.postNewLike);
+
 route.get('/getlike', controller.getClickLike);
 
 route.post('/postnewsletter', controller.postNewsletter);
 
 route.get('/geteditprof', controller.getEdit);
 
-route.post('/updateprofile', controller.postProfile);
+route.post('/updateprofile', upload.single('image'), controller.postProfile);
 
 
 module.exports =  route;
