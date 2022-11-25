@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>Refunds</title>
+    <title><%= title %></title>
     
     <!--  Style Links  -->
     <link rel = "stylesheet" href="css/mco.css">
@@ -16,11 +16,11 @@
 
 <body>
     <!--Container Nav-->
-    <%  if(title == "User"){%>
+    <%  if(aUser == "User"){%>
         <%- include('loginheader') -%>
-    <% }else if(title == "Admin"){%>
+    <% }else if(aUser == "Admin"){%>
         <%- include('adminHeader') -%>
-    <% }else if(title == "Manager"){%>
+    <% }else if(aUser == "Manager"){%>
         <%- include('managerHeader') -%>
     <% }else{%>
             <%- include('header') -%>
