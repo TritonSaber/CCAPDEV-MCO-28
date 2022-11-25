@@ -12,7 +12,7 @@ const sampleData = ((req,res) =>{
         if(!accounts){
 
             //the password used for the sample accounts
-            //admin password: almighty admin
+            //admin password: almightyadmin
             
             //users       passwords
             //ImNo.1User: bestreservation
