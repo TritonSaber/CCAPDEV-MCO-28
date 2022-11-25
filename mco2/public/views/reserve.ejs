@@ -521,82 +521,11 @@
         <button class="btn btn-secondary">cancel</button>
       </div>
     </form>
-
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="#">
-            <img src="images/sample1comment.jpg">
-          </a>
-          <div class="prof-name">Olivia Harper</div>
-        </div>
-        <div class="comment-text">
-          <p> The food in this restaurant is worth it. It's simple and inexpensive. Fits right in with my budget.
-            Reserving here was a good idea.
-          </p>
-        </div>
-      </div>
-
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="profile.html">
-            <img src="images/sample2.jpg">
-          </a>
-          <div class="prof-name">Leo Jones</div>
-        </div>
-        <div class="comment-text">
-          <p>The overall ambiance of the restaurant was excellent.
-            I was also glad that I don't need to wait in line to dine.
-          </p>
-        </div>
-      </div>
-
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="#">
-            <img src="images/sample4.jpg">
-          </a>
-          <div class="prof-name">John Li</div>
-        </div>
-        <div class="comment-text">
-          <p> "No more long lines!" I love eating at this restaurant. It is my 3rd time already.
-          </p>
-        </div>
-      </div>
-
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="#">
-            <img src="images/sample3.jpg">
-          </a>
-          <div class="prof-name">Winston Acres </div>
-        </div>
-        <div class="comment-text">
-          <p> I've been an active Book n Eat "Eater" and it is just convenient.
-             The categories of restaurants are also wide.
-          </p>
-        </div>
-      </div>
-
-      <div class="sample-comment">
-        <div class="user">
-          <a class="prof-pic" href="#">
-            <img src="images/sample5.jpg">
-          </a>
-          <div class="prof-name">Jenny Smith</div>
-        </div>
-        <div class="comment-text">
-          <p> I love how the website is user-friendly.
-             Dining into my fav restaurant usually takes me a couple of hours, 
-             but with the help of Book n Eat, I was able to have a seat in less than an hour.
-          </p>
-        </div>
-      </div>
-      
       <% comments.forEach(function(comments){ %>
         <div class="sample-comment">
           <div class="user">
-            <a class="prof-pic" href="#">
-              <img src="">
+            <a class="prof-pic">
+              <img src="userProfPics/<%= comments.image%>">
             </a>
             <div class="prof-name"><%= comments.name%></div>
 			</div>
