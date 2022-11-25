@@ -37,15 +37,16 @@ $(function(){
     
 });
 //restrict the reservation dates to 1 day ahead
+//prevents users from reserving dates that has already passed
 $(function(){
     var date = new Date();
-    var month = date.getMonth() + 1;
-    var day = date.getDate() + 1;
     var year = date.getFullYear();
-    if(month < 10)
+    var month = date.getMonth() + 1;
+    var day = date.getDate() + 1;// tommorrow
+    if(month < 10)// january - september 01-09
         month = '0' + month.toString();
-    if(day < 10)
+    if(day < 10)//01-09
         day = '0' + day.toString();  
-    var today = year + '-' + month + '-' + day;
-    $('#datein').attr('min', today);
+    var minDate = year + '-' + month + '-' + day;// set the min date to reserve s
+    $('#datein').attr('min', minDate);
 });
