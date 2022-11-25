@@ -93,8 +93,6 @@ route.get('/getjoinus', controller.getJoinUs);
 
 route.get('/getjoin', controller.getJoin);
 
-// route.post('/postnewlike', controller.postNewLike);
-
 route.get('/getlike', controller.getClickLike);
 
 route.post('/postnewsletter', controller.postNewsletter);
