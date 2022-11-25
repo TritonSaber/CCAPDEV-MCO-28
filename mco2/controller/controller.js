@@ -8,6 +8,7 @@ const like = require("../models/likeModel");
 const manager = require("../models/managerModel")
 const counter = require("../models/counterModel");
 const newsletter = require("../models/newsletterModel");
+const multer = require("multer");
 
 const bcrypt = require("bcrypt");
 var activeUser;
@@ -297,6 +298,7 @@ const deleteRes = ((req,res) =>{
                     bdate: req.body.bdate,
                     phone: req.body.phone,
                     email: req.body.email,
+                    image: req.file.filename,
                 })
                 accounts.save(function(err){
                     if(err){

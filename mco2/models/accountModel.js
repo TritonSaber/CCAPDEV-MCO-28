@@ -35,6 +35,11 @@ var userAccount = new mongoose.Schema({
         default: "User",
     },
 
+    image: {
+        type: String,
+        required: true
+    }
+
 });
 
 var account = mongoose.model("accounts", userAccount);
