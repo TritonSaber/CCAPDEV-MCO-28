@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 
-    <title> Log-In</title>
+    <title> <%= title%> </title>
     
     <!--  Style Links  -->
     <link rel = "stylesheet" href="css/mco.css">
@@ -23,7 +23,7 @@
     <div class="log-container">
       <br>
       <img src="images/book-n-eat-logo.jpg" class="about-logo" alt="Performance" width="250" height="200">
-        <h3> Log-In</h3>
+        <h3> Reserve with us now!!</h3>
     
         <div class="container">
             <form class="form-horizontal" action="/postlogin" method="post">
@@ -57,7 +57,7 @@
                   <div class="col-sm-offset-2 col-sm-5">
 
                 <h4> Don't have an account?</h4> <a href="/register"><h4>Sign Up now </h4></a>
-                <h4><%= title%></h4>
+                <h4><%= error%></h4>
                   </div>
                 </div>
               </div>
