@@ -9,19 +9,31 @@ const route = express.Router();
 
 const controller = require("../controller/controller");
 
-// image reader
 
+
+// use of multer for image
 const storage = multer.diskStorage({
-    destination:function(req,file,cb){
-       cb(null,path.join(__dirname, '../public/userImages'));
-    },
-    
-    filename:function(req,file,cb){
-       const name = Date.now()+'-'+file.originalname;
-       cb(null,name);
-    }
+   destination:function(req,file,cb){
+      cb(null,path.join(__dirname, '../public/usersProfPics'));
+   },
+
+   filename:function(req,file,cb){
+      const filename = file.originalname + Date.now();
+      cb(null,filename);
+   }
 });
-const upload = multer({storage:storage});
+
+const upload = multer({
+   storage:storage, 
+   fileFilter: (req, file, cb) => {
+       if (file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
+         cb(null, true);
+       } else {
+         cb(null, false);
+         return cb(new Error('Only jpg, jpeg, and png are allowed! Please do not import other files.'));
+       }
+   }
+   });
 
 //Index
 route.get('/', controller.getIndex);
