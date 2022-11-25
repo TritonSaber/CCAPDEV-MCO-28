@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <title>Book n Eat - Max's Restaurant</title>
+    <title><%= title %></title>
     <!-- Make the title into name of restaurant-->
     
     <!--  Style Links  -->
@@ -16,11 +16,11 @@
 
 <!-- Header from homepage.html -->
 <body>
-    <%  if(title == "User"){%>
+    <%  if(aUser == "User"){%>
     <%- include('loginheader') -%>
-  <% }else if(title == "Admin"){%>
+  <% }else if(aUser == "Admin"){%>
     <%- include('adminHeader') -%>
-  <% }else if(title == "Manager"){%>
+  <% }else if(aUser == "Manager"){%>
     <%- include('managerHeader') -%>
   <% }else{%>
       <%- include('header') -%>
