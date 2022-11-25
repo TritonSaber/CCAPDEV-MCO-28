@@ -101,7 +101,7 @@ route.post('/postnewsletter', controller.postNewsletter);
 
 route.get('/geteditprof', controller.getEdit);
 
-route.post('/updateprofile', upload.single('image'), controller.postProfile);
+route.post('/updateProfile', controller.postProfile);
 
 
 module.exports =  route;
