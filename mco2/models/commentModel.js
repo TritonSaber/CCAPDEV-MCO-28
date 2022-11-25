@@ -12,6 +12,11 @@ var userComment = new mongoose.Schema({
     comment_text: {
         type: String,
         required: true
+    },
+
+    image: {
+        type: String,
+        default: "userdefault.jpg"
     }
 });
 
