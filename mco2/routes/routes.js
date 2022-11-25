@@ -54,7 +54,7 @@ route.post('/savereserve', controller.postReserve);
 
 route.get('/register', controller.getRegister);
 
-route.post('/saveaccount',controller.postSave);
+route.post('/saveaccount', upload.single('image'), controller.postSave);
 
 route.get('/login', controller.getLogin);
 

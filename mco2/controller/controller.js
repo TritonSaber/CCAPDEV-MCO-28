@@ -297,7 +297,8 @@ const deleteRes = ((req,res) =>{
                     password: hash,
                     bdate: req.body.bdate,
                     phone: req.body.phone,
-                    email: req.body.email
+                    email: req.body.email,
+                    image: req.file.filename,
                 })
                 accounts.save(function(err){
                     if(err){
