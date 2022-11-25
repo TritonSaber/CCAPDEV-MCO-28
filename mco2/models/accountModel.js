@@ -37,7 +37,7 @@ var userAccount = new mongoose.Schema({
 
     image: {
         type: String,
-        default: "images/sample2.jpg"
+        default: "public/userProfPics/userdefault.jpg"
     }
 
 });
