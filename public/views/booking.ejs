@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title><%= title%></title>
+    
+    <!--  Style Links  -->
+    <link rel = "stylesheet" href="css/mco.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--Container Nav-->
+    <%- include('loginheader') -%>
+
+    
+</div>
+<!-- Personal Information -->
+
+<div class="form-container page">
+    <h4 class="form-title">RESERVATION FORM</h4>
+  <div class="form-body">
+  <form autocomplete="off" name = "reserve-form" id="reserve-form" action="/savereserve" method="post">
+    <div class="input-field">
+      Restaurant:  
+      <select name ="restaurant" id="restaurant" required>
+        <option value="Kuya J">Kuya J</option>
+        <option value="Gerry's Grill">Gerry's Grill</option>
+        <option value ="Max's Restaurant">Max's restaurant</option>
+      </select>
+    </div>
+  </br>
+    <div class="input-field">
+      Reservation Date:  <input type="date" name="datein" id="datein" required>
+    </div>
+    </br>
+    
+    <div class="input-field">
+      Check-in Time:  
+      <select name ="timein" id="timein" required>
+      <option value = "9:00 am">9:00 am</option>
+      <option value = "10:00 am">10:00 am</option>
+      <option value = "11:00 am">11:00 am</option>
+      <option value = "12:00 pm">12:00 pm</option>
+      <option value = "1:00 pm">1:00 pm</option>
+      <option value = "2:00 pm">2:00 pm</option>
+      <option value = "3:00 pm">3:00 pm</option>
+      <option value = "4:00 pm">4:00 pm</option>
+      <option value = "5:00 pm">5:00 pm</option>
+      <option value = "6:00 pm">6:00 pm</option>
+      <option value = "7:00 pm">7:00 pm</option>
+      <option value = "8:00 pm">8:00 pm</option>
+    </select>  
+    </div>
+    </br>
+    <div class="input-field">
+      Number of people: 
+    <select name ="numpeople" id="numpeople" required>
+      <option value = "1 People">1 person</option>
+      <option value = "2 People"> 2 people </option>
+      <option value = "3 People"> 3 people </option>
+      <option value = "4 People"> 4 people </option>
+      <option value = "5 People"> 5 people </option>
+      <option value = "6 People"> 6 people </option>
+      <option value = "7 People"> 7 people </option>
+      <option value = "8 People"> 8 people </option>
+    </select>  
+    </div>
+  
+    <div class="card-option-field">
+        Choose a payment method:
+        <br>
+        <select name ="card" id="card" required>
+          <option value = "paypal">Paypal</option>
+          <option value = "mastercard"> Mastercard </option>
+          <option value = "visa"> Visa </option>
+        </select>  
+           
+    </div>
+    <div class="form-body">
+       </br>
+       <div class="input-field">
+       Card Number:<input type="text" class="card-number" name="cardnum" id="cardnum" placeholder="Enter Card Number" required>
+       </div>
+       </br>
+       <div class="form-footer">
+        <a class="btn btn-outline-secondary" href="/">Cancel</a>
+          <button data-toggle="modal" id ="reserve-submit" type="button" class="btn btn-outline-success">Confirm Payment</button>
+      </div>
+  
+  </div>
+
+
+<div class="modal fade" id="success-popup" role="dialog">
+        <div class="modal-dialog">
+        
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">SUCCESS</h2>
+              </div>
+              <div class="modal-body">
+                <img class="check" src="images/check.png">
+                <h4>Thank you for your reservation!</h4>
+              </div>
+              <div class="modal-footer">
+                <button type = "submit" class="btn btn-default">Proceed</a>
+                </div>
+            </div>             
+        </div>
+      
+</div>
+
+</form>
+</div>
+</div>
+<!-- footer-->
+<%- include('footer') -%>
+
+
+
+<script type="text/javascript" src="js/index.js"></script>
+<script src="crude.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+
+    
+    <!--  Style Links  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel ="stylesheet" href="css/mco.css">
+</head>
+ 
+    <body>
+        <div class="text">
+                <h2>Edit Profile Information</h2>
+        </div>
+
+
+        <div class="form-container">
+          <div class="form-body">
+          <form action="/updateprofile" method="POST" enctype="multipart/form-data">> 
+
+        <div class="input-field">
+            Name:  <input type="text" name="name" value ="<%= name%>" placeholder="Enter New Name" required></input>
+          </div>
+          </br>
+          <div class="input-field">
+            Phone: <input type="text" name="phone" value ="<%= phone%>" placeholder="Enter New Phone Number" required></input>
+          </div>
+          </br>
+          <div class="input-field">
+            E-mail: <input type="text" name="email" value ="<%= email%>" placeholder="Enter E-mail" required></input>
+          </div>
+          </br>
+          <div class="input-field">
+            Birthdate: <input type="date" name="bdate" value = "<%= bdate%>" placeholder="Enter Birthdate" required></input>
+          </div>
+        </br>
+        <div class="input-field">
+          Upload Image:  <input type="file" id = "image" name = "image" required></input>
+        </div> 
+      </br>
+      <button type="submit" class="btn btn-warning">Update Profile</button>
+        
+</form>
+   
+
+       
+</body>
+

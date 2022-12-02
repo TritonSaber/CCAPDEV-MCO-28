@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title> <%= title%></title>
+    
+    <!--  Style Links  -->
+    <link rel = "stylesheet" href="css/mco.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--Container Nav-->
+    <%  if(aUser == "User"){%>
+        <%- include('loginheader') -%>
+    <% }else if(aUser == "Admin"){%>
+        <%- include('adminHeader') -%>
+    <% }else if(aUser == "Manager"){%>
+        <%- include('managerHeader') -%>
+    <% }else{%>
+            <%- include('header') -%>
+    <%   } %>
+    <div class="page text-center">
+        <div class = "restaurant-container text-white">
+            <h2>ABOUT US</h2>
+            <hr class="border border-white border-3 opacity-75">
+            <h4>Book n Eat is a website designed to assist you in booking your next dining experience!<br>
+                Create a reservation now! Currently, we serve the following restaurants:
+            </h4>
+                <img src="images/kuya j logo.jpg" class="about-logo" alt="Performance" width="304" height="236">
+                <img src="images/gerryslogo.jpg" class="about-logo" alt="Performance" width="304" height="236">
+                <img src="images/maxlogo.jpg" class="about-logo" alt="Performance" width="304" height="236">
+            <br>
+        
+        <br>
+        <hr class="border border-white border-3 opacity-75">
+            <h2 id="#contact">CONTACT US</h2>
+        <hr class="border border-white border-3 opacity-75">
+            <br>
+            <h4>Having troubles with our services? Contact us at:<br> 
+                Our phone number hotline: (+63) 912-654-1367<br>
+                Our email: book_n_eat@gmail.com
+            </h4>
+            <br>
+        </div>
+    </div>
+
+    
+</div>
+
+<%- include('footer') -%>
