@@ -8,14 +8,11 @@ $(function(){
         var phone = $("#phone").val();
         var email = $("#email").val();
 
-
         if (name.length != 0 && username.length != 0 && password.length != 0 && bdate.length != 0 && phone.length != 0 && email.length != 0) {        
             $(this).attr("href", "#signup-popup");
 
         }
     })
-
-    
 });
 
 

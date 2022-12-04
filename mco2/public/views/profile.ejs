@@ -16,8 +16,15 @@
 
 <body>
     <!--Container Nav-->
-    <%- include('loginheader') -%>
-
+    <%  if(aUser == "User"){%>
+      <%- include('loginheader') -%>
+    <% }else if(aUser == "Admin"){%>
+      <%- include('adminHeader') -%>
+    <% }else if(aUser == "Manager"){%>
+      <%- include('managerHeader') -%>
+    <% }else{%>
+        <%- include('header') -%>
+    <%   } %>
 
     <div class = "prof-container page">
       <div class = "info-container">
