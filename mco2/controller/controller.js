@@ -576,20 +576,34 @@ const deleteRes = ((req,res) =>{
                 console.log(err);
             }else{
                 if(activeUser){
-                    res.render('profile', {
-                        name: activeUser.name,
-                        phone: activeUser.phone,
-                        username: activeUser.username,
-                        email: activeUser.email,
-                        bdate: activeUser.bdate,
-                        image: activeUser.image,
-                    });
+                     if(activeUser.role == "User"){
+                        res.render('profile', {   
+                            name: activeUser.name,
+                            phone: activeUser.phone,
+                            username: activeUser.username,
+                            email: activeUser.email,
+                            bdate: activeUser.bdate,
+                            image: activeUser.image,
+                            aUser: "User"})
+                     }else if(activeUser.role == "Manager"){
+                        res.render('profile', {   
+                            name: activeUser.name,
+                            phone: activeUser.phone,
+                            username: activeUser.username,
+                            email: activeUser.email,
+                            bdate: activeUser.bdate,
+                            image: activeUser.image,
+                            aUser: "Manager"})
+                    }else{
+                        res.render('profile', {   aUser: false})
+                    }
                 }
                
             }
         })
 
     })
+
 
     // for footers and about page
     const getAbout =  ((req,res)=>{
