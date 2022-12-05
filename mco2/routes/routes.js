@@ -103,5 +103,9 @@ route.get('/geteditprof', controller.getEdit);
 
 route.post('/updateprofile', upload.single('image'), controller.postProfile);
 
+route.get('/getreset', controller.getReset);
+
+route.post('/postresetpassword', controller.postResetPassword);
+
 
 module.exports =  route;

@@ -719,6 +719,50 @@ const deleteRes = ((req,res) =>{
         })
     })
 
+    const getReset = ((req, res)=>{
+        res.render('forgotpassword', {
+            title: "Reset Password",
+            error: '',
+        })
+    })
+
+    const postResetPassword = ((req, res)=>{
+        var salt = bcrypt.genSaltSync(10)
+        var hash = bcrypt.hashSync(req.body.password, salt);
+        account.findOne({username: req.body.username, phone: req.body.phone, email:req.body.email}, function(err, accounts){
+            if(err){
+                console.log(err);
+            }
+            else if(!accounts){
+                res.render('forgotpassword', {
+                    title: "Reset Password",
+                    error: 'Wrong credentials or user does not exist!',
+                })
+            }
+            else if(accounts.role == "Manager" || accounts.role == "Admin"){
+                res.render('forgotpassword', {
+                    title: "Reset Password",
+                    error: 'Admins and Managers cannot change their password here!',
+                })
+            }
+            else if(bcrypt.compareSync(req.body.password, accounts.password )){
+                res.render('forgotpassword', {
+                    title: "Reset Password",
+                    error: 'Your new password cannot be the same as your old password!',
+                })
+            }
+            else{
+                account.updateOne({username: req.body.username},{$set:{password: hash}}, function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        res.redirect("/login");
+                    }
+                })
+            }
+        })
+    })
 
     const getEdit =  ((req,res)=>{
        
@@ -768,5 +812,5 @@ const deleteRes = ((req,res) =>{
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
     postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
     postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
-    ,getEdit, postProfile};
+    ,getEdit, postProfile, getReset, postResetPassword};
     // getComment, postNewLike
