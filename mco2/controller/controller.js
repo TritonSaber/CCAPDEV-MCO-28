@@ -108,7 +108,6 @@ const postSave = ( (req,res) =>{
     account.register(
         {   username: req.body.username,
             name: req.body.name,
-            password: req.body.password,
             bdate: req.body.bdate,
             phone: req.body.phone,
             email: req.body.email, },
