@@ -678,6 +678,20 @@ const deleteRes = ((req,res) =>{
         res.render('refunds', {aUser: false, title: "Refunds"})
     })
 
+    const getRestos = ((req,res)=>{
+        
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('restaurants', {aUser: "User",title: "Restaurants"})
+            }else if(activeUser.role == "Admin"){
+                res.render('restaurants', {aUser: "Admin",title: "Restaurants"})
+            }else if(activeUser.role == "Manager"){
+                res.render('restaurants', {aUser: "Manager",title: "Restaurants"})
+            }
+        }else
+        res.render('restaurants', {aUser: false, title: "Restaurants"})
+    })
+
     const getPaymentM = ((req,res)=>{
         if(activeUser){
             if(activeUser.role == "User"){
@@ -860,6 +874,6 @@ const deleteRes = ((req,res) =>{
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, errorLogin,  getLogout,postLogin,
     postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
     postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
-    ,getEdit, postProfile, getReset, postResetPassword};
+    ,getEdit, postProfile, getReset, postResetPassword, getRestos};
     // getComment, postNewLike
     //

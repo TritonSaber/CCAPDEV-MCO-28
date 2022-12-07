@@ -98,6 +98,8 @@ route.get('/getjoinus', controller.getJoinUs);
 
 route.get('/getjoin', controller.getJoin);
 
+route.get('/getrestaurants', controller.getRestos);
+
 // route.post('/postnewlike', controller.postNewLike);
 
 route.get('/getlike', controller.getClickLike);
