@@ -770,10 +770,10 @@ const deleteRes = ((req,res) =>{
         })
     })
 
+
     const postResetPassword = ((req, res)=>{
-        var salt = bcrypt.genSaltSync(10)
-        var hash = bcrypt.hashSync(req.body.password, salt);
         account.findOne({username: req.body.username, phone: req.body.phone, email:req.body.email}, function(err, accounts){
+            
             if(err){
                 console.log(err);
             }
@@ -789,21 +789,25 @@ const deleteRes = ((req,res) =>{
                     error: 'Admins and Managers cannot change their password here!',
                 })
             }
-            else if(bcrypt.compareSync(req.body.password, accounts.password )){
-                res.render('forgotpassword', {
-                    title: "Reset Password",
-                    error: 'Your new password cannot be the same as your old password!',
-                })
-            }
             else{
-                account.updateOne({username: req.body.username},{$set:{password: hash}}, function(err){
-                    if(err){
-                        console.log(err);
-                    }
-                    else{
-                        res.redirect("/login");
-                    }
-                })
+                account.deleteOne({username: req.body.username}, function(err, accounts){console.log(err)});
+                account.register( 
+                    {   username: accounts.username,
+                        name: accounts.name,
+                        bdate: accounts.bdate,
+                        phone: accounts.phone,
+                        email: accounts.email, },
+                        req.body.password,
+                        function (err, user) {
+                        if (err) {
+                            console.log(err);
+                            res.render('signup', {title: 'Sign Up Now!!',error: 'Username has already been taken!!'});
+                        } else {
+                            passport.authenticate("local")(req, res, function () {
+                            res.redirect("/login");
+                          });
+                        }
+                      });
             }
         })
     })
@@ -835,7 +839,7 @@ const deleteRes = ((req,res) =>{
         activeUser.email = req.body.email;
         activeUser.bdate = req.body.bdate;
         activeUser.image = req.file.filename;
-
+        
         account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
             bdate: req.body.bdate, image: req.file.filename}}, function(err){
                 if(err){
