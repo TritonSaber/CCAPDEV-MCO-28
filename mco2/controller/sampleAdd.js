@@ -10,22 +10,6 @@ const sampleData = ((req,res) =>{
         
     account.findOne({username: "admin"}, function(err, accounts){
         if(!accounts){
-
-            //the password used for the sample accounts
-            //admin password: almightyadmin
-            
-            //users       passwords
-            //ImNo.1User: bestreservation
-            //HabenDogs: bossdogs
-            //Chibog: chiboggers
-            
-            
-            //managers
-            //Tatsulok: ilovechicken
-            //meathead: ilovemeat
-            //Gutomz: ilovetwice
-            //Rolling: pikachumain
-            //Player1: catastrophe
             account.insertMany([{name: "admin", 
                                 username: "admin",
                                 bdate: 20021220,
