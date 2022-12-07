@@ -1,8 +1,9 @@
 const mongoose = require("mongoose"); 
 const DateOnly = require('mongoose-dateonly')(mongoose);
+const passportLocalMongoose = require("passport-local-mongoose");
 
 
-var userAccount = new mongoose.Schema({
+const userAccount = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -42,5 +43,7 @@ var userAccount = new mongoose.Schema({
 
 });
 
-var account = mongoose.model("accounts", userAccount);
-module.exports =  account;
+userAccount.plugin(passportLocalMongoose);
+
+const account = mongoose.model("accounts", userAccount);
+module.exports = account;

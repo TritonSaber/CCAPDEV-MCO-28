@@ -54,9 +54,14 @@ route.post('/savereserve', controller.postReserve);
 
 route.get('/register', controller.getRegister);
 
+
+
 route.post('/saveaccount',controller.postSave);
 
 route.get('/login', controller.getLogin);
+
+route.get('/errorlogin', controller.errorLogin);
+
 
 route.get('/logout', controller.getLogout);
 

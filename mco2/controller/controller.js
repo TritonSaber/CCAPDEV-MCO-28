@@ -12,27 +12,174 @@ const multer = require("multer");
 const addSamples = require("../controller/sampleAdd");
 
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+const session = require("express-session");
+
+
 var activeUser;
 var restaurantName;
 var numLike;
 var counts;
 
 
+passport.use(account.createStrategy());
+passport.serializeUser(account.serializeUser());
+passport.deserializeUser(account.deserializeUser());
+
+//passport and sessions ====================================================================================================================================================
+
+    const getRegister =  ((req,res)=>{
+        res.render('signup', {title: 'Sign Up Now!!',error: ''});
+    })
+    
+    const getLogin = ((req,res)=>{
+    res.render('login', {
+        title: 'Login Page',
+        error : ''
+
+        });
+    })
+
+    const errorLogin = ((req,res)=>{
+        res.render('login', {
+            title: 'Error - Login',
+            error : 'Incorrect username/password'
+
+            });
+        })
+
+    const getLogout =  ((req,res)=>{
+        req.logout(function(err){
+            if (err){ 
+                console.log(err);
+            }
+
+            req.session.destroy();
+            activeUser = null;
+            res.redirect("/");
+          });
+
+    })
+    
+    const postLogin =  ((req,res) =>{
+        account.findOne({username: req.body.username}, function(err, accounts){
+            if(accounts){
+            req.login(accounts, function (err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  passport.authenticate("local", {failureRedirect: '/errorlogin'})(req, res, function () {
+                    req.session.user = accounts;
+                    activeUser = req.session.user;
+                    console.log(activeUser);
+                    res.redirect("/");
+                  });
+                }
+              });
+            }else{
+                res.render('login',{title: 'Error - Login', error: 'Login Failed. Account Does Not Exist!!'});
+            }
+        })
+        
+          
+
+          return activeUser;
+        /*
+        let pass= req.body.password;   
+        let uName = req.body.username;
+        account.findOne({username: uName}, function(err, accounts){
+            if(accounts){
+                let isValidPass = bcrypt.compareSync(pass, accounts.password );
+                if(isValidPass){       
+                    activeUser = accounts;         
+                    res.redirect('/');
+    
+                } else {
+                    res.render('login',{title: 'Error - Login', error: 'Login Failed. Wrong Password!!'});
+            }
+            } else{
+                res.render('login',{title: 'Error - Login', error: 'Login Failed. Account Does Not Exist!!'});
+            }
+        })   
+        */
+   })
+
+const postSave = ( (req,res) =>{
+    account.register(
+        {   username: req.body.username,
+            name: req.body.name,
+            password: req.body.password,
+            bdate: req.body.bdate,
+            phone: req.body.phone,
+            email: req.body.email, },
+            req.body.password,
+        function (err, user) {
+          if (err) {
+            console.log(err);
+            res.render('signup', {title: 'Sign Up Now!!',error: 'Username has already been taken!!'});
+          } else {
+            passport.authenticate("local")(req, res, function () {
+              res.redirect("/login");
+            });
+          }
+        }
+      );
+
+    /*
+    var salt = bcrypt.genSaltSync(10)
+    var hash = bcrypt.hashSync(req.body.password, salt);
+    var uName = req.body.username; 
+    account.findOne({username: uName}, function(err, accounts){
+        if(err)
+            console.log(err);
+
+        if(accounts){
+            res.render('signup', {
+                title: 'Oh no, Sign up error',
+                error: 'Username has been already taken! Try Again!'
+            });
+        }else{
+            var accounts = new account({
+                name: req.body.name,
+                username: uName,
+                password: hash,
+                bdate: req.body.bdate,
+                phone: req.body.phone,
+                email: req.body.email,
+            })
+            accounts.save(function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.redirect('/login')
+                }
+            })
+        }
+    })
+    */
+})
+
+
+
+//end ======================================================================================================================================================================
+
+
+
+
     //index page for general users
     const getIndex = ((req,res) => {
-        if(activeUser){
-            let aUser;
+            if (req.isAuthenticated()) {              
             //redirects normal users to homepage
-            if(activeUser.role == "User"){
-                res.render('homepage',{aUser: "User", title: "Homepage"});
+                if(activeUser.role == "User"){
+                    res.render('homepage',{aUser: "User", title: "Homepage"});
             //redirects Admins to the Admin dashboard
-            }else if(activeUser.role =="Admin"){
-                res.render('homepage', {aUser: "Admin",title: "Homepage"});
-            }else if(activeUser.role =="Manager"){
-                res.render('homepage', {aUser: "Manager",title: "Homepage"});
-            }      
-        }else
-            res.render('homepage', {aUser: false,title: "Homepage"});  
+                }else if(activeUser.role =="Admin"){
+                    res.render('homepage', {aUser: "Admin",title: "Homepage"});
+                }else if(activeUser.role =="Manager"){
+                    res.render('homepage', {aUser: "Manager",title: "Homepage"});
+                }      
+            } else
+                res.render('homepage', {aUser: false,title: "Homepage"});  
     })
     //dashboard page for admin
     const getAccountList =  ( (req,res) => {
@@ -256,108 +403,7 @@ const deleteRes = ((req,res) =>{
     })
     
     
-    // User Registration - Working!   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    const getRegister =  ((req,res)=>{
-        res.render('signup', {title: 'Sign Up Now!!',error: ''});
-    })
-    
-    //Save the data into the database
-    const postSave = ( (req,res) =>{
-        var salt = bcrypt.genSaltSync(10)
-        var hash = bcrypt.hashSync(req.body.password, salt);
-        var uName = req.body.username; 
-        account.findOne({username: uName}, function(err, accounts){
-            if(err)
-                console.log(err);
-
-            if(accounts){
-                res.render('signup', {
-                    title: 'Oh no, Sign up error',
-                    error: 'Username has been already taken! Try Again!'
-                });
-            }else{
-                var accounts = new account({
-                    name: req.body.name,
-                    username: uName,
-                    password: hash,
-                    bdate: req.body.bdate,
-                    phone: req.body.phone,
-                    email: req.body.email,
-                })
-                accounts.save(function(err){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        res.redirect('/login')
-                    }
-                })
-            }
-        })
-    })
-    
-    
-    //User Login - So far it is working! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
-    //Redirect towards the login page
-    const getLogin = ((req,res)=>{
-        res.render('login', {
-            title: 'Login page',
-            error: '',
-        });
-    })
-    const getLogout =  ((req,res)=>{
-        //console.log(activeUser)
-        activeUser = null;
-        //console.log(activeUser)
-
-        res.redirect('/');
-
-    })
-    
-    const postLogin =  ((req,res) =>{
-        let pass= req.body.password;   
-        let uName = req.body.username;
-        account.findOne({username: uName}, function(err, accounts){
-            if(accounts){
-                let isValidPass = bcrypt.compareSync(pass, accounts.password );
-                if(isValidPass){       
-                    activeUser = accounts;         
-                    res.redirect('/');
-    
-                } else {
-                    res.render('login',{title: 'Error - Login', error: 'Login Failed. Wrong Password!!'});
-            }
-            } else{
-                res.render('login',{title: 'Error - Login', error: 'Login Failed. Account Does Not Exist!!'});
-            }
-        return activeUser;
-        })   
-    })
-
-    // const postNewLike = ((req, res) => {
-        // console.log('postNewLike');
-        // var likes = new like({
-        //     restaurant: restaurantName,
-        // })
-        // likes.save(function(err){
-        //     if(err){
-        //         console.log(err);
-        //     }else{
-        //         numLike = likes.like;
-        //         console.log("Created new like");
-        //         if(restaurantName === "Kuya J"){
-        //             res.redirect("/getkuya");
-        //         }
-        //         else if(restaurantName === "Gerry's Grill"){
-        //             res.redirect("/getgerry");
-        //         }
-        //         else if(restaurantName === "Max's Restaurant"){
-        //             res.redirect("/getmax");
-        //         }
-        //     }
-        // })
-    // })
 
     const getClickLike = ((req, res) => {
         if(activeUser){
@@ -570,7 +616,6 @@ const deleteRes = ((req,res) =>{
     })
 
     const getProf =  ((req,res)=>{
-
         account.find({username: activeUser.username}, function(err, rows){
             if(err){
                 console.log(err);
@@ -809,8 +854,9 @@ const deleteRes = ((req,res) =>{
     addSamples.sampleData();
 
 
-module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, postLogin, getLogout, 
+module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, errorLogin,  getLogout,postLogin,
     postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
     postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
     ,getEdit, postProfile, getReset, postResetPassword};
     // getComment, postNewLike
+    //
