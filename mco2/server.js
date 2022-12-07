@@ -22,6 +22,9 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+const atlas = "mongodb+srv://CCAPDEV:" + process.env.ATLAS_PASSWORD + "@cluster0.bxe5tds.mongodb.net/?retryWrites=true&w=majority"
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));

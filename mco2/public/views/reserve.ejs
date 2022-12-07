@@ -20,13 +20,13 @@
 
 
     <%  if(aUser== "User"){%>
-      <%- include('loginheader') -%>
+      <%- include('partials/loginheader') -%>
     <% }else if(aUser == "Admin"){%>
-      <%- include('adminHeader') -%>
+      <%- include('partials/adminHeader') -%>
     <% }else if(aUser == "Manager"){%>
-      <%- include('managerHeader') -%>
+      <%- include('partials/managerHeader') -%>
     <% }else{%>
-        <%- include('header') -%>
+        <%- include('partials/header') -%>
     <%   } %>
 
     <div class = "restaurant-container">
@@ -540,7 +540,7 @@
 
     </div>
     
-    <%- include('footer') -%>
+    <%- include('partials/footer') -%>
       
       <script src="comment.js"></script>
     </body>
