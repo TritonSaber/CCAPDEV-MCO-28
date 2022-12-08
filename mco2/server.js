@@ -15,6 +15,7 @@ const app = express();
 mongoose.connect("mongodb+srv://CCAPDEV:almightyadmin@cluster0.bxe5tds.mongodb.net/ccapdev");
 
 
+
 app.use(
   session({
     secret: process.env.SECRET,
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const atlas = "mongodb+srv://CCAPDEV:" + process.env.ATLAS_PASSWORD + "@cluster0.bxe5tds.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(atlas);
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
