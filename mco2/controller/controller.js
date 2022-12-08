@@ -815,7 +815,6 @@ const deleteRes = ((req,res) =>{
                         function (err, user) {
                         if (err) {
                             console.log(err);
-                            res.render('signup', {title: 'Sign Up Now!!',error: 'Username has already been taken!!'});
                         } else {
                             passport.authenticate("local")(req, res, function () {
                             res.redirect("/login");
