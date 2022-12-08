@@ -733,6 +733,21 @@ const deleteRes = ((req,res) =>{
         res.render('join', {aUser: false, title: "Join us! Be a Book n Eat Eater!"})
     })
 
+
+    const getBookingInfo = ((req,res)=>{
+        
+        if(activeUser){
+            if(activeUser.role == "User"){
+                res.render('bookinginfo', {aUser: "User",title: "Booking Information"})
+            }else if(activeUser.role == "Admin"){
+                res.render('bookinginfo', {aUser: "Admin",title: "Booking Information"})
+            }else if(activeUser.role == "Manager"){
+                res.render('bookinginfo', {aUser: "Manager",title: "Booking Information"})
+            }
+        }else
+        res.render('refunds', {aUser: false, title: "Booking Information"})
+    })
+
     const postNewsletter = ((req, res)=>{
         let userEmail = req.body.email;
 
@@ -882,6 +897,6 @@ const deleteRes = ((req,res) =>{
 module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, errorLogin,  getLogout,postLogin,
     postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
     postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
-    ,getEdit, postProfile, getReset, postResetPassword, getRestos};
+    ,getEdit, postProfile, getReset, postResetPassword, getRestos, getBookingInfo};
     // getComment, postNewLike
     //
