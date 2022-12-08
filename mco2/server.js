@@ -12,7 +12,7 @@ const session = require("express-session");
 const passport = require("passport");
 const app = express();
 
-mongoose.connect("mongodb://127.0.0.1:27017/ccapdev");
+// mongoose.connect("mongodb://127.0.0.1:27017/ccapdev");
 app.use(
   session({
     secret: process.env.SECRET,
@@ -24,6 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const atlas = "mongodb+srv://CCAPDEV:" + process.env.ATLAS_PASSWORD + "@cluster0.bxe5tds.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(atlas);
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
