@@ -787,7 +787,6 @@ const deleteRes = ((req,res) =>{
 
     const postResetPassword = ((req, res)=>{
         account.findOne({username: req.body.username, phone: req.body.phone, email:req.body.email}, function(err, accounts){
-            
             if(err){
                 console.log(err);
             }
@@ -810,7 +809,8 @@ const deleteRes = ((req,res) =>{
                         name: accounts.name,
                         bdate: accounts.bdate,
                         phone: accounts.phone,
-                        email: accounts.email, },
+                        email: accounts.email, 
+                        image: accounts.image, },
                         req.body.password,
                         function (err, user) {
                         if (err) {
