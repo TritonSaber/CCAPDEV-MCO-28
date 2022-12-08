@@ -745,7 +745,7 @@ const deleteRes = ((req,res) =>{
                 res.render('bookinginfo', {aUser: "Manager",title: "Booking Information"})
             }
         }else
-        res.render('refunds', {aUser: false, title: "Booking Information"})
+        res.render('bookinginfo', {aUser: false, title: "Booking Information"})
     })
 
     const postNewsletter = ((req, res)=>{
