@@ -13,6 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>
       <%= title %>
+      <%= branch %>
     </title>
 
     <style></style>
@@ -40,6 +41,7 @@
                           <th>Email</th>
                           <th>Phone no.</th>
                           <th>Restaurant Name</th>
+                          <th>Branch</th>
                           <th>Date of Reservation</th>
                           <th>Time of Reservation</th>
                           <th>Number of People</th>
@@ -58,6 +60,7 @@
                             <td><%= reservations.email%></td>
                             <td><%= reservations.phone%></td>
                             <td><%= reservations.restaurant%></td>
+                            <td><%= reservations.branch%></td>
                             <td><%= reservations.datein%></td>
                             <td><%= reservations.timein%></td>
                             <td><%= reservations.numpeople%></td>

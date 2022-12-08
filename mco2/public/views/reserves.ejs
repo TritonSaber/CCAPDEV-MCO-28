@@ -27,6 +27,7 @@
         <thead>
           <tr>
               <th>Restaurant</th>
+              <th>Branch</th>
               <th>Date</th>
               <th>Check-in</th>
               <th>Number of People</th>
@@ -39,6 +40,7 @@
         <% reservations.forEach(function(reservations){ %>
             <tr>
                 <td><%= reservations.restaurant%></td>
+                <td><%= reservations.branch%></td>
                 <td><%= reservations.datein%></td>
                 <td><%= reservations.timein%></td>
                 <td><%= reservations.numpeople%></td>

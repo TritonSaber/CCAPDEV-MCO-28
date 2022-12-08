@@ -7,6 +7,10 @@ var reservation = new mongoose.Schema({
         required: true
     },
 
+    branch: {
+        type: String,
+    },
+
     name: {
         type: String,
         required: true
