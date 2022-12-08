@@ -47,7 +47,6 @@ var reservation = new mongoose.Schema({
 
     cardnum:{
         type: Number,
-        required: true
     },
 
     // cvv:{
