@@ -590,6 +590,7 @@ const deleteRes = ((req,res) =>{
             var comments = new comment({
                 restaurant: restaurantName,
                 name: activeUser.name,
+                username: activeUser.username,
                 comment_text: req.body.comment_text,
                 image: activeUser.image
             })
@@ -847,6 +848,7 @@ const deleteRes = ((req,res) =>{
 
     const postProfile = ((req, res) => {
 
+        
         activeUser.name = req.body.name;
         activeUser.phone = req.body.phone;
         activeUser.email = req.body.email;
@@ -859,8 +861,15 @@ const deleteRes = ((req,res) =>{
                     console.log(err);
                 }
                 else{
-                    console.log(activeUser.username);
-                    res.redirect("/getprof");
+                    comment.updateMany({username: activeUser.username}, {$set: {name:req.body.name, image:req.file.filename}}, function(err){
+                        if(err){
+                            console.log(err)
+                        }
+                        else{
+                            console.log(activeUser.username);
+                            res.redirect("/getprof");
+                        }
+                    })
                 }
             })
     })
