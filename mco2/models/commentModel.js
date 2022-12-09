@@ -5,6 +5,11 @@ var userComment = new mongoose.Schema({
         type: String,
         required: true
     },
+
+//    branch: {
+//        type: String,
+//    },
+
     username: {
         type: String,
         required: true

@@ -3,6 +3,7 @@ const account = require("../models/accountModel");
 const reservation = require("../models/reservationModel");
 const comment = require("../models/commentModel");
 const like = require("../models/likeModel");
+const restaurant = require("../models/restaurantModel");
 const manager = require("../models/managerModel")
 const counter = require("../models/counterModel");
 const sampleData = ((req,res) =>{   
@@ -97,36 +98,47 @@ const sampleData = ((req,res) =>{
                                 username: "Gutomz",
                                 email: "Gutomz@gmail.com",
                                 phone:  "09345962837",
-                                restaurant: "Gerry's Grill"},
+                                restaurant: "Gerry's Grill",
+                                branch: "Makati",
+                                restaurantID: 2,},
 
                                 {name: "Dyis Jenkins", 
                                 username: "meathead",
                                 email: "leeroyjenkinsg@gmail.com",
                                 phone:  "09949470483",
-                                restaurant: "Max's Restaurant"},
+                                restaurant: "Max's Restaurant",
+                                branch: "Makati",
+                                restaurantID: 6,},
 
                                 {name: "Chiz Escudero", 
                                 username: "Tatsulok",
                                 email: "Itsbamboog@gmail.com",
                                 phone:  "09345962837",
-                                restaurant: "Max's Restaurant"},
+                                restaurant: "Max's Restaurant",
+                                branch: "Manila",
+                                restaurantID: 5,},
 
                                 {name: "Roelle Rolder", 
                                 username: "Rolling",
                                 email: "Rollerg@gmail.com",
                                 phone:  "09020399381",
-                                restaurant: "Kuya J"},
+                                restaurant: "Kuya J",
+                                branch: "Makati",
+                                restaurantID: 4,},
 
                                 {name: "Hannah Santos", 
                                 username: "Player1",
                                 email: "HsP1g@gmail.com",
                                 phone:  "09839387463",
-                                restaurant: "Kuya J"},
+                                restaurant: "Kuya J",
+                                branch: "Manila",
+                                restaurantID: 3,},
                                 ])
             
 
             reservation.insertMany([
                                 {restaurant: "Gerry's Grill",
+                                branch: "Makati",
                                 name: "Miguel Alvorado",
                                 email: "Miguel_Alvorado@gmail.com",
                                 phone: "09848873346",
@@ -139,6 +151,7 @@ const sampleData = ((req,res) =>{
                                 resID: 1},
 
                                 {restaurant: "Kuya J",
+                                branch: "Makati",
                                 name: "Miguel Alvorado",
                                 email: "Miguel_Alvorado@gmail.com",
                                 phone: "09848873346",
@@ -151,6 +164,7 @@ const sampleData = ((req,res) =>{
                                 resID: 2},
 
                                 {restaurant: "Kuya J",
+                                branch: "Manila",
                                 name: "Kali Don",
                                 email: "Kali_Don@gmail.com",
                                 phone: "09563473486",
@@ -165,6 +179,7 @@ const sampleData = ((req,res) =>{
 
                                 
                                 {restaurant: "Max's Restaurant",
+                                branch: "Makati",
                                 name: "Kali Don",
                                 email: "Kali_Don@gmail.com",
                                 phone: "09563473486",
@@ -177,6 +192,7 @@ const sampleData = ((req,res) =>{
                                 resID: 4},
 
                                 {restaurant: "Max's Restaurant",
+                                branch: "Manila",
                                 name: "Nathalie Porter",
                                 email: "Naliport@gmail.com",
                                 phone: "09930390483",
@@ -215,6 +231,47 @@ const sampleData = ((req,res) =>{
                                 name: "Nathalie Porter",
                                 username: "Chibog",
                                 comment_text: "Best chicken in the country." },
+                            ])
+
+            restaurant.insertMany([
+                                {restaurantname: "Gerry's Grill", 
+                                branch: "Manila",  
+                                phone: 09988467618, 
+                                restaurantID: 1
+                                },
+
+                                {restaurantname: "Gerry's Grill", 
+                                branch: "Makati",  
+                                phone: 0979030717, 
+                                restaurantID: 2
+                                },
+
+                                {restaurantname: "Kuya J", 
+                                branch: "Manila",  
+                                phone: 09988467618, 
+                                restaurantID: 3
+                                },
+
+                                {restaurantname: "Kuya J", 
+                                branch: "Makati",  
+                                phone: 09988495126, 
+                                restaurantID: 4
+                                },
+
+                                {restaurantname: "Max's Restaurant", 
+                                branch: "Manila",  
+                                phone: 09988467618, 
+                                restaurantID: 5
+                                },
+
+                                {restaurantname: "Max's Restaurant", 
+                                branch: "Makati",  
+                                phone: 09888121235,
+                                restaurantID: 6
+                                },
+                            
+                            
+                            
                             ])
 
             counter.insertMany({reserveID: "resID", totalRes: 6})

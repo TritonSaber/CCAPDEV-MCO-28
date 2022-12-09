@@ -25,6 +25,16 @@ var userManager = new mongoose.Schema({
         default: null
     },
 
+    branch: {
+        type: String,
+        default: null
+    },
+
+    restaurantID: {
+        type: Number,
+        default: null
+    },
+    
 
 });
 

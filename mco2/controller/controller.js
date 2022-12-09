@@ -8,6 +8,8 @@ const like = require("../models/likeModel");
 const manager = require("../models/managerModel")
 const counter = require("../models/counterModel");
 const newsletter = require("../models/newsletterModel");
+const restaurant = require("../models/restaurantModel");
+
 const multer = require("multer");
 const addSamples = require("../controller/sampleAdd");
 
@@ -269,34 +271,44 @@ const postDelete = ((req,res) =>{
 const getIndexMngr = ((req,res) => {
             //redirects Managers to their dashboard
              if(activeUser.role =="Manager"){
-                manager.findOne({username: activeUser.username}, function(err, result){
+                manager.findOne({username: activeUser.username}, function(err, user){
                     if(err){
                         console.log(err)
                     }else{
-                        if(result.restaurant == "Kuya J"){
-                            getRestaurantReservations(req, res, result.restaurant, "Kuya J");
-                        }else if(result.restaurant == "Gerry's Grill"){
-                            getRestaurantReservations(req, res, result.restaurant, "Gerry's Grill");
-                        }else if(result.restaurant == "Max's Restaurant"){
-                            getRestaurantReservations(req, res, result.restaurant, "Max's Restaurant");
-                        }else{
-                            res.render('manager', {
-                                title: "No Restaurant Assigned"
-                            })
-                        }
+                        restaurant.findOne({restaurantID: user.restaurantID}, function(err, result){
+                            if(result.restaurantID == 1){
+                                getRestaurantReservations(req, res, result.restaurantname, "Gerry's Grill", "Manila");
+                            }else if(result.restaurantID == 2){
+                                getRestaurantReservations(req, res, result.restaurantname, "Gerry's Grill", "Makati");
+                            }else if(result.restaurantID == 3){
+                                getRestaurantReservations(req, res, result.restaurantname, "Kuya J", "Manila");
+                            }else if(result.restaurantID == 4){
+                                getRestaurantReservations(req, res, result.restaurantname, "Kuya J", "Makati");
+                            }else if(result.restaurantID == 5){
+                                getRestaurantReservations(req, res, result.restaurantname, "Max's Restaurant", "Manila");
+                            }else if(result.restaurantID == 6){
+                                getRestaurantReservations(req, res, result.restaurantname, "Max's Restaurant", "Makati");
+                            }else{
+                                res.render('manager', {
+                                    title: "No Restaurant Assigned"
+                                })
+                            }
+                        })
+                        
                     }
                 })        
             }
     })
 
-const getRestaurantReservations = ((req, res, result, restaurantName) => {
+const getRestaurantReservations = ((req, res, result, restaurantName, branchName) => {
     if(result == restaurantName){
-        reservation.find({restaurant: restaurantName}, function(err, rows){
+        reservation.find({restaurant: restaurantName, branch: branchName}, function(err, rows){
             if(err){
                 console.log(err);
             }else{
                 res.render('manager', {
                     title: restaurantName,
+                    branch: branchName,
                     reservations: rows
                 })
             }
@@ -369,6 +381,7 @@ const deleteRes = ((req,res) =>{
             counts = result.totalRes;
             var reserves = new reservation({
                 restaurant: req.body.restaurant,
+                branch: req.body.branch,
                 name: activeUser.name,
                 email: activeUser.email,
                 phone: activeUser.phone,
