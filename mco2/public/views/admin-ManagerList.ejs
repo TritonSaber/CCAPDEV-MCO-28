@@ -59,11 +59,31 @@
                       <input type="hidden" name = "username" id = "username" value = <%= managers.username%> >
                       <td><select name = "restaurant" id = "restaurant" >
                       <!-- if value == "Manager"-->
-                      <option disabled selected hidden  value = <%= managers.restaurant%> ><%= managers.restaurant%></option>
-                      <!-- <option disabled selected hidden  value = <%= managers.branch%> ><%= managers.branch%></option> -->
-                      <option value = "Kuya J">Kuya J</option>
-                      <option value = "Gerry's Grill">Gerry's Grill</option>
-                      <option value = "Max's Restaurant">Max's Restaurant</option>
+                      <%  if(managers.restaurantID == 1 || managers.restaurantID == 2){%>
+                        <option selected hidden  value = "Gerry's Grill"> Gerry's Grill</option>
+                      <%   }else if (managers.restaurantID == 3 || managers.restaurantID == 4) {%>
+                        <option selected hidden  value = "Kuya J"> Kuya J</option>
+                      <%   }else if (managers.restaurantID == 5 || managers.restaurantID == 6) {%>
+                        <option selected hidden value = "Max's Restaurant">Max's Restaurant</option>
+                        <%   } %>
+
+                        <option value = "Kuya J">Kuya J</option>
+                        <option value = "Gerry's Grill">Gerry's Grill</option>
+                        <option value = "Max's Restaurant">Max's Restaurant</option>
+                      </select></td>
+
+                      <!-- branch -->
+                      <input type="hidden" name = "username" id = "username" value = <%= managers.username%> >
+                      <td><select name = "branch" id = "branch" >
+                      <!-- if value == "Manager"-->
+                     
+                      <%  if(managers.restaurantID == 1 || managers.restaurantID == 3 || managers.restaurantID == 5){%>
+                        <option selected hidden value = "Manila">Manila</option>
+                      <%  }else if(managers.restaurantID == 2 || managers.restaurantID == 4 || managers.restaurantID == 6){%>
+                          <option selected hidden value = "Makati">Makati</option>
+                        <%   } %>
+                          <option value = "Manila">Manila</option>
+                          <option value = "Makati">Makati</option>
                       </select></td>
                       <td><button type ="submit" class ="btn btn-danger btn-sm remove">Update</button></td>
                     </form>
