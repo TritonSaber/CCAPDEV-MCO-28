@@ -209,27 +209,32 @@ const sampleData = ((req,res) =>{
                                 restaurant: "Gerry's Grill",
                                 name: "Kali Don",
                                 username: "HabenDogs",
-                                comment_text: "I love Gerry's Grill" },
+                                restaurantID: 1,
+                                comment_text: "I love Gerry's Grill"},
                             
                             
                                 {restaurant: "Max's Restaurant",
                                 name: "Kali Don",
                                 username: "HabenDogs",
+                                restaurantID: 5,
                                 comment_text: "It's average. Meh!" },
 
                                 {restaurant: "Kuya J",
                                 name: "Miguel Alvorado",
                                 username: "ImNo.1User",
+                                restaurantID: 3,
                                 comment_text: "This place is the best. Got the fastest reservation ever." },
 
                                 {restaurant: "Gerry's Grill",
                                 name: "Miguel Alvorado",
                                 username: "ImNo.1User",
+                                restaurantID: 4,
                                 comment_text: "Sheeeesh! This place is lit." },
 
                                 {restaurant: "Max's Restaurant",
                                 name: "Nathalie Porter",
                                 username: "Chibog",
+                                restaurantID: 6,
                                 comment_text: "Best chicken in the country." },
                             ])
 
