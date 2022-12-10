@@ -478,24 +478,8 @@ const deleteRes = ((req,res) =>{
             }
         })
 
-        comment.find({restaurant: restaurantName}, function(err, rows){
-            if(err){
-                console.log(err);
-            }else{
-                if(activeUser){
-                    if(activeUser.role == "User"){
-                        res.render('reserve', {likes: numLike,comments: rows,aUser: "User",title: "Book n Eat - Kuya J",})
-                    }else if(activeUser.role == "Admin"){
-                        res.render('reserve', {likes: numLike,comments: rows,aUser: "Admin",title: "Book n Eat - Kuya J",})
-                    }else if(activeUser.role == "Manager"){
-                        res.render('reserve', {likes: numLike,comments: rows,aUser: "Manager",title: "Book n Eat - Kuya J",})
-                    }
-                }else{
-                    res.render('reserve', {likes: numLike,comments: rows,aUser: false,title: "Book n Eat - Kuya J",
-                    })
-                }
-            }
-        })
+        getResBranch(req,res,3, "reserve", "Book n Eat - Kuya J");
+
     })
 
     const getMax = ((req, res) => {
@@ -530,22 +514,8 @@ const deleteRes = ((req,res) =>{
             }
         })
 
-        comment.find({restaurant: restaurantName}, function(err, rows){
-            if(err){
-                console.log(err);
-            }else{
-                if(activeUser){
-                    if(activeUser.role == "User"){
-                        res.render('max', {likes: numLike,comments: rows, aUser: "User",title: "Book n Eat - Max's Restaurant",})
-                    }else if(activeUser.role == "Admin"){ 
-                        res.render('max', {likes: numLike,comments: rows, aUser: "Admin", title: "Book n Eat - Max's Restaurant",})
-                    }else if(activeUser.role == "Manager"){
-                        res.render('max', {likes: numLike,comments: rows, aUser: "Manager", title: "Book n Eat - Max's Restaurant",})
-                    }
-                }else
-                    res.render('max', {likes: numLike,comments: rows, aUser: false, title: "Book n Eat - Max's Restaurant",})
-            }
-        })
+        getResBranch(req,res,5, "max", "Book n Eat - Max's Restaurant");
+
     })
 
     const getGerry = ((req, res) => {
@@ -579,29 +549,55 @@ const deleteRes = ((req,res) =>{
                 }
             }
         })
+        getResBranch(req,res,1, "gerry", "Book n Eat - Gerry's Grill");
+    })
 
-        comment.find({restaurant: restaurantName}, function(err, rows){
+    const postBranch = (req,res, ) => {
+        if(req.body.branch == "Manila"){
+            if(req.body.resName == "Gerry's Grill"){
+                getResBranch(req,res,1, "gerry", "Book n Eat - Gerry's Grill")
+            }else if(req.body.resName == "Kuya J"){
+                getResBranch(req,res,3, "reserve", "Book n Eat - Kuya J")
+            }else if(req.body.resName == "Max's Restaurant"){
+                getResBranch(req,res,5, "max", "Book n Eat - Max's Restaurant")
+            }
+        }else if(req.body.branch == "Makati"){
+            if(req.body.resName == "Gerry's Grill"){
+                getResBranch(req,res,2, "gerry", "Book n Eat - Gerry's Grill")
+            }else if(req.body.resName == "Kuya J"){
+                getResBranch(req,res,4, "reserve", "Book n Eat - Kuya J")
+            }else if(req.body.resName == "Max's Restaurant"){
+                getResBranch(req,res,6, "max", "Book n Eat - Max's Restaurant")
+            }
+        }
+    }
+    const getResBranch = ((req,res, id, name, pagetitle) => {
+        restaurant.findOne({restaurantID: id}, function(err, rows){
             if(err){
                 console.log(err);
             }else{
-                if(activeUser){
-                    if(activeUser.role == "User"){
-                        res.render('gerry', {likes: numLike,comments: rows,aUser: "User", title: "Book n Eat - Gerry's Grill",})
-                    }else if(activeUser.role == "Admin"){
-                        res.render('gerry', {likes: numLike,comments: rows,aUser: "Admin", title: "Book n Eat - Gerry's Grill",})
-                    }else if(activeUser.role == "Manager"){
-                        res.render('gerry', {likes: numLike,comments: rows,aUser: "Manager", title: "Book n Eat - Gerry's Grill",})
-                    }
-                }else
-                res.render('gerry', {likes: numLike,comments: rows,aUser: false, title: "Book n Eat - Gerry's Grill ",})
+                comment.find({restaurantID: id}, function(err, results){
+                    if(activeUser){
+                        if(activeUser.role == "User"){
+                            res.render(name, {likes: numLike,comments: results, resPhone:rows.phone, branch: rows.branch, aUser: "User", title: pagetitle})
+                        }else if(activeUser.role == "Admin"){
+                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: "Admin", title: pagetitle})
+                        }else if(activeUser.role == "Manager"){
+                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: "Manager", title: pagetitle})
+                        }
+                    }else
+                    res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: false, title: pagetitle})
+                })
             }
         })
     })
+
 
     const postComment = ((req, res) => {
         if(activeUser){
             var comments = new comment({
                 restaurant: restaurantName,
+                restaurantID: req.body.resID,
                 name: activeUser.name,
                 username: activeUser.username,
                 comment_text: req.body.comment_text,
@@ -907,9 +903,9 @@ const deleteRes = ((req,res) =>{
     addSamples.sampleData();
 
 
-module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, errorLogin,  getLogout,postLogin,
-    postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
-    postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
-    ,getEdit, postProfile, getReset, postResetPassword, getRestos, getBookingInfo};
+module.exports = { getIndex, getReserve, getBook, postReserve, getRegister, postSave, getLogin, errorLogin, postBranch, getLogout,postLogin,
+        postComment, getKuya, getMax, getGerry, getProf, getAccountList, getManagerList, getIndexMngr, postEdit, postDelete, 
+        postManage, getClickLike, getAbout, getRefunds, getPaymentM,getJoinUs, getJoin, updateStatus, deleteRes, postNewsletter
+        ,getEdit, postProfile, getReset, postResetPassword, getRestos, getBookingInfo};
     // getComment, postNewLike
     //

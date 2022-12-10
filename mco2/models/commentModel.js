@@ -10,6 +10,10 @@ var userComment = new mongoose.Schema({
 //        type: String,
 //    },
 
+    restaurantID: {
+        type: Number
+    },
+
     username: {
         type: String,
         required: true

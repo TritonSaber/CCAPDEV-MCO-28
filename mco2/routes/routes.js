@@ -54,7 +54,7 @@ route.post('/savereserve', controller.postReserve);
 
 route.get('/register', controller.getRegister);
 
-
+route.post('/setBranch',controller.postBranch);
 
 route.post('/saveaccount',controller.postSave);
 
