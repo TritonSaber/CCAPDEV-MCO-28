@@ -344,12 +344,10 @@ const deleteRes = ((req,res) =>{
      
     
     const postManage = ((req,res) =>{
-        console.log(req.body.branch)
-        console.log(req.body.username)
-    
+      
         if (req.body.restaurant == "Gerry's Grill"){
             if (req.body.branch == "Manila"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant, restaurantid: 1}}, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant, restaurantID: 1}}, function(err){
                 if(err){
                     console.log(err);
                 }else{
@@ -360,7 +358,7 @@ const deleteRes = ((req,res) =>{
         }
         else if (req.body.restaurant == "Gerry's Grill"){
             if (req.body.branch == "Makati"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant, restaurantid: 2} }, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant, restaurantID: 2} }, function(err){
                 if(err){
                     console.log(err);
                 }else{
@@ -371,7 +369,7 @@ const deleteRes = ((req,res) =>{
         }
         else if (req.body.restaurant == "Kuya J"){
             if (req.body.branch == "Manila"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantid: 3} }, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 3} }, function(err){
                 if(err){
                     console.log(err);
                 }else{
@@ -382,7 +380,7 @@ const deleteRes = ((req,res) =>{
         }
         else if (req.body.restaurant == "Kuya J"){
             if (req.body.branch == "Makati"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantid: 4} }, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 4} }, function(err){
                 if(err){
                     console.log(err);
                 }else{
@@ -393,7 +391,7 @@ const deleteRes = ((req,res) =>{
     }
         else if (req.body.restaurant == "Max's Restaurant"){
             if (req.body.branch == "Manila"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantid: 5} }, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 5} }, function(err){
                 if(err){
                     console.log(err);
                 }else{
@@ -404,7 +402,7 @@ const deleteRes = ((req,res) =>{
         }
         else if (req.body.restaurant == "Max's Restaurant" && req.body.branch == "Makati"){
              if (req.body.branch == "Makati"){
-            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantid: 6} }, function(err){
+            manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 6} }, function(err){
                 if(err){
                     console.log(err);
                 }else{
