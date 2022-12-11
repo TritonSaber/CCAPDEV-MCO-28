@@ -23,6 +23,9 @@ var restaurantName;
 var numLike;
 var counts;
 
+var isLikedKuya = false;
+var isLikedGerry = false;
+var isLikedMax = false;
 
 passport.use(account.createStrategy());
 passport.serializeUser(account.serializeUser());
@@ -55,7 +58,9 @@ passport.deserializeUser(account.deserializeUser());
             if (err){ 
                 console.log(err);
             }
-
+            isLikedGerry = false;
+            isLikedKuya = false;
+            isLikedMax = false;
             req.session.destroy();
             activeUser = null;
             res.redirect("/");
@@ -477,30 +482,50 @@ const deleteRes = ((req,res) =>{
 
 
     const getClickLike = ((req, res) => {
-        if(activeUser){
-            console.log("postLike");
-            numLike++;
-            like.updateOne({restaurant: restaurantName}, {like: numLike}, function(err, result){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    result[0] = numLike;
-                    if(restaurantName === "Kuya J"){
-                        res.redirect("/getkuya");
+        if((isLikedKuya == false && restaurantName == "Kuya J") || (isLikedGerry == false && restaurantName == "Gerry's Grill") || 
+            (isLikedMax == false && restaurantName == "Max's Restaurant")){
+            if(activeUser){
+                console.log("postLike");
+                numLike++;
+                like.updateOne({restaurant: restaurantName}, {like: numLike}, function(err, result){
+                    if(err){
+                        console.log(err);
                     }
-                    else if(restaurantName === "Gerry's Grill"){
-                        res.redirect("/getgerry");
+                    else{
+                        result[0] = numLike;
+                        if(restaurantName === "Kuya J"){
+                            isLikedKuya = true;
+                            res.redirect("/getkuya");
+                        }
+                        else if(restaurantName === "Gerry's Grill"){
+                            isLikedGerry = true;
+                            res.redirect("/getgerry");
+                        }
+                        else if(restaurantName === "Max's Restaurant"){
+                            isLikedMax = true;
+                            res.redirect("/getmax");
+                        }
                     }
-                    else if(restaurantName === "Max's Restaurant"){
-                        res.redirect("/getmax");
-                    }
-                }
-            })
+                })
 
+            }
+            else{
+                res.redirect('/login');
+            }
         }
         else{
-            res.redirect('/login');
+            if(restaurantName === "Kuya J"){
+                isLikedKuya = true;
+                res.redirect("/getkuya");
+            }
+            else if(restaurantName === "Gerry's Grill"){
+                isLikedGerry = true;
+                res.redirect("/getgerry");
+            }
+            else if(restaurantName === "Max's Restaurant"){
+                isLikedMax = true;
+                res.redirect("/getmax");
+            }
         }
     })
 
