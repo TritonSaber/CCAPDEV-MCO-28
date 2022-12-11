@@ -241,7 +241,7 @@ const sampleData = ((req,res) =>{
             restaurant.insertMany([
                                 {restaurantname: "Gerry's Grill", 
                                 branch: "Manila",  
-                                phone: 09988467618, 
+                                phone: 09988484711, 
                                 restaurantID: 1
                                 },
 
@@ -253,7 +253,7 @@ const sampleData = ((req,res) =>{
 
                                 {restaurantname: "Kuya J", 
                                 branch: "Manila",  
-                                phone: 09988467618, 
+                                phone: 09758418901, 
                                 restaurantID: 3
                                 },
 
@@ -265,7 +265,7 @@ const sampleData = ((req,res) =>{
 
                                 {restaurantname: "Max's Restaurant", 
                                 branch: "Manila",  
-                                phone: 09988467618, 
+                                phone: 09677565112, 
                                 restaurantID: 5
                                 },
 
