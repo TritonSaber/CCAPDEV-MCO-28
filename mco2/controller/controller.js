@@ -63,6 +63,8 @@ passport.deserializeUser(account.deserializeUser());
             isLikedMax = false;
             req.session.destroy();
             activeUser = null;
+            // console.log(activeUser);
+            // console.log(req.session);
             res.redirect("/");
           });
 
@@ -77,6 +79,7 @@ passport.deserializeUser(account.deserializeUser());
                 } else {
                   passport.authenticate("local", {failureRedirect: '/errorlogin'})(req, res, function () {
                     req.session.user = accounts;
+                    console.log(req.session.user);
                     activeUser = req.session.user;
                     console.log(activeUser);
                     res.redirect("/");
@@ -484,7 +487,7 @@ const deleteRes = ((req,res) =>{
     const getClickLike = ((req, res) => {
         if((isLikedKuya == false && restaurantName == "Kuya J") || (isLikedGerry == false && restaurantName == "Gerry's Grill") || 
             (isLikedMax == false && restaurantName == "Max's Restaurant")){
-            if(activeUser){
+            if(req.isAuthenticated()){
                 console.log("postLike");
                 numLike++;
                 like.updateOne({restaurant: restaurantName}, {like: numLike}, function(err, result){
@@ -661,7 +664,7 @@ const deleteRes = ((req,res) =>{
                 console.log(err);
             }else{
                 comment.find({restaurantID: id}, function(err, results){
-                    if(activeUser){
+                    if(req.isAuthenticated()){
                         if(activeUser.role == "User"){
                             res.render(name, {likes: numLike,comments: results, resPhone:rows.phone, branch: rows.branch, aUser: "User", title: pagetitle})
                         }else if(activeUser.role == "Admin"){
@@ -678,7 +681,7 @@ const deleteRes = ((req,res) =>{
 
 
     const postComment = ((req, res) => {
-        if(activeUser){
+        if(req.isAuthenticated()){
             var comments = new comment({
                 restaurant: restaurantName,
                 restaurantID: req.body.resID,
@@ -713,7 +716,7 @@ const deleteRes = ((req,res) =>{
             if(err){
                 console.log(err);
             }else{
-                if(activeUser){
+                if(req.isAuthenticated()){
                      if(activeUser.role == "User"){
                         res.render('profile', {   
                             name: activeUser.name,
@@ -745,7 +748,7 @@ const deleteRes = ((req,res) =>{
 
     // for footers and about page
     const getAbout =  ((req,res)=>{
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('about', {aUser: "User",title: "About Us"})
             }else if(activeUser.role == "Admin"){
@@ -760,7 +763,7 @@ const deleteRes = ((req,res) =>{
 
     const getRefunds = ((req,res)=>{
         
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('refunds', {aUser: "User",title: "Refunds"})
             }else if(activeUser.role == "Admin"){
@@ -774,7 +777,7 @@ const deleteRes = ((req,res) =>{
 
     const getRestos = ((req,res)=>{
         
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('restaurants', {aUser: "User",title: "Restaurants"})
             }else if(activeUser.role == "Admin"){
@@ -787,7 +790,7 @@ const deleteRes = ((req,res) =>{
     })
 
     const getPaymentM = ((req,res)=>{
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('paymentmethods', {aUser: "User",title: "Payment Methods"})
             }else if(activeUser.role == "Admin"){
@@ -800,7 +803,7 @@ const deleteRes = ((req,res) =>{
     })
 
     const getJoinUs = ((req,res)=>{
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('joinus', {aUser: "User",title: "Join us! Come be a part of our network!"})
             }else if(activeUser.role == "Admin"){
@@ -814,7 +817,7 @@ const deleteRes = ((req,res) =>{
 
 
     const getJoin = ((req,res)=>{
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('join', {aUser: "User",title: "Join us! Be a Book n Eat Eater!"})
             }else if(activeUser.role == "Admin"){
@@ -829,7 +832,7 @@ const deleteRes = ((req,res) =>{
 
     const getBookingInfo = ((req,res)=>{
         
-        if(activeUser){
+        if(req.isAuthenticated()){
             if(activeUser.role == "User"){
                 res.render('bookinginfo', {aUser: "User",title: "Booking Information"})
             }else if(activeUser.role == "Admin"){
@@ -848,7 +851,7 @@ const deleteRes = ((req,res) =>{
             if(err){
                 console.log(err);
             }else if(emailResult){
-                if(activeUser){
+                if(req.isAuthenticated()){
                     if(activeUser.role == "User"){
                         res.render('newsletter', {aUser:"User", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
                     }else if(activeUser.role == "Admin"){
@@ -866,7 +869,7 @@ const deleteRes = ((req,res) =>{
                     if(err){
                         console.log(err);
                     }else{
-                        if(activeUser){
+                        if(req.isAuthenticated()){
                             if(activeUser.role == "User"){
                                 res.render('newsletter', {aUser: "User", title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
@@ -940,7 +943,7 @@ const deleteRes = ((req,res) =>{
             if(err){
                 console.log(err);
             }else{
-                if(activeUser){
+                if(req.isAuthenticated()){
                     res.render('editprof', {
                         name: activeUser.name,
                         phone: activeUser.phone,
