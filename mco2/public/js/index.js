@@ -17,6 +17,20 @@ $(function(){
 
 
 $(function(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate() - 1;// tommorrow
+    if(month < 10)// january - september 01-09
+        month = '0' + month.toString();
+    if(day < 10)//01-09
+        day = '0' + day.toString();  
+    var minDate = year + '-' + month + '-' + day;// set the max date of birthday
+    $('#bdate').attr('max', minDate);
+});
+
+
+$(function(){
     $("#reserve-submit").click(function(){
         var restaurant = $("#restaurant").val();
         var date= $("#datein").val();
@@ -29,10 +43,12 @@ $(function(){
             $(this).attr("href", "#success-popup");
 
         }
-    })
+    });
 
     
 });
+
+
 //restrict the reservation dates to 1 day ahead
 //prevents users from reserving dates that has already passed
 $(function(){
