@@ -13,7 +13,6 @@ const restaurant = require("../models/restaurantModel");
 const multer = require("multer");
 const addSamples = require("../controller/sampleAdd");
 
-const bcrypt = require("bcrypt");
 const passport = require("passport");
 const session = require("express-session");
 
@@ -94,24 +93,6 @@ passport.deserializeUser(account.deserializeUser());
           
 
           return activeUser;
-        /*
-        let pass= req.body.password;   
-        let uName = req.body.username;
-        account.findOne({username: uName}, function(err, accounts){
-            if(accounts){
-                let isValidPass = bcrypt.compareSync(pass, accounts.password );
-                if(isValidPass){       
-                    activeUser = accounts;         
-                    res.redirect('/');
-    
-                } else {
-                    res.render('login',{title: 'Error - Login', error: 'Login Failed. Wrong Password!!'});
-            }
-            } else{
-                res.render('login',{title: 'Error - Login', error: 'Login Failed. Account Does Not Exist!!'});
-            }
-        })   
-        */
    })
 
 const postSave = ( (req,res) =>{
@@ -133,39 +114,6 @@ const postSave = ( (req,res) =>{
           }
         }
       );
-
-    /*
-    var salt = bcrypt.genSaltSync(10)
-    var hash = bcrypt.hashSync(req.body.password, salt);
-    var uName = req.body.username; 
-    account.findOne({username: uName}, function(err, accounts){
-        if(err)
-            console.log(err);
-
-        if(accounts){
-            res.render('signup', {
-                title: 'Oh no, Sign up error',
-                error: 'Username has been already taken! Try Again!'
-            });
-        }else{
-            var accounts = new account({
-                name: req.body.name,
-                username: uName,
-                password: hash,
-                bdate: req.body.bdate,
-                phone: req.body.phone,
-                email: req.body.email,
-            })
-            accounts.save(function(err){
-                if(err){
-                    console.log(err);
-                }else{
-                    res.redirect('/login')
-                }
-            })
-        }
-    })
-    */
 })
 
 
