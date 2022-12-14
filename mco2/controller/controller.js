@@ -666,14 +666,14 @@ const deleteRes = ((req,res) =>{
                 comment.find({restaurantID: id}, function(err, results){
                     if(req.isAuthenticated()){
                         if(activeUser.role == "User"){
-                            res.render(name, {likes: numLike,comments: results, resPhone:rows.phone, branch: rows.branch, aUser: "User", title: pagetitle})
+                            res.render(name, {likes: numLike,comments: results, resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "User", title: pagetitle})
                         }else if(activeUser.role == "Admin"){
-                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: "Admin", title: pagetitle})
+                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "Admin", title: pagetitle})
                         }else if(activeUser.role == "Manager"){
-                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: "Manager", title: pagetitle})
+                            res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "Manager", title: pagetitle})
                         }
                     }else
-                    res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, aUser: false, title: pagetitle})
+                    res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: false, title: pagetitle})
                 })
             }
         })

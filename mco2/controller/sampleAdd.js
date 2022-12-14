@@ -240,37 +240,43 @@ const sampleData = ((req,res) =>{
 
             restaurant.insertMany([
                                 {restaurantname: "Gerry's Grill", 
-                                branch: "Manila",  
+                                branch: "Manila",
+                                address: "Taft Ave., Malate, Manila",
                                 phone: 09988484711, 
                                 restaurantID: 1
                                 },
 
                                 {restaurantname: "Gerry's Grill", 
-                                branch: "Makati",  
+                                branch: "Makati",
+                                address: "Ayala Ave., Makati",
                                 phone: 0979030717, 
                                 restaurantID: 2
                                 },
 
                                 {restaurantname: "Kuya J", 
-                                branch: "Manila",  
+                                branch: "Manila",
+                                address: "Carlos Palanca St., Quiapo, Manila",
                                 phone: 09758418901, 
                                 restaurantID: 3
                                 },
 
                                 {restaurantname: "Kuya J", 
-                                branch: "Makati",  
+                                branch: "Makati",
+                                address: "Gil Puyat Ave., Makati",
                                 phone: 09988495126, 
                                 restaurantID: 4
                                 },
 
                                 {restaurantname: "Max's Restaurant", 
-                                branch: "Manila",  
+                                branch: "Manila",
+                                address: "Roxas Boulevard, Ermita, Manila",
                                 phone: 09677565112, 
                                 restaurantID: 5
                                 },
 
                                 {restaurantname: "Max's Restaurant", 
-                                branch: "Makati",  
+                                branch: "Makati",
+                                address: "Paseo de Roxas, Makati",
                                 phone: 09888121235,
                                 restaurantID: 6
                                 },

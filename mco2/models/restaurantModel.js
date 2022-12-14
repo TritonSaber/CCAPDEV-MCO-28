@@ -11,6 +11,11 @@ var restaurant = new mongoose.Schema({
         required: true
     },
 
+    address: {
+        type: String,
+        required: true
+    },
+
     phone: {
         type: Number,
         required: true
