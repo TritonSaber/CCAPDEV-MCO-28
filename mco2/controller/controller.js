@@ -234,6 +234,14 @@ const postEdit = ((req,res) =>{
 })
 
 const postDelete = ((req,res) =>{
+
+            reservation.deleteMany({username: req.body.username},function(err){
+                if(err){
+                    console.log(err);
+                }
+            })
+
+
     account.deleteOne({username: req.body.username}, function(err){
         if(err){
             console.log(err);
@@ -246,6 +254,8 @@ const postDelete = ((req,res) =>{
             res.redirect("/accountList");
         }
     })
+
+    
 })
 
 
@@ -927,7 +937,6 @@ const deleteRes = ((req,res) =>{
 
     const postProfile = ((req, res) => {
 
-        
         req.session.name = req.body.name;
         req.session.phone = req.body.phone;
         req.session.email = req.body.email;
