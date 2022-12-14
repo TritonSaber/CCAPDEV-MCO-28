@@ -197,7 +197,8 @@ const postEdit = ((req,res) =>{
                                     name: accounts.name,
                                     username: accounts.username,
                                     email: accounts.email,
-                                    phone: accounts.phone
+                                    phone: accounts.phone,
+                                    restaurantID: 0
                             
                                 })
                                 managers.save()
@@ -245,6 +246,12 @@ const getIndexMngr = ((req,res) => {
                     if(err){
                         console.log(err)
                     }else{
+                        if(!user.restaurant){
+                            res.render('manager', {
+                                title: "No Restaurant Assigned",
+                                branch: "No Branch Assigned"
+                            })
+                        }else{
                         restaurant.findOne({restaurantID: user.restaurantID}, function(err, result){
                             if(result.restaurantID == 1){
                                 getRestaurantReservations(req, res, result.restaurantname, "Gerry's Grill", "Manila");
@@ -258,13 +265,9 @@ const getIndexMngr = ((req,res) => {
                                 getRestaurantReservations(req, res, result.restaurantname, "Max's Restaurant", "Manila");
                             }else if(result.restaurantID == 6){
                                 getRestaurantReservations(req, res, result.restaurantname, "Max's Restaurant", "Makati");
-                            }else{
-                                res.render('manager', {
-                                    title: "No Restaurant Assigned"
-                                })
                             }
                         })
-                        
+                    }
                     }
                 })        
             }
