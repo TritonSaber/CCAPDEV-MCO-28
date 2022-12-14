@@ -9,6 +9,7 @@ const route =  require('./routes/routes.js')
 
 const ejs = require("ejs");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const passport = require("passport");
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore(options),
   })
 );
 app.use(passport.initialize());
