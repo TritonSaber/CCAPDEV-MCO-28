@@ -61,7 +61,7 @@ passport.deserializeUser(account.deserializeUser());
             isLikedKuya = false;
             isLikedMax = false;
             req.session.destroy();
-            activeUser = null;
+            //activeUser = null;
             // console.log(activeUser);
             // console.log(req.session);
             res.redirect("/");
@@ -78,9 +78,22 @@ passport.deserializeUser(account.deserializeUser());
                 } else {
                   passport.authenticate("local", {failureRedirect: '/errorlogin'})(req, res, function () {
                     req.session.user = accounts;
-                    console.log(req.session.user);
-                    activeUser = req.session.user;
-                    console.log(activeUser);
+                    req.session.name = accounts.name
+                    req.session.username = accounts.username
+                    req.session.email = accounts.email
+                    req.session.phone = accounts.phone
+                    req.session.bdate = accounts.bdate
+                    req.session.role = accounts.role
+                    req.session.image = accounts.image
+
+                    console.log(req.session.name);
+                    console.log(req.session.email);
+                    console.log(req.session.phone);
+                    console.log(req.session.bdate);
+                    console.log(req.session.role);
+                    console.log(req.session.image);
+
+                    //activeUser = req.session.user;
                     res.redirect("/");
                   });
                 }
@@ -92,7 +105,7 @@ passport.deserializeUser(account.deserializeUser());
         
           
 
-          return activeUser;
+          //return activeUser;
    })
 
 const postSave = ( (req,res) =>{
@@ -125,14 +138,15 @@ const postSave = ( (req,res) =>{
 
     //index page for general users
     const getIndex = ((req,res) => {
+            console.log("Hello" + req.session.name);
             if (req.isAuthenticated()) {              
             //redirects normal users to homepage
-                if(activeUser.role == "User"){
+                if(req.session.role == "User"){
                     res.render('homepage',{aUser: "User", title: "Homepage"});
             //redirects Admins to the Admin dashboard
-                }else if(activeUser.role =="Admin"){
+                }else if(req.session.role =="Admin"){
                     res.render('homepage', {aUser: "Admin",title: "Homepage"});
-                }else if(activeUser.role =="Manager"){
+                }else if(req.session.role =="Manager"){
                     res.render('homepage', {aUser: "Manager",title: "Homepage"});
                 }      
             } else
@@ -226,8 +240,8 @@ const postDelete = ((req,res) =>{
 
 const getIndexMngr = ((req,res) => {
             //redirects Managers to their dashboard
-             if(activeUser.role =="Manager"){
-                manager.findOne({username: activeUser.username}, function(err, user){
+             if(req.session.role =="Manager"){
+                manager.findOne({username: req.session.username}, function(err, user){
                     if(err){
                         console.log(err)
                     }else{
@@ -310,10 +324,7 @@ const deleteRes = ((req,res) =>{
                     res.redirect("/managerList");
                 }
             })
-        }
-        }
-        else if (req.body.restaurant == "Gerry's Grill"){
-            if (req.body.branch == "Makati"){
+        }else if (req.body.branch == "Makati"){
             manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant, restaurantID: 2} }, function(err){
                 if(err){
                     console.log(err);
@@ -332,10 +343,7 @@ const deleteRes = ((req,res) =>{
                     res.redirect("/managerList");
                 }
             })
-        }
-        }
-        else if (req.body.restaurant == "Kuya J"){
-            if (req.body.branch == "Makati"){
+        }else if (req.body.branch == "Makati"){
             manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 4} }, function(err){
                 if(err){
                     console.log(err);
@@ -344,7 +352,7 @@ const deleteRes = ((req,res) =>{
                 }
             })
         }
-    }
+        }
         else if (req.body.restaurant == "Max's Restaurant"){
             if (req.body.branch == "Manila"){
             manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 5} }, function(err){
@@ -354,10 +362,7 @@ const deleteRes = ((req,res) =>{
                     res.redirect("/managerList");
                 }
             })
-        }
-        }
-        else if (req.body.restaurant == "Max's Restaurant" && req.body.branch == "Makati"){
-             if (req.body.branch == "Makati"){
+        }else if (req.body.branch == "Makati"){
             manager.updateOne({username: req.body.username},{$set: {restaurant: req.body.restaurant,restaurantID: 6} }, function(err){
                 if(err){
                     console.log(err);
@@ -366,13 +371,15 @@ const deleteRes = ((req,res) =>{
                 }
             })
         }
-    }
+        }
+
      
 })
     
-    
+
+
     const getReserve =  ( (req,res) => {
-                    reservation.find({username: activeUser.username}, function(err, rows){
+                    reservation.find({username: req.session.username}, function(err, rows){
                         if(err){
                             console.log(err);
                         }else{
@@ -397,10 +404,10 @@ const deleteRes = ((req,res) =>{
             var reserves = new reservation({
                 restaurant: req.body.restaurant,
                 branch: req.body.branch,
-                name: activeUser.name,
-                email: activeUser.email,
-                phone: activeUser.phone,
-                username: activeUser.username,
+                name: req.session.name,
+                email: req.session.email,
+                phone: req.session.phone,
+                username: req.session.username,
                 datein: req.body.datein,
                 timein: req.body.timein,
                 numpeople: req.body.numpeople,
@@ -613,11 +620,11 @@ const deleteRes = ((req,res) =>{
             }else{
                 comment.find({restaurantID: id}, function(err, results){
                     if(req.isAuthenticated()){
-                        if(activeUser.role == "User"){
+                        if(req.session.role == "User"){
                             res.render(name, {likes: numLike,comments: results, resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "User", title: pagetitle})
-                        }else if(activeUser.role == "Admin"){
+                        }else if(req.session.role == "Admin"){
                             res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "Admin", title: pagetitle})
-                        }else if(activeUser.role == "Manager"){
+                        }else if(req.session.role == "Manager"){
                             res.render(name, {likes: numLike,comments: results,  resPhone:rows.phone, branch: rows.branch, address:rows.address, aUser: "Manager", title: pagetitle})
                         }
                     }else
@@ -633,10 +640,10 @@ const deleteRes = ((req,res) =>{
             var comments = new comment({
                 restaurant: restaurantName,
                 restaurantID: req.body.resID,
-                name: activeUser.name,
-                username: activeUser.username,
+                name:req.session.name,
+                username: req.session.username,
                 comment_text: req.body.comment_text,
-                image: activeUser.image
+                image: req.session.image
             })
             comments.save(function(err){
                 if(err){
@@ -660,28 +667,28 @@ const deleteRes = ((req,res) =>{
     })
 
     const getProf =  ((req,res)=>{
-        account.find({username: activeUser.username}, function(err, rows){
+        account.find({username: req.session.username}, function(err, rows){
             if(err){
                 console.log(err);
             }else{
                 if(req.isAuthenticated()){
-                     if(activeUser.role == "User"){
+                     if(req.session.role == "User"){
                         res.render('profile', {   
-                            name: activeUser.name,
-                            phone: activeUser.phone,
-                            username: activeUser.username,
-                            email: activeUser.email,
-                            bdate: activeUser.bdate,
-                            image: activeUser.image,
+                            name: req.session.name,
+                            phone: req.session.phone,
+                            username: req.session.username,
+                            email:req.session.email,
+                            bdate: req.session.bdate,
+                            image:req.session.image,
                             aUser: "User"})
-                     }else if(activeUser.role == "Manager"){
+                     }else if(req.session.role == "Manager"){
                         res.render('profile', {   
-                            name: activeUser.name,
-                            phone: activeUser.phone,
-                            username: activeUser.username,
-                            email: activeUser.email,
-                            bdate: activeUser.bdate,
-                            image: activeUser.image,
+                            name: req.session.name,
+                            phone: req.session.phone,
+                            username: req.session.username,
+                            email:req.session.email,
+                            bdate: req.session.bdate,
+                            image: req.session.image,
                             aUser: "Manager"})
                     }else{
                         res.render('profile', {   aUser: false})
@@ -697,11 +704,11 @@ const deleteRes = ((req,res) =>{
     // for footers and about page
     const getAbout =  ((req,res)=>{
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('about', {aUser: "User",title: "About Us"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('about', {aUser: "Admin",title: "About Us"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('about', {aUser: "Manager",title: "About Us"})
             }
         }else
@@ -712,11 +719,11 @@ const deleteRes = ((req,res) =>{
     const getRefunds = ((req,res)=>{
         
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('refunds', {aUser: "User",title: "Refunds"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('refunds', {aUser: "Admin",title: "Refunds"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('refunds', {aUser: "Manager",title: "Refunds"})
             }
         }else
@@ -726,11 +733,11 @@ const deleteRes = ((req,res) =>{
     const getRestos = ((req,res)=>{
         
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('restaurants', {aUser: "User",title: "Restaurants"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('restaurants', {aUser: "Admin",title: "Restaurants"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('restaurants', {aUser: "Manager",title: "Restaurants"})
             }
         }else
@@ -739,11 +746,11 @@ const deleteRes = ((req,res) =>{
 
     const getPaymentM = ((req,res)=>{
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('paymentmethods', {aUser: "User",title: "Payment Methods"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('paymentmethods', {aUser: "Admin",title: "Payment Methods"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('paymentmethods', {aUser: "Manager",title: "Payment Methods"})
             }
         }else
@@ -752,11 +759,11 @@ const deleteRes = ((req,res) =>{
 
     const getJoinUs = ((req,res)=>{
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('joinus', {aUser: "User",title: "Join us! Come be a part of our network!"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('joinus', {aUser: "Admin",title: "Join us! Come be a part of our network!"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('joinus', {aUser: "Manager",title: "Join us! Come be a part of our network!"})
             }
         }else
@@ -766,11 +773,11 @@ const deleteRes = ((req,res) =>{
 
     const getJoin = ((req,res)=>{
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('join', {aUser: "User",title: "Join us! Be a Book n Eat Eater!"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('join', {aUser: "Admin",title: "Join us! Be a Book n Eat Eater!"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('join', {aUser: "Manager",title: "Join us! Be a Book n Eat Eater!"})
             }
         }else
@@ -781,11 +788,11 @@ const deleteRes = ((req,res) =>{
     const getBookingInfo = ((req,res)=>{
         
         if(req.isAuthenticated()){
-            if(activeUser.role == "User"){
+            if(req.session.role == "User"){
                 res.render('bookinginfo', {aUser: "User",title: "Booking Information"})
-            }else if(activeUser.role == "Admin"){
+            }else if(req.session.role == "Admin"){
                 res.render('bookinginfo', {aUser: "Admin",title: "Booking Information"})
-            }else if(activeUser.role == "Manager"){
+            }else if(req.session.role == "Manager"){
                 res.render('bookinginfo', {aUser: "Manager",title: "Booking Information"})
             }
         }else
@@ -800,11 +807,11 @@ const deleteRes = ((req,res) =>{
                 console.log(err);
             }else if(emailResult){
                 if(req.isAuthenticated()){
-                    if(activeUser.role == "User"){
+                    if(req.session.role == "User"){
                         res.render('newsletter', {aUser:"User", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
-                    }else if(activeUser.role == "Admin"){
+                    }else if(req.session.role == "Admin"){
                         res.render('newsletter', {aUser:"Admin", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
-                    }else if(activeUser.role == "Manager"){
+                    }else if(req.session.role == "Manager"){
                         res.render('newsletter', {aUser: "Manager", title: "News Letter",status: "<h2>Failure!</h2><br><h3>Your email already exists in the newsletter!</h3>",})
                     }
                 }else
@@ -818,13 +825,13 @@ const deleteRes = ((req,res) =>{
                         console.log(err);
                     }else{
                         if(req.isAuthenticated()){
-                            if(activeUser.role == "User"){
+                            if(req.session.role == "User"){
                                 res.render('newsletter', {aUser: "User", title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
-                            }else if(activeUser.role == "Admin"){
+                            }else if(req.session.role == "Admin"){
                                 res.render('newsletter', {aUser: "Admin", title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
-                            }else if(activeUser.role == "Manager"){
+                            }else if(req.session.role == "Manager"){
                                 res.render('newsletter', {aUser: "Manager",title: "News Letter",status: "<h2>Success</h2><br><h3>Your email has been added to the newsletter!</h3>",
                                 })
                             }
@@ -887,17 +894,17 @@ const deleteRes = ((req,res) =>{
 
     const getEdit =  ((req,res)=>{
        
-        account.find({username: activeUser.username}, function(err, rows){
+        account.find({username: req.session.username}, function(err, rows){
             if(err){
                 console.log(err);
             }else{
                 if(req.isAuthenticated()){
                     res.render('editprof', {
-                        name: activeUser.name,
-                        phone: activeUser.phone,
-                        username: activeUser.username,
-                        email: activeUser.email,
-                        bdate: activeUser.bdate
+                        name: req.session.name,
+                        phone: req.session.phone,
+                        username: req.session.username,
+                        email: req.session.email,
+                        bdate: req.session.bdate
                     });
                 }
                
@@ -908,24 +915,24 @@ const deleteRes = ((req,res) =>{
     const postProfile = ((req, res) => {
 
         
-        activeUser.name = req.body.name;
-        activeUser.phone = req.body.phone;
-        activeUser.email = req.body.email;
-        activeUser.bdate = req.body.bdate;
-        activeUser.image = req.file.filename;
+        req.session.name = req.body.name;
+        req.session.phone = req.body.phone;
+        req.session.email = req.body.email;
+        req.session.bdate = req.body.bdate;
+        req.session.image = req.file.filename;
         
-        account.updateOne({username: activeUser.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
+        account.updateOne({username: req.session.username},{$set: {name: req.body.name, phone: req.body.phone, email: req.body.email, 
             bdate: req.body.bdate, image: req.file.filename}}, function(err){
                 if(err){
                     console.log(err);
                 }
                 else{
-                    comment.updateMany({username: activeUser.username}, {$set: {name:req.body.name, image:req.file.filename}}, function(err){
+                    comment.updateMany({username: req.session.username}, {$set: {name:req.body.name, image:req.file.filename}}, function(err){
                         if(err){
                             console.log(err)
                         }
                         else{
-                            console.log(activeUser.username);
+                            console.log(req.session.username);
                             res.redirect("/getprof");
                         }
                     })
