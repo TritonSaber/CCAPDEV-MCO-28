@@ -138,7 +138,7 @@ const postSave = ( (req,res) =>{
 
     //index page for general users
     const getIndex = ((req,res) => {
-            console.log("Hello" + req.session.name);
+            console.log("Hello " + req.session.name);
             if (req.isAuthenticated()) {              
             //redirects normal users to homepage
                 if(req.session.role == "User"){
@@ -932,13 +932,31 @@ const deleteRes = ((req,res) =>{
                 else{
                     comment.updateMany({username: req.session.username}, {$set: {name:req.body.name, image:req.file.filename}}, function(err){
                         if(err){
-                            console.log(err)
-                        }
-                        else{
-                            console.log(req.session.username);
-                            res.redirect("/getprof");
+                            console.log(err);
                         }
                     })
+                    reservation.updateMany({username: req.session.username}, {$set:{name:req.body.name, phone: req.body.phone, 
+                        email: req.body.email}}, function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                    if(req.session.role == "Manager"){
+                        manager.updateOne({username: req.session.username}, {$set:{name:req.body.name, phone: req.body.phone, 
+                            email: req.body.email}}, function(err){
+                                if(err){
+                                    console.lof(err);
+                                }
+                                else{
+                                    console.log(req.session.username);
+                                    res.redirect("/getprof");
+                                }
+                            })
+                    }
+                    else{
+                        console.log(req.session.username);
+                        res.redirect("/getprof");
+                    }
                 }
             })
     })
