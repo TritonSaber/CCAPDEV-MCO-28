@@ -188,6 +188,16 @@ const postEdit = ((req,res) =>{
                     console.log(err);
                 }else{
                     if(accounts.role == "Manager"){
+                        reservation.find({username: accounts.username}, function(err, result){
+                            if(result != null){
+                                console.log(result)
+                                reservation.deleteMany({username: accounts.username}, function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                        })
                         manager.findOne({username: accounts.username}, function(err, managers){
                             if(err)
                                 console.log(err);
