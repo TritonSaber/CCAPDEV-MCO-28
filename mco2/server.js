@@ -8,7 +8,7 @@ const account = require("./models/accountModel");
 const route =  require('./routes/routes.js')
 
 const ejs = require("ejs");
-const session = require("cookie-session");
+const session = require("express-session");
 const passport = require("passport");
 const app = express();
 
@@ -18,11 +18,9 @@ const app = express();
 
 app.use(
   session({
-    name: 'session',
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    maxAge: 24 * 60 * 60 * 1000
   })
 );
 app.use(passport.initialize());
