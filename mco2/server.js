@@ -18,9 +18,11 @@ const app = express();
 
 app.use(
   session({
+    name: 'session',
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    maxAge: 24 * 60 * 60 * 1000
   })
 );
 app.use(passport.initialize());
