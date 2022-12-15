@@ -8,7 +8,7 @@ const account = require("./models/accountModel");
 const route =  require('./routes/routes.js')
 
 const ejs = require("ejs");
-const session = require("express-session");
+const session = require("cookie-session");
 const passport = require("passport");
 const app = express();
 
